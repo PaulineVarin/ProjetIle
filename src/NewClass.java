@@ -9,5 +9,5 @@
  * @author varinp
  */
 public class NewClass {
-    
+    // test
 }
