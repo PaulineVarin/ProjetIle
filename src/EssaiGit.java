@@ -15,6 +15,7 @@ public class EssaiGit {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-    }
-    int nb=0;
+        System.out.println("Hello");
+        int nb=0;
+    } 
 }
