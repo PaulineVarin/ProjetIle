@@ -21,6 +21,5 @@ public class ProjetIle {
        System.out.println("Hello Edouard");
        
        System.out.println("hello ,its me elie");
-       ......;
     } ;;;;
 }
