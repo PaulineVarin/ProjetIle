@@ -2,6 +2,7 @@ package Jeu;
 
 
 import vuesIHM.*;
+import Ile.*;
 
 
 /*
@@ -23,7 +24,7 @@ public class IHM {
     IHM() {
         //test des vues
       this.inscription = new VueInscription(this);
-      this.introduction = new VueIntroduction(this);
+      this.introduction = new VueIntroduction(this); 
     }
     
 }
