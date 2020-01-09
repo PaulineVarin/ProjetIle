@@ -18,6 +18,6 @@ public class ProjetIle {
         System.out.println("Hello");
         System.out.println("Hell");
         int nb=0;
-       System.out.println("Hello");
+       System.out.println("Hello Edouard");
     } ;;;;
 }
