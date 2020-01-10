@@ -10,5 +10,19 @@ package Ile;
  * @author tardieue
  */
 public class CarteTresor extends CarteTirage{
+
+    /**
+     * @return the type
+     */
+    public TypeTresorCarte getType() {
+        return type;
+    }
+
+    /**
+     * @param type the type to set
+     */
+    public void setType(TypeTresorCarte type) {
+        this.type = type;
+    }
     private TypeTresorCarte type;
 }
