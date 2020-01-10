@@ -15,4 +15,5 @@ public class Aventurier {
     private boolean deplacementDiagonal, assechementDiagonal, assechementDouble, deplacementPilote, deplacementPlongeur, deplacementNavigateur;
 
     private Tuile tuileDeDepart, position;
+    private CouleurJoueur couleur;
 }
