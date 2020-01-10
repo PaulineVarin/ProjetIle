@@ -5,10 +5,21 @@
  */
 package vuesIHM;
 
+import java.awt.BorderLayout;
+import java.awt.GridLayout;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+
 /**
  *
  * @author varinp
  */
 public class VueResume {
+    private VueJeu jeu = new VueJeu();
+    
+    private JFrame window = new JFrame("VueRésumé");
+    private JPanel contenu = new JPanel(new BorderLayout());
+    
     
 }
