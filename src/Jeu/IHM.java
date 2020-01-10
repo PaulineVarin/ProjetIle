@@ -2,7 +2,7 @@ package Jeu;
 
 
 import vuesIHM.*;
-import Ile.*;
+
 
 
 /*
