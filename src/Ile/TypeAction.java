@@ -10,5 +10,10 @@ package Ile;
  * @author tardieue
  */
 public enum TypeAction {
-
+    SE_DEPLACER,
+    ASSECHER,
+    DONNER,
+    PRENDRE,
+    UTILISER_POUVOIR,
+    FINIR_TOUR;
 }
