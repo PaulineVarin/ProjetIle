@@ -42,9 +42,25 @@ public class IleInterdite extends Observe {
         }
     }*/
     
-    private void tirageCarte(Aventurier av) {
+    private void tirageCartes(Aventurier av) {      // à finir
         System.out.println("Pensez à programmer tirageCarte");
-        
+        Aventurier av_temp = av;
+        if (verificationTirage()) {
+            av.getCollectCartesJoueur().addAll(tiragePossible());
+            setAventurier(av);
+        }
+    }
+    
+    private boolean verificationTirage() {
+        return(getCarteTiragesTires().size() <= 2);
+    }
+    
+    private ArrayList<CarteTirage> tiragePossible() {
+        ArrayList<CarteTirage> tiree = new ArrayList<>();
+        for (int i=0; i<2; i++) {
+            tiree.add(getCarteTiragesTires().get(0));
+        }
+        return tiree;
     }
     
     private void tirageCartesInondation() {

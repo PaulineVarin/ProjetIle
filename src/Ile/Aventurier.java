@@ -5,6 +5,8 @@
  */
 package Ile;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author tardieue
@@ -24,6 +26,7 @@ public abstract class Aventurier {
     private Tuile tuileDeDepart;
     private Tuile position;
     private CouleurJoueur couleur;
+    private ArrayList<CarteTirage> collectCartesJoueur = new ArrayList<>();
     
     // constructeur
     public Aventurier(String nom) {
@@ -193,5 +196,19 @@ public abstract class Aventurier {
      */
     public void setCouleur(CouleurJoueur couleur) {
         this.couleur = couleur;
+    }
+
+    /**
+     * @return the collectCartesJoueur
+     */
+    public ArrayList<CarteTirage> getCollectCartesJoueur() {
+        return collectCartesJoueur;
+    }
+
+    /**
+     * @param collectCartesJoueur the collectCartesJoueur to set
+     */
+    public void setCollectCartesJoueur(ArrayList<CarteTirage> collectCartesJoueur) {
+        this.collectCartesJoueur = collectCartesJoueur;
     }
 }
