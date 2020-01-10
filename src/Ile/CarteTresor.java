@@ -10,5 +10,5 @@ package Ile;
  * @author tardieue
  */
 public class CarteTresor extends CarteTirage{
-    
+    private TypeTresorCarte type;
 }

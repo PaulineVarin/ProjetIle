@@ -10,7 +10,5 @@ package Ile;
  * @author tardieue
  */
 public class CarteTirage {
-    
     private String nom;
-    //ghcfgfgf
 }
