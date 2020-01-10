@@ -10,5 +10,8 @@ package Ile;
  * @author tardieue
  */
 public enum TypeTresorCarte {
-    
+    PIERRE,
+    ZEPHYR,
+    CRISTAL,
+    CALICE;
 }

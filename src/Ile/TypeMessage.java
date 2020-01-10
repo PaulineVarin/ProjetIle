@@ -10,5 +10,10 @@ package Ile;
  * @author tardieue
  */
 public enum TypeMessage {
-    
+    INITIALISATION,
+    DEBUT_JEU,
+    CHOIX_JOUEUR,
+    POSSIBILITEES_JOUEUR,
+    VALIDATION_JOUEUR,
+    FIN_JEU;
 }

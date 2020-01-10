@@ -10,5 +10,9 @@ package Ile;
  * @author tardieue
  */
 public enum TypeTresorTuile {
-    
+    PIERRE,
+    ZEPHYR,
+    CRISTAL,
+    CALICE,
+    NEUTRE;
 }
