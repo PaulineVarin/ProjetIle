@@ -9,7 +9,7 @@ import java.util.concurrent.SubmissionPublisher;
  * @author Raphaël Bleuse <raphael.bleuse@iut2.univ-grenoble-alpes.fr>
  * @author Yann Laurillau <yann.laurillau@iut2.univ-grenoble-alpes.fr>
  */
-public class Observable<Message> {
+public class Observe<Message> {
     private final SubmissionPublisher<Message> broker
             = new SubmissionPublisher<>(
                     Executors.newSingleThreadExecutor(),
