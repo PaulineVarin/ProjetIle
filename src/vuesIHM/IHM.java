@@ -1,4 +1,4 @@
-package Jeu;
+package vuesIHM;
 
 
 import vuesIHM.*;
@@ -21,10 +21,12 @@ public class IHM {
     private VueJeu jeu;
     
 
-    IHM() {
+    public IHM() {
         //test des vues
       this.inscription = new VueInscription(this);
       this.introduction = new VueIntroduction(this); 
+      VueJoueur joueur = new VueJoueur();
+      VueGrille grille = new VueGrille();
     }
     
 }

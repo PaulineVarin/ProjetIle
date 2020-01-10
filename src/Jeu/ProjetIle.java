@@ -1,5 +1,6 @@
 package Jeu;
 
+import vuesIHM.IHM;
 import vuesIHM.VueIntroduction;
 
 /*

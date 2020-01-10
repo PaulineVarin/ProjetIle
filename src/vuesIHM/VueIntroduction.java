@@ -5,7 +5,6 @@
  */
 package vuesIHM;
 
-import Jeu.IHM;
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import javax.swing.JButton;
