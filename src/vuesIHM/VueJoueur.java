@@ -33,6 +33,7 @@ public class VueJoueur {
         
         //Configuration window
         window.setSize(500,500);
+        window.add(contenu);
         window.setDefaultCloseOperation(window.EXIT_ON_CLOSE);
         
     }
