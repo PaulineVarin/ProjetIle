@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 package vuesIHM;
-import Jeu.IHM;
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import javax.swing.JButton;
