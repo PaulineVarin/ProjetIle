@@ -10,5 +10,7 @@ package Ile;
  * @author tardieue
  */
 public class CarteHelicoptere extends CarteTirage {
-    
+    public CarteHelicoptere() {
+        super.setNom("helicoptere");
+    }
 }

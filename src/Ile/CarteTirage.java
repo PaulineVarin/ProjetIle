@@ -10,6 +10,7 @@ package Ile;
  * @author tardieue
  */
 public class CarteTirage {
+    private String nom;
 
     /**
      * @return the nom
@@ -24,5 +25,4 @@ public class CarteTirage {
     public void setNom(String nom) {
         this.nom = nom;
     }
-    private String nom;
 }

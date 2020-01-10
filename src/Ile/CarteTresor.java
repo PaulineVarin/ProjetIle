@@ -10,6 +10,12 @@ package Ile;
  * @author tardieue
  */
 public class CarteTresor extends CarteTirage{
+    private TypeTresorCarte type;
+
+    public CarteTresor (TypeTresorCarte type) {
+        this.type = type;
+        super.setNom("tresor");
+    }
 
     /**
      * @return the type
@@ -24,5 +30,4 @@ public class CarteTresor extends CarteTirage{
     public void setType(TypeTresorCarte type) {
         this.type = type;
     }
-    private TypeTresorCarte type;
 }
