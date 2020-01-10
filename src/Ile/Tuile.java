@@ -16,7 +16,15 @@ public class Tuile {
     private EtatTuile etat;
     private TypeTresorTuile tresor;
     private String nomTuile;
-    private CouleurJoueur pInitial;
+ 
+    /*public Tuile(Ligne ligne,Colonne colonne, Etat etat, Tresor tresor, NomTuile nomTuile,PInitial pInitial){
+    this.ligne= ligne;
+    this.colonne= colonne;
+    this.etat=etat;
+    this.tresor=tresor;
+    this.nomTuile=nomTuile;
+    
+}*/
 }
 
 
