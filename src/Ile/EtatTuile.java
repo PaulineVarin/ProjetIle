@@ -10,5 +10,7 @@ package Ile;
  * @author tardieue
  */
 public enum EtatTuile {
-    
+    ASSECHEE,
+    INONDEE,
+    COULEE;
 }
