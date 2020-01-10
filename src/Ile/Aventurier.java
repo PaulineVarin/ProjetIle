@@ -10,7 +10,9 @@ package Ile;
  * @author tardieue
  */
 public class Aventurier {
-    
-    
-    
+    private String nomJoueur, role;
+    private int nbaction;
+    private boolean deplacementDiagonal, assechementDiagonal, assechementDouble, deplacementPilote, deplacementPlongeur, deplacementNavigateur;
+
+    private Tuile tuileDeDepart, position;
 }
