@@ -13,9 +13,22 @@ public class Tuile {
     
     private int ligne;
     private int colonne;
-    private EtatTuile etat;
-    private TypeTresorTuile tresor;
+    private EtatTuile etat = EtatTuile.ASSECHEE;
+    private TypeTresorTuile tresor = TypeTresorTuile.NEUTRE;
     private String nomTuile;
+
+    public Tuile(int lig, int col, String nomTuile, TypeTresorTuile tresor) {
+        this.ligne = lig;
+        this.colonne = col;
+        this.nomTuile = nomTuile;
+        this.tresor = tresor;
+    }
+
+    public Tuile(int lig, int col, String nomTuile) {
+        this.ligne = lig;
+        this.colonne = col;
+        this.nomTuile = nomTuile;
+    }
 
     /**
      * @return the ligne
