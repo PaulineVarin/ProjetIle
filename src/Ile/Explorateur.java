@@ -10,5 +10,11 @@ package Ile;
  * @author tardieue
  */
 public class Explorateur extends Aventurier {
-    
+    public Explorateur(String nom) {
+        super(nom);
+        super.setRole("explorateur");
+        super.setCouleur(CouleurJoueur.VERT);
+        super.setAssechementDiagonal(true);
+        super.setDeplacementDiagonal(true);
+    }
 }

@@ -10,5 +10,10 @@ package Ile;
  * @author tardieue
  */
 public class Ingenieur extends Aventurier {
-    
+    public Ingenieur (String nom, CouleurJoueur coul) {
+        super(nom);
+        super.setRole("ingenieur");
+        super.setAssechementDouble(true);
+        super.setCouleur(CouleurJoueur.ROUGE);
+    }
 }

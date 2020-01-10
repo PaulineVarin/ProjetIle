@@ -13,5 +13,7 @@ public enum CouleurJoueur {
     BLEU,
     VERT,
     JAUNE,
-    ROUGE;
+    ROUGE,
+    GRIS,
+    NOIR;
 }

@@ -9,13 +9,27 @@ package Ile;
  *
  * @author tardieue
  */
-public class Aventurier {
-    private String nomJoueur, role;
+public abstract class Aventurier {
+    private final String nomJoueur;
+    private String role;
     private int nbaction;
-    private boolean deplacementDiagonal, assechementDiagonal, assechementDouble, deplacementPilote, deplacementPlongeur, deplacementNavigateur;
 
-    private Tuile tuileDeDepart, position;
+    private boolean deplacementDiagonal = false;
+    private boolean assechementDiagonal = false;
+    private boolean assechementDouble = false;
+    private boolean deplacementPilote = false;
+    private boolean deplacementPlongeur = false;
+    private boolean deplacementNavigateur;
+
+    private Tuile tuileDeDepart;
+    private Tuile position;
     private CouleurJoueur couleur;
+    
+    // constructeur
+    public Aventurier(String nom) {
+        this.nomJoueur = nom;
+        this.position = this.tuileDeDepart;
+    }
     
     // méthodes :
     // getters :
@@ -116,5 +130,68 @@ public class Aventurier {
      */
     public void setPosition(Tuile position) {
         this.position = position;
+    }
+
+    /**
+     * @param role the role to set
+     */
+    public void setRole(String role) {
+        this.role = role;
+    }
+
+    /**
+     * @param deplacementDiagonal the deplacementDiagonal to set
+     */
+    public void setDeplacementDiagonal(boolean deplacementDiagonal) {
+        this.deplacementDiagonal = deplacementDiagonal;
+    }
+
+    /**
+     * @param assechementDiagonal the assechementDiagonal to set
+     */
+    public void setAssechementDiagonal(boolean assechementDiagonal) {
+        this.assechementDiagonal = assechementDiagonal;
+    }
+
+    /**
+     * @param assechementDouble the assechementDouble to set
+     */
+    public void setAssechementDouble(boolean assechementDouble) {
+        this.assechementDouble = assechementDouble;
+    }
+
+    /**
+     * @param deplacementPilote the deplacementPilote to set
+     */
+    public void setDeplacementPilote(boolean deplacementPilote) {
+        this.deplacementPilote = deplacementPilote;
+    }
+
+    /**
+     * @param deplacementPlongeur the deplacementPlongeur to set
+     */
+    public void setDeplacementPlongeur(boolean deplacementPlongeur) {
+        this.deplacementPlongeur = deplacementPlongeur;
+    }
+
+    /**
+     * @param deplacementNavigateur the deplacementNavigateur to set
+     */
+    public void setDeplacementNavigateur(boolean deplacementNavigateur) {
+        this.deplacementNavigateur = deplacementNavigateur;
+    }
+
+    /**
+     * @param tuileDeDepart the tuileDeDepart to set
+     */
+    public void setTuileDeDepart(Tuile tuileDeDepart) {
+        this.tuileDeDepart = tuileDeDepart;
+    }
+
+    /**
+     * @param couleur the couleur to set
+     */
+    public void setCouleur(CouleurJoueur couleur) {
+        this.couleur = couleur;
     }
 }

@@ -10,5 +10,10 @@ package Ile;
  * @author tardieue
  */
 public class Navigateur extends Aventurier {
-    
+    public Navigateur(String nom) {
+        super(nom);
+        super.setCouleur(CouleurJoueur.JAUNE);
+        super.setRole("navigateur");
+        super.setDeplacementNavigateur(true);
+    }
 }

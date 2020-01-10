@@ -10,5 +10,10 @@ package Ile;
  * @author tardieue
  */
 public class Messager extends Aventurier {
-    
+    //il n'y a pas de booléen correspondant à son pouvoir. Penser à programmer la méthode donnerCarte()
+    public Messager(String nom) {
+        super(nom);
+        super.setRole("messager");
+        super.setCouleur(CouleurJoueur.GRIS);
+    }
 }

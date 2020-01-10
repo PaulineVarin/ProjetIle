@@ -10,5 +10,10 @@ package Ile;
  * @author tardieue
  */
 public class Pilote extends Aventurier {
-    
+    public Pilote(String nom) {
+        super(nom);
+        super.setRole("pilote");
+        super.setCouleur(CouleurJoueur.BLEU);
+        super.setDeplacementPilote(true);
+    }
 }
