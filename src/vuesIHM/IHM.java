@@ -27,6 +27,7 @@ public class IHM {
       this.introduction = new VueIntroduction(this); 
       VueJoueur joueur = new VueJoueur();
       AFaireVueGrille grille = new AFaireVueGrille();
+      VueResume resum = new VueResume();
     }
     
 }
