@@ -12,5 +12,5 @@ package Ile;
 public class CarteTirage {
     
     private String nom;
-    ghcfgfgf
+    //ghcfgfgf
 }
