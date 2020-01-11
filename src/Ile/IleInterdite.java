@@ -24,7 +24,7 @@ public class IleInterdite extends Observe {
     private ArrayList <CarteInondation> carteInondesDefausses = new ArrayList <>();
     private Grille grille = null;
     private ArrayList <Aventurier> aventuriers = new ArrayList <>();
-
+    OU EST LE CONSTRUCTEUR ???!!!!
     /* à faire quand le diagramme de séquence sera fait
     public void finDeTour(String nomAventurier) {
         Aventurier av = null;
