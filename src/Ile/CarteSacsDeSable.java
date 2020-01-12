@@ -10,7 +10,12 @@ package Ile;
  * @author tardieue
  */
 public class CarteSacsDeSable extends CarteTirage {
-    public CarteSacsDeSable() {
-        super.setNom("sacsDeSable");
+    //Données
+    
+    //Constructeur
+    public CarteSacsDeSable(String nom) {
+        super(nom);
     }
+    
+    //Méthodes
 }

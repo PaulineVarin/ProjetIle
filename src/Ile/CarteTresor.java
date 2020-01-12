@@ -10,24 +10,31 @@ package Ile;
  * @author tardieue
  */
 public class CarteTresor extends CarteTirage{
-    private TypeTresorCarte type;
+    //Données
+    private TypeTresorCarte typeTresor;
 
-    public CarteTresor (TypeTresorCarte type) {
-        this.type = type;
-        super.setNom("tresor");
+    //Constructeur
+    public CarteTresor (String nom,TypeTresorCarte typeTresor) {
+        super(nom);
+        this.typeTresor = typeTresor;
+        
+    }
+    
+    //Méthodes
+
+    /**
+     * @return the typeTresor
+     */
+    public TypeTresorCarte getTypeTresor() {
+        return typeTresor;
     }
 
     /**
-     * @return the type
+     * @param typeTresor the typeTresor to set
      */
-    public TypeTresorCarte getType() {
-        return type;
+    public void setTypeTresor(TypeTresorCarte typeTresor) {
+        this.typeTresor = typeTresor;
     }
+    
 
-    /**
-     * @param type the type to set
-     */
-    public void setType(TypeTresorCarte type) {
-        this.type = type;
-    }
 }

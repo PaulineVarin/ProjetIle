@@ -9,9 +9,17 @@ package Ile;
  *
  * @author tardieue
  */
-public class CarteTirage {
+public abstract class CarteTirage {
+    //Données
     private String nom;
-
+    
+    //Constructeur
+    public CarteTirage(String nom) {
+        this.nom = nom;
+    }
+    
+    
+    //Méthodes
     /**
      * @return the nom
      */
@@ -25,4 +33,6 @@ public class CarteTirage {
     public void setNom(String nom) {
         this.nom = nom;
     }
+
+
 }

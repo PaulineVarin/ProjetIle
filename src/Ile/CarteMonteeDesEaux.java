@@ -10,7 +10,12 @@ package Ile;
  * @author tardieue
  */
 public class CarteMonteeDesEaux extends CarteTirage {
-    public CarteMonteeDesEaux() {
-        super.setNom("monteeDesEaux");
+    //Données
+    
+    //Constructeur
+    public CarteMonteeDesEaux(String nom) {
+        super(nom);
     }
+    
+    //Méthodes
 }
