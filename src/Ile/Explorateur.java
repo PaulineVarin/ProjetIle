@@ -10,11 +10,16 @@ package Ile;
  * @author tardieue
  */
 public class Explorateur extends Aventurier {
-    public Explorateur(String nom) {
-        super(nom);
-        super.setRole("explorateur");
+    //Données
+    
+    
+    //Constructeur
+    public Explorateur(String nom,IleInterdite ile) {
+        super(nom,ile);
+        super.setRole("Explorateur");
         super.setCouleur(CouleurJoueur.VERT);
         super.setAssechementDiagonal(true);
         super.setDeplacementDiagonal(true);
     }
+    //Méthodes
 }
