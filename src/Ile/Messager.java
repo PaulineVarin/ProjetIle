@@ -10,10 +10,16 @@ package Ile;
  * @author tardieue
  */
 public class Messager extends Aventurier {
-    //il n'y a pas de booléen correspondant à son pouvoir. Penser à programmer la méthode donnerCarte()
-    public Messager(String nom) {
-        super(nom);
-        super.setRole("messager");
+    //Données
+    
+    
+    //Constructeur
+    public Messager(String nom,IleInterdite ile) {
+        super(nom,ile);
+        super.setRole("Messager");
         super.setCouleur(CouleurJoueur.GRIS);
+        //On ne gère pas le pouvoir du messager
     }
+    
+    //Méthodes
 }

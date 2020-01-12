@@ -10,9 +10,15 @@ package Ile;
  * @author tardieue
  */
 public class Plongeur extends Aventurier {
-    public Plongeur(String nom) {
-        super(nom);
-        super.setDeplacementPlongeur(true);
+    //Données
+    
+    //Constructeur
+    public Plongeur(String nom,IleInterdite ile) {
+        super(nom,ile);
         super.setCouleur(CouleurJoueur.NOIR);
+        super.setDeplacementPlongeur(true);
+        
     }
+    
+    //Méthodes
 }

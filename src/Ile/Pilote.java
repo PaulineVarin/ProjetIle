@@ -10,10 +10,16 @@ package Ile;
  * @author tardieue
  */
 public class Pilote extends Aventurier {
-    public Pilote(String nom) {
-        super(nom);
+    //Données
+    
+    
+    //Constructeur
+    public Pilote(String nom,IleInterdite ile) {
+        super(nom,ile);
         super.setRole("pilote");
         super.setCouleur(CouleurJoueur.BLEU);
         super.setDeplacementPilote(true);
     }
+    
+    //Méthodes
 }
