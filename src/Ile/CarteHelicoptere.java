@@ -10,7 +10,12 @@ package Ile;
  * @author tardieue
  */
 public class CarteHelicoptere extends CarteTirage {
-    public CarteHelicoptere() {
-        super.setNom("helicoptere");
+    //Données
+    
+    //Constructeur
+    public CarteHelicoptere(String nom) {
+        super(nom);
     }
+    
+    //Méthodes
 }
