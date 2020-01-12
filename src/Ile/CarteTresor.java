@@ -5,6 +5,8 @@
  */
 package Ile;
 
+import Enumeration.TypeTresorCarte;
+
 /**
  *
  * @author tardieue
@@ -16,7 +18,7 @@ public class CarteTresor extends CarteTirage{
     //Constructeur
     public CarteTresor (String nom,TypeTresorCarte typeTresor) {
         super(nom);
-        this.typeTresor = typeTresor;
+        setTypeTresor(typeTresor);
         
     }
     

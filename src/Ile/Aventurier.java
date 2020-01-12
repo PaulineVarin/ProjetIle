@@ -5,6 +5,8 @@
  */
 package Ile;
 
+import Enumeration.TypeRole;
+import Enumeration.CouleurJoueur;
 import java.util.ArrayList;
 
 /**
@@ -33,8 +35,8 @@ public abstract class Aventurier {
     // constructeur
     public Aventurier(String nom, IleInterdite ile) {
         setIle(ile);
-        ile.addAventurier(this);
-        
+        //a voir en fonction de commencerPartie getIle().addAventurier(this);
+        setNbaction(3);
     }
     
     //Méthodes
@@ -56,14 +58,14 @@ public abstract class Aventurier {
     /**
      * @return the role
      */
-    public String getRole() {
+    public TypeRole getRole() {
         return role;
     }
 
     /**
      * @param role the role to set
      */
-    public void setRole(String role) {
+    public void setRole(TypeRole role) {
         this.role = role;
     }
 

@@ -3,16 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Ile;
+package Enumeration;
 
 /**
  *
  * @author tardieue
  */
-public enum TypeTresorTuile {
-    PIERRE,
-    ZEPHYR,
-    CRISTAL,
-    CALICE,
-    NEUTRE;
+public enum EtatTuile {
+    ASSECHEE,
+    INONDEE,
+    COULEE;
 }

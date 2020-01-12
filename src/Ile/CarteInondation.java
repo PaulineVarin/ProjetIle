@@ -10,9 +10,44 @@ package Ile;
  * @author tardieue
  */
 public class CarteInondation {
-    private String nomTuile;
+    //Données
+    private String nom;
+    private Tuile tuile;
     
-    public CarteInondation(String nomTuile) {
-        this.nomTuile = nomTuile;
+    
+    //Constructeur
+    public CarteInondation(String nom,Tuile t) {
+        setTuile(t);
+        setNom(nom);  
+    }
+    
+    //Méthodes
+
+    /**
+     * @return the nom
+     */
+    public String getNom() {
+        return nom;
+    }
+
+    /**
+     * @param nom the nom to set
+     */
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
+
+    /**
+     * @return the tuile
+     */
+    public Tuile getTuile() {
+        return tuile;
+    }
+
+    /**
+     * @param tuile the tuile to set
+     */
+    public void setTuile(Tuile tuile) {
+        this.tuile = tuile;
     }
 }

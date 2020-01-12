@@ -3,17 +3,17 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Ile;
+package Enumeration;
 
 /**
  *
- * @author tardieue
+ * @author balananw
  */
-public enum TypeAction {
-    SE_DEPLACER,
-    ASSECHER,
-    DONNER,
-    PRENDRE,
-    UTILISER_POUVOIR,
-    FINIR_TOUR;
+public enum CouleurJoueur {
+    BLEU,
+    VERT,
+    JAUNE,
+    ROUGE,
+    GRIS,
+    NOIR;
 }

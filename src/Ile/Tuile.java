@@ -5,29 +5,33 @@
  */
 package Ile;
 
+import Enumeration.EtatTuile;
+import Enumeration.TypeTresorTuile;
+import java.util.ArrayList;
+
 /**
  *
  * @author tardieue
  */
 public class Tuile {
     
+    private String nomTuile;
+    private int idTuile;
     private int ligne;
     private int colonne;
     private EtatTuile etat = EtatTuile.ASSECHEE;
     private TypeTresorTuile tresor = TypeTresorTuile.NEUTRE;
-    private String nomTuile;
+    private Aventurier joueurDepart;
+    
+    private ArrayList<Aventurier> collectAventuriers = new ArrayList<>();
+    
 
     public Tuile(int lig, int col, String nomTuile, TypeTresorTuile tresor) {
-        this.ligne = lig;
-        this.colonne = col;
-        this.nomTuile = nomTuile;
-        this.tresor = tresor;
-    }
-
-    public Tuile(int lig, int col, String nomTuile) {
-        this.ligne = lig;
-        this.colonne = col;
-        this.nomTuile = nomTuile;
+        setLigne(lig);
+        setColonne(col);
+        setNomTuile(nomTuile);
+        setTresor(tresor);
+        setIdTuile();
     }
 
     /**
@@ -98,6 +102,49 @@ public class Tuile {
      */
     public void setNomTuile(String nomTuile) {
         this.nomTuile = nomTuile;
+    }
+
+    /**
+     * @return the idTuile
+     */
+    public int getIdTuile() {
+        return idTuile;
+    }
+
+    /**
+     * @param idTuile the idTuile to set
+     */
+    public void setIdTuile() {
+        String id = String.valueOf(getLigne())+String.valueOf(getColonne());
+        this.idTuile = Integer.parseInt(id);
+    }
+
+    /**
+     * @return the joueurDepart
+     */
+    public Aventurier getJoueurDepart() {
+        return joueurDepart;
+    }
+
+    /**
+     * @param joueurDepart the joueurDepart to set
+     */
+    public void setJoueurDepart(Aventurier joueurDepart) {
+        this.joueurDepart = joueurDepart;
+    }
+
+    /**
+     * @return the collectAventuriers
+     */
+    public ArrayList<Aventurier> getCollectAventuriers() {
+        return collectAventuriers;
+    }
+
+    /**
+     * @param collectAventuriers the collectAventuriers to set
+     */
+    public void addAventurier(Aventurier a) {
+       this.getCollectAventuriers().add(a);
     }
  
 }

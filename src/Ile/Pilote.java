@@ -5,6 +5,9 @@
  */
 package Ile;
 
+import Enumeration.TypeRole;
+import Enumeration.CouleurJoueur;
+
 /**
  *
  * @author tardieue
@@ -16,7 +19,7 @@ public class Pilote extends Aventurier {
     //Constructeur
     public Pilote(String nom,IleInterdite ile) {
         super(nom,ile);
-        super.setRole("pilote");
+        super.setRole(TypeRole.PILOTE);
         super.setCouleur(CouleurJoueur.BLEU);
         super.setDeplacementPilote(true);
     }

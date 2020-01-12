@@ -1,5 +1,7 @@
 package Jeu;
 
+import Ile.Tuile;
+import Enumeration.TypeTresorTuile;
 import vuesIHM.IHM;
 import vuesIHM.VueIntroduction;
 //commentaire
@@ -28,6 +30,8 @@ public class ProjetIle {
        System.out.println("hello ,its me elie");
        
        IHM i = new IHM();
+      
+       
        
        
      

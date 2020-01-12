@@ -5,6 +5,9 @@
  */
 package Ile;
 
+import Enumeration.TypeRole;
+import Enumeration.CouleurJoueur;
+
 /**
  *
  * @author tardieue
@@ -16,7 +19,7 @@ public class Explorateur extends Aventurier {
     //Constructeur
     public Explorateur(String nom,IleInterdite ile) {
         super(nom,ile);
-        super.setRole("Explorateur");
+        super.setRole(TypeRole.EXPLORATEUR);
         super.setCouleur(CouleurJoueur.VERT);
         super.setAssechementDiagonal(true);
         super.setDeplacementDiagonal(true);

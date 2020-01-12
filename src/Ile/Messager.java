@@ -5,6 +5,9 @@
  */
 package Ile;
 
+import Enumeration.TypeRole;
+import Enumeration.CouleurJoueur;
+
 /**
  *
  * @author tardieue
@@ -16,7 +19,7 @@ public class Messager extends Aventurier {
     //Constructeur
     public Messager(String nom,IleInterdite ile) {
         super(nom,ile);
-        super.setRole("Messager");
+        super.setRole(TypeRole.MESSAGER);
         super.setCouleur(CouleurJoueur.GRIS);
         //On ne gère pas le pouvoir du messager
     }

@@ -5,10 +5,24 @@
  */
 package Ile;
 
+import java.util.HashMap;
+
 /**
  *
  * @author tardieue
  */
 public class Grille {
+    //Données
+    private HashMap<String,Tuile> collectTuiles = new HashMap<>();
+    
+    //Constructeur
+    public Grille() {
+        
+    }
+    
+    
+    //Méthodes
+
+    
     
 }

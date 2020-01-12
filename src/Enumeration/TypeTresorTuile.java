@@ -3,17 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Ile;
+package Enumeration;
 
 /**
  *
- * @author balananw
+ * @author tardieue
  */
-public enum CouleurJoueur {
-    BLEU,
-    VERT,
-    JAUNE,
-    ROUGE,
-    GRIS,
-    NOIR;
+public enum TypeTresorTuile {
+    PIERRE,
+    ZEPHYR,
+    CRISTAL,
+    CALICE,
+    NEUTRE;
 }

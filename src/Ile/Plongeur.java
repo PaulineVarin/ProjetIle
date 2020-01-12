@@ -5,6 +5,9 @@
  */
 package Ile;
 
+import Enumeration.TypeRole;
+import Enumeration.CouleurJoueur;
+
 /**
  *
  * @author tardieue
@@ -15,6 +18,7 @@ public class Plongeur extends Aventurier {
     //Constructeur
     public Plongeur(String nom,IleInterdite ile) {
         super(nom,ile);
+        super.setRole(TypeRole.PLONGEUR);
         super.setCouleur(CouleurJoueur.NOIR);
         super.setDeplacementPlongeur(true);
         

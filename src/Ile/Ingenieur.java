@@ -5,6 +5,9 @@
  */
 package Ile;
 
+import Enumeration.TypeRole;
+import Enumeration.CouleurJoueur;
+
 /**
  *
  * @author tardieue
@@ -16,7 +19,7 @@ public class Ingenieur extends Aventurier {
     
     public Ingenieur (String nom,IleInterdite ile) {
         super(nom,ile);
-        super.setRole("Ingenieur");
+        super.setRole(TypeRole.INGENIEUR);
         super.setCouleur(CouleurJoueur.ROUGE);
         super.setAssechementDouble(true);
         
