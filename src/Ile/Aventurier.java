@@ -8,6 +8,7 @@ package Ile;
 import Enumeration.TypeRole;
 import Enumeration.CouleurJoueur;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Random;
 
 /**
@@ -41,6 +42,18 @@ public abstract class Aventurier {
     }
     
     //Méthodes
+    
+    public void determinationRole(int nbj){
+        ArrayList<TypeRole> roleshasard = new ArrayList<>();
+        for (TypeRole tr : TypeRole.values()){
+            roleshasard.add(tr);
+        }
+        Collections.shuffle(roleshasard);
+        for (int i = 0; i<nbj; i++){
+            setRole(roleshasard.get(i));
+              
+        }
+    }
 
     /**
      * @return the nomJoueur
@@ -59,9 +72,11 @@ public abstract class Aventurier {
     /**
      * @return the role
      */
-    public TypeRole getRole() {
-        // return role;
-        return TypeRole.values()[new Random().nextInt(TypeRole.values().length)];
+    public TypeRole getRole(int nbj) {
+        return role;
+        //return TypeRole.values()[new Random().nextInt(TypeRole.values().length)];   
+        
+        
     }
 
     /**

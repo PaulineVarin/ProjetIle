@@ -10,11 +10,12 @@ import vuesIHM.*;
 import Ile.*;
 
 
+
 /**
  *
  * @author tardieue
  */
-public class Controleur implements Observateur <Message> {
+public class Controleur implements Observateur<Message> {
         
         private IHM ihm;
         private IleInterdite ileinterdite;
