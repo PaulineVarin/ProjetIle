@@ -45,8 +45,17 @@ public class Message implements Serializable {
     
     
     //Méthodes
-    public static Message initialisation() {
-       return new Message(TypeMessage.DONNER);
+    public static Message initialisation(ArrayList collectNoms,int niveauEau,int nbJoueurs) {
+       Message m = new Message(TypeMessage.INITIALISATION);
+       m.collectNomsJoueurs = collectNoms;
+       m.niveauEau = niveauEau;
+       m.nbJoueurs = nbJoueurs;
+       
+       return m;
+    }
+    
+    public static Message demarrageJeu() {
+        return new Message(TypeMessage.ASSECHER);
     }
 
     /**

@@ -40,7 +40,8 @@ public class IHM extends Observe<Message>  {
     }
     
     public void debutJeu(ArrayList collectNoms,int niveauEau,int nbJoueurs) {
-        Message.initialisation();
+        Message m = Message.initialisation(collectNoms,niveauEau,nbJoueurs);
+        notifierObservateurs(m);
     }
     
     
