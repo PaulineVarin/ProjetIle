@@ -38,14 +38,10 @@ public abstract class Aventurier {
     public Aventurier(String nom, IleInterdite ile) {
         setIle(ile);
         setNomJoueur(nom);
-        //a voir en fonction de commencerPartie getIle().addAventurier(this);
         setNbaction(3);
     }
     
     //Méthodes
-    
-
-
     /**
      * @return the nomJoueur
      */
@@ -63,11 +59,8 @@ public abstract class Aventurier {
     /**
      * @return the role
      */
-    public TypeRole getRole() {
-        return role;
-          
-        
-        
+    public String getStringRole() {
+        return role.toString();    
     }
 
     /**
