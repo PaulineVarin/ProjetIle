@@ -26,31 +26,22 @@ public class Controleur implements Observateur<Message> {
         this.ihm = new IHM(this);
     }   
 
-    
+    //Méthodes
     public void traiterMessage(Message msg) {
         if (msg.getTypeM() != null) {
             switch(msg.getTypeM()) {
                 case INITIALISATION:
-                    ileInterdite.CommencerPartie(msg.getNiveauEau(), msg.getCollectNomsJoueurs(), msg.getNbJoueurs());
+                    ileInterdite.commencerPartie(msg.getNiveauEau(), msg.getCollectNomsJoueurs(), msg.getNbJoueurs());
                     break;
                 case DEBUT_JEU:
-                    ihm.demarrerJeu(msg.getCollectTuiles(),msg.getCollectJoueurs(),msg.getNiveauEau(),msg.getNbJoueurs());
+                    ihm.demarrerJeu(msg.getCollectTuiles(),msg.getCollectJoueurs(),msg.getNiveauEau());
                     break;
                 
                 case DEBUT_TOUR:
                 
-                break;
-            
-                
-
-            
+                break;  
+            }
         }
-
-
     }
-
-
 }
-
-    }
 

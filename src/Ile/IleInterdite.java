@@ -11,7 +11,6 @@ import patterns.observateur.Observe;
 import patterns.observateur.Observateur;
 import java.util.ArrayList;
 import java.util.Collections;
-import patterns.observateur.Controleur;
 import patterns.observateur.Message;
 
 
@@ -31,19 +30,50 @@ public class IleInterdite extends Observe<Message> {
     private ArrayList <CarteInondation> cartesInondeTire = new ArrayList <>();
     private ArrayList <CarteInondation> carteInondeDefausse = new ArrayList <>();
     private ArrayList <Aventurier> aventuriers = new ArrayList <>();
-    
-    
-    
+
     //Constructeur    
     public IleInterdite(Observateur<Message> observateur) {
-        // commencerPartie();
         this.addObservateur(observateur);
     }
     
-
-
-
     //Méthodes
+    public void commencerPartie(int niveauEau,ArrayList<String> collectNomsJoueurs,int nbJoueurs) {      
+        determinationRole(collectNomsJoueurs);
+        setNiveauEau(niveauEau);
+        Message m = Message.demarrerJeu(/*collectTuiles*/getAventuriers(),getNiveauEau());
+        notifierObservateurs(m);
+    }
+    
+    public void determinationRole(ArrayList<String> collectNomsJoueurs){
+        ArrayList<TypeRole> roleshasard = new ArrayList<>();
+        for (TypeRole tr : TypeRole.values()){
+            roleshasard.add(tr);
+        }
+        Collections.shuffle(roleshasard);
+        for (int i = 0; i<collectNomsJoueurs.size(); i++){
+            if (roleshasard.get(i) == TypeRole.EXPLORATEUR){
+                addAventuriers(new Explorateur(collectNomsJoueurs.get(i), this));
+            }
+            if (roleshasard.get(i) == TypeRole.NAVIGATEUR){
+                addAventuriers(new Navigateur(collectNomsJoueurs.get(i), this));
+            }   
+            if (roleshasard.get(i) == TypeRole.INGENIEUR){
+                addAventuriers(new Ingenieur(collectNomsJoueurs.get(i), this));
+            }   
+            if (roleshasard.get(i) == TypeRole.MESSAGER){
+                addAventuriers(new Messager(collectNomsJoueurs.get(i), this));
+            }
+            if (roleshasard.get(i) == TypeRole.PILOTE){
+                addAventuriers(new Pilote(collectNomsJoueurs.get(i), this));
+            }
+                
+            if (roleshasard.get(i) == TypeRole.PLONGEUR){
+                addAventuriers(new Plongeur(collectNomsJoueurs.get(i), this));
+            }
+              
+        }
+    }
+    
     /* à faire quand le diagramme de séquence sera fait
     public void finDeTour(String nomAventurier) {
     Aventurier av = null;
@@ -58,7 +88,7 @@ public class IleInterdite extends Observe<Message> {
     changementJoueur();                 // on change de joueur
     }
     }*/
-    private void tirageCartes(Aventurier av) {
+    /*private void tirageCartes(Aventurier av) {
         // à finir
         System.out.println("Pensez à programmer tirageCarte");
         Aventurier av_temp = av;
@@ -84,14 +114,7 @@ public class IleInterdite extends Observe<Message> {
         // utiliser this.niveauEau pour le nombre de carte
         System.out.println("Pensez à programmer tirageCartesInondation");
     }
-    
-    private void initialisationPartie() {
-        
-    }
-
-
-    
-
+  */
     // getters/setters :
     /**
      * @return the niveauEau
@@ -201,51 +224,10 @@ public class IleInterdite extends Observe<Message> {
     /**
      * @param aventuriers the aventuriers to set
      */
-    public void setAventuriers(Aventurier a) {
+    public void addAventuriers(Aventurier a) {
         getAventuriers().add(a);
     }
     
- 
-    
-        public ArrayList<Aventurier> determinationRole(ArrayList<String> collectNomsJoueurs){
-            
-            ArrayList<TypeRole> roleshasard = new ArrayList<>();
-            ArrayList<Aventurier> joueurs = new ArrayList<>();
-        
-            for (TypeRole tr : TypeRole.values()){
-                roleshasard.add(tr);
-            }
-            
-            Collections.shuffle(roleshasard);
-            
-            for (int i = 0; i<collectNomsJoueurs.size(); i++){
-                if (roleshasard.get(i) == TypeRole.EXPLORATEUR){
-                    joueurs.add(new Explorateur(collectNomsJoueurs.get(i), this));
-                }
-                
-                if (roleshasard.get(i) == TypeRole.NAVIGATEUR){
-                    joueurs.add(new Navigateur(collectNomsJoueurs.get(i), this));
-                }
-                
-                if (roleshasard.get(i) == TypeRole.INGENIEUR){
-                    joueurs.add(new Ingenieur(collectNomsJoueurs.get(i), this));
-                }
-                
-                if (roleshasard.get(i) == TypeRole.MESSAGER){
-                    joueurs.add(new Messager(collectNomsJoueurs.get(i), this));
-                }
-                
-                if (roleshasard.get(i) == TypeRole.PILOTE){
-                    joueurs.add(new Pilote(collectNomsJoueurs.get(i), this));
-                }
-                
-                if (roleshasard.get(i) == TypeRole.PLONGEUR){
-                    joueurs.add(new Plongeur(collectNomsJoueurs.get(i), this));
-                }
-              
-            }
-            return joueurs ;
-        }
 }
     
 

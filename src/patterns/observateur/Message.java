@@ -42,9 +42,9 @@ public class Message implements Serializable {
         this.typeM = typeM;
         
     }
-    
-    
+
     //Méthodes
+    //Méthodes IHM
     public static Message initialisation(ArrayList collectNoms,int niveauEau,int nbJoueurs) {
        Message m = new Message(TypeMessage.INITIALISATION);
        m.collectNomsJoueurs = collectNoms;
@@ -54,9 +54,16 @@ public class Message implements Serializable {
        return m;
     }
     
-    public static Message demarrageJeu() {
-        return new Message(TypeMessage.ASSECHER);
+    public static Message demarrerJeu(/*collectTuile*/ArrayList<Aventurier> collectJoueurs,int niveauEau) {
+        Message m = new Message(TypeMessage.DEBUT_JEU);
+        m.collectJoueurs=collectJoueurs;
+        //m.collectTuiles=;
+        m.niveauEau = niveauEau;
+        m.nbJoueurs=collectJoueurs.size();
+        return m;
     }
+    
+    //Méthodes IleInterdite
 
     /**
      * @return the typeM

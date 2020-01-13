@@ -17,11 +17,14 @@ public class Grille {
     
     //Constructeur
     public Grille() {
+        creationTuiles();
         
     }
     
-    
     //Méthodes
+    public void creationTuiles() {
+        
+    }
 
     
     
