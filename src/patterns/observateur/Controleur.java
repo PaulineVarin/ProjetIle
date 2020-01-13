@@ -5,6 +5,7 @@
  */
 package patterns.observateur;
 
+
 import vuesIHM.*;
 import Ile.*;
 
@@ -13,7 +14,7 @@ import Ile.*;
  *
  * @author tardieue
  */
-public class Controleur implements Observateur {
+public class Controleur implements Observateur <Message> {
         
         private IHM ihm;
         private IleInterdite ileinterdite;
@@ -23,12 +24,40 @@ public Controleur(){
     this.ihm = new IHM(this);
 }   
     
-    @Override
-    public void traiterMessage(Object msg) {
-         
-        
+    
+    public void traiterMessage(Message msg) {
+
+     if (msg.getTypeM() != null) {
+        switch(msg.getTypeM()) {
+            case INITIALISATION:
+                System.out.println("Noms des joueurs :");
+                System.out.println("Niveau d'eau :");
+                System.out.println("Nombre de joueurs :");
+                break;
+                
+            case DEBUT_JEU:
+                System.out.println("Les Tuiles :");
+                System.out.println("Les joueurs :");
+                System.out.println("Niveau d'eau :");
+                System.out.println("Nombre de joueurs :");
+                break;
+                
+            case DEBUT_TOUR:
+                
+            
+            
+            
+            
+                break;
+            
+                
+            
         
     }
     
     
+}
+
+    }
+
 }
