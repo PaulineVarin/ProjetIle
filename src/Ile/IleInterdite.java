@@ -190,5 +190,9 @@ public class IleInterdite extends Observe {
         getAventuriers().add(a);
     }
     
+    public void CommencerPartie(){
+        
+    }
+    
     
 }
