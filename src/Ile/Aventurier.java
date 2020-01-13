@@ -43,7 +43,7 @@ public abstract class Aventurier {
     
     //Méthodes
     
-    public void determinationRole(int nbj){
+    /*public void determinationRole(int nbj){
         ArrayList<TypeRole> roleshasard = new ArrayList<>();
         for (TypeRole tr : TypeRole.values()){
             roleshasard.add(tr);
@@ -53,7 +53,7 @@ public abstract class Aventurier {
             setRole(roleshasard.get(i));
               
         }
-    }
+    }*/
 
     /**
      * @return the nomJoueur
