@@ -7,7 +7,10 @@ package Ile;
 
 import Enumeration.TypeTresorTuile;
 import patterns.observateur.Observe;
+import patterns.observateur.Observateur;
 import java.util.ArrayList;
+import patterns.observateur.Controleur;
+
 
 
 
@@ -29,8 +32,9 @@ public class IleInterdite extends Observe {
     
     
     //Constructeur    
-    public IleInterdite() {
+    public IleInterdite(Observateur<Message> observateur) {
         // commencerPartie();
+        this.addObservateur(o);
     }
     
 
@@ -57,7 +61,7 @@ public class IleInterdite extends Observe {
         Aventurier av_temp = av;
         if (verificationTirage()) {
             av.getCollectCartesJoueur().addAll(tiragePossible());
-            setAventurier(av);
+            setAventuriers(av);
         }
     }
     
@@ -83,8 +87,8 @@ public class IleInterdite extends Observe {
     }
 
     public void addObservateur(Controleur o) {
-        o.add(new Observateur());
-        // très probablement faux, on ne sait pas quoi mettre
+        
+        
     }
 
     
@@ -203,7 +207,7 @@ public class IleInterdite extends Observe {
     }
     
     public void CommencerPartie(int niveau, ArrayList<String> collectNom, int nbJoueur){
-                this.niveauEau = niveau;
+        this.niveauEau = niveau;
         for (int i = 0; i < nbJoueur; i++) {
             
             Aventurier a = new Aventurier(collectNom.get(i), this) {};
