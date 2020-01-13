@@ -43,6 +43,7 @@ public Controleur(){
                 break;
                 
             case DEBUT_TOUR:
+                kk
             
                 
             
