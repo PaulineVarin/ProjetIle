@@ -40,7 +40,7 @@ public class IHM extends Observe<Message>  {
     }
     
     public void debutJeu() {
-        
+        Message.initialisation();
         
         
     }
