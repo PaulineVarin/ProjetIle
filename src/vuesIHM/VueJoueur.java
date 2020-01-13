@@ -19,7 +19,7 @@ import javax.swing.JPanel;
  * @author varinp
  */
 public class VueJoueur{
-    private VueJeu jeu = new VueJeu();
+    private VueJeu vueJeu;
     private JFrame window = new JFrame("Vue Joueur");
     private JPanel contenu = new JPanel(new BorderLayout());
     private JPanel contenuHaut = new JPanel(new GridLayout(2, 1));
@@ -43,7 +43,8 @@ public class VueJoueur{
     private ArrayList<JButton> listeBoutons = new ArrayList<>();
     
 
-    public VueJoueur(/*ajouter element vueJeu*/) {
+    public VueJoueur(String nom,VueJeu jeu) {
+        this.vueJeu = vueJeu;
         //Initialisation collection
         listeBoutons.add(deplacer);
         listeBoutons.add(assecher);
