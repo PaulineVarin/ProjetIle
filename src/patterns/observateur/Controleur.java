@@ -31,15 +31,10 @@ public class Controleur implements Observateur<Message> {
         if (msg.getTypeM() != null) {
             switch(msg.getTypeM()) {
                 case INITIALISATION:
-                    System.out.println("Noms des joueurs :");
-                    System.out.println("Niveau d'eau :");
-                    System.out.println("Nombre de joueurs :");
+                    ileInterdite.CommencerPartie(msg.getNiveauEau(), msg.getCollectNomsJoueurs(), msg.getNbJoueurs());
                     break;
                 case DEBUT_JEU:
-                    System.out.println("Les Tuiles :");
-                    System.out.println("Les joueurs :");
-                    System.out.println("Niveau d'eau :");
-                    System.out.println("Nombre de joueurs :");
+                    ihm.demarrerJeu(msg.getCollectTuiles(),msg.getCollectJoueurs(),msg.getNiveauEau(),msg.getNbJoueurs());
                     break;
                 
                 case DEBUT_TOUR:

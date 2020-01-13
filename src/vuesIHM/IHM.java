@@ -2,6 +2,7 @@ package vuesIHM;
 
 
 import Enumeration.TypeMessage;
+import Ile.*;
 import java.util.ArrayList;
 import patterns.observateur.Message;
 import patterns.observateur.*;
@@ -39,9 +40,14 @@ public class IHM extends Observe<Message>  {
         this.inscription = new VueInscription(this);
     }
     
-    public void debutJeu(ArrayList collectNoms,int niveauEau,int nbJoueurs) {
+    public void debutJeu(ArrayList<String> collectNoms,int niveauEau,int nbJoueurs) {
         Message m = Message.initialisation(collectNoms,niveauEau,nbJoueurs);
         notifierObservateurs(m);
+    }
+    
+    public void demarrerJeu(ArrayList<Tuile> collectTuiles,ArrayList<Aventurier> collectAventuriers,int niveauEau,int nbJoueurs) {
+        this.jeu = new VueJeu(this);
+        jeu.initialisationVueJeu(collectTuiles,collectAventuriers,niveauEau,nbJoueurs);
     }
     
     
