@@ -1,7 +1,9 @@
 package Jeu;
 
+import Ile.*;
 import Ile.Tuile;
 import Enumeration.TypeTresorTuile;
+import java.util.ArrayList;
 import patterns.observateur.Controleur;
 import vuesIHM.IHM;
 import vuesIHM.VueIntroduction;
@@ -23,7 +25,21 @@ public class ProjetIle {
      */
     public static void main(String[] args) {
        
-       new Controleur();
+        
+       IleInterdite ile = new IleInterdite(new Controleur());
+       
+       
+       ArrayList <String> test = new ArrayList<>();
+       test.add("Navigateur");
+       test.add("Plongeur");
+       test.add("Explorateur");
+       test.add("Pilote");
+       test.add("messager");
+       test.add("Ingenieur");
+  
+       ile.attributionRole(test,4);
+       
+       Aventurier nono = new Aventurier("nonolecon", ile);
       
        
        

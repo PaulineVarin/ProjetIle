@@ -72,7 +72,7 @@ public abstract class Aventurier {
     /**
      * @return the role
      */
-    public TypeRole getRole(int nbj) {
+    public TypeRole getRole() {
         return role;
         //return TypeRole.values()[new Random().nextInt(TypeRole.values().length)];   
         

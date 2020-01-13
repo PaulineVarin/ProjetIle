@@ -10,6 +10,7 @@ import Enumeration.TypeTresorTuile;
 import patterns.observateur.Observe;
 import patterns.observateur.Observateur;
 import java.util.ArrayList;
+import java.util.Collections;
 import patterns.observateur.Controleur;
 import patterns.observateur.Message;
 
@@ -203,41 +204,8 @@ public class IleInterdite extends Observe<Message> {
     public void setAventuriers(Aventurier a) {
         getAventuriers().add(a);
     }
-    
-    public void CommencerPartie(int niveau, ArrayList<String> collectNom, int nbJoueur){
-        this.niveauEau = niveau;
-        for (int i = 0; i < nbJoueur; i++) {
-            
-            ArrayList <TypeRole> collectJoueurs = new ArrayList<>();
-            
-            int r1[] = {1, 1, 1, 1, 1, 1};
-            
-            int r = 0;
-            
-            do {
-                r = (int) Math.random()*6;
-            } while(r1[r] == 0);
-            
-            
-            switch(r){
-                case 0 : aventuriers.add(new Ingenieur(collectNom.get(i), this));
-                break;
-                case 1 : aventuriers.add(new Messager(collectNom.get(i), this));
-                break;
-                case 2 : aventuriers.add(new Plongeur(collectNom.get(i), this));
-                break;
-                case 3 : aventuriers.add(new Explorateur(collectNom.get(i), this));
-                break;
-                case 4 : aventuriers.add(new Pilote(collectNom.get(i), this));
-                break;
-                case 5 : aventuriers.add(new Navigateur(collectNom.get(i), this));
-                break;
-            }
-            r1[r] = 0;
-        }
-            
-           
-    }
+ 
+
 }
     
 
