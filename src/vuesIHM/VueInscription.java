@@ -26,6 +26,7 @@ import patterns.observateur.Message;
  * @author varinp
  */
 public class VueInscription {
+    //Données
     private IHM ihm;
     private JFrame window = new JFrame("Inscription");
     private JPanel contenu = new JPanel(new BorderLayout());
@@ -37,25 +38,24 @@ public class VueInscription {
     private JLabel labelNomJoueur3 = new JLabel("Nom du joueur n°3");
     private JLabel labelNomJoueur4 = new JLabel("Nom du joueur n°4");
     private JLabel labelNiveauEau = new JLabel("Niveau d'eau");
+    private final JLabel [] labelsJoueurs = new JLabel[4];
+    
     private JTextField nomJoueur1 = new JTextField();
     private JTextField nomJoueur2 = new JTextField();
     private JTextField nomJoueur3 = new JTextField();
     private JTextField nomJoueur4 = new JTextField();
-    
-    private final JLabel [] labelsJoueurs = new JLabel[4];
     private final JTextField [] nomsJoueurs = new JTextField[4];
     
-    
-    private final Integer [] nbjoueurs = {2,3,4};
-    private JComboBox listeNbJoueurs = new JComboBox(nbjoueurs);
-    
-    private final String [] nomsNiveauEau = {"Novice","Normal","Elite","Légendaire"};
-    private JComboBox listeNiveauEau = new JComboBox(nomsNiveauEau);
-    
     private JButton jouer = new JButton("Jouer");
-    
+
+    private final Integer [] nbjoueurs = {2,3,4};
+    private final String [] nomsNiveauEau = {"Novice","Normal","Elite","Légendaire"};
+    private JComboBox listeNbJoueurs = new JComboBox(nbjoueurs);
+    private JComboBox listeNiveauEau = new JComboBox(nomsNiveauEau);
+   
+    //Constructeur
     public VueInscription(IHM ihm) {
-        //Configuration listes
+        //Configuration collections
         labelsJoueurs[0] = labelNomJoueur1;
         labelsJoueurs[1] = labelNomJoueur2;
         labelsJoueurs[2] = labelNomJoueur3;
@@ -76,7 +76,6 @@ public class VueInscription {
                     labelsJoueurs[i].setEnabled(i < nbJoueurs);
                     nomsJoueurs[i].setEnabled(i < nbJoueurs);
                 }
-                
             }
         });
         
@@ -105,9 +104,7 @@ public class VueInscription {
                     niveauEau = 3;
                 }
                 
-                ihm.debutJeu(collectNomsJoueurs, niveauEau, nbJoueurs);
-                    
-                
+                ihm.debutJeu(collectNomsJoueurs, niveauEau, nbJoueurs);  
             }
         });
         
@@ -139,10 +136,10 @@ public class VueInscription {
         contenu.add(jouer,BorderLayout.SOUTH);
         //Configuration fenetre
         window.setSize(500,500);
-        window.setDefaultCloseOperation(window.EXIT_ON_CLOSE); //A supprimer lors de la mise en place
         window.add(contenu);
         window.setVisible(true);
         
     }
+    //Méthodes
     
 }

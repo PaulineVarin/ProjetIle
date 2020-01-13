@@ -17,6 +17,7 @@ import javax.swing.JPanel;
 import javax.swing.border.MatteBorder;
 
 public class VueNiveau {
+    //Données
     private VueJeu vueJeu;
     private Integer niveau ;
     private final JFrame window ;
@@ -25,6 +26,7 @@ public class VueNiveau {
     private final Integer cellHeight = (Parameters.HAUTEUR_AUTRES_VUES - 25 - (Parameters.UNDECORATED ? 0 : Parameters.DECORATION_HEIGHT)) / 10 ;
     private final JPanel mainPanel;
 
+    //Constructeur
     public VueNiveau(VueJeu vueJeu,Integer niveauInitial) {
         this.vueJeu = vueJeu;
         this.niveau = niveauInitial;
@@ -122,7 +124,8 @@ public class VueNiveau {
         panelsGauches.get(niveauInitial).setBackground(Color.YELLOW);
         this.window.setVisible(true);
     }
-
+    
+    //Méthodes
     public void setNiveau(Integer niveau) {
         System.out.println("VueNiveau_nopic.setNiveau(" + niveau + ")");
         panelsGauches.get(this.niveau).setBackground(getBgColor(this.niveau - 1));

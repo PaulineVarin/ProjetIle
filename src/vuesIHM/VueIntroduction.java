@@ -22,6 +22,7 @@ import patterns.observateur.Message;
  * @author varinp
  */
 public class VueIntroduction {
+    //Données
     private IHM ihm;
     private JFrame window = new JFrame("Introduction");
     private JPanel contenu = new JPanel(new BorderLayout());
@@ -30,10 +31,9 @@ public class VueIntroduction {
     private JButton quitter = new JButton("Quitter");
     private JLabel titre = new JLabel("Bienvenue sur l'Ile Interdite");
     
-
+    //Constructeur
     public VueIntroduction(IHM ihm) {
         this.ihm = ihm;
-        
         //Configuration panel boutons
         boutons.add(commencer);
         boutons.add(quitter);
@@ -66,14 +66,9 @@ public class VueIntroduction {
         window.add(contenu);
         window.setSize(500,500);
         window.setVisible(true);
-        
-        
-        
-        
     }
-    
-    
-    
+    //Méthodes
+
 }
     
 

@@ -41,7 +41,6 @@ public class VueResume {
         //Configuration fenetre
         window.setSize(500,500);
         window.add(contenu);
-        window.setDefaultCloseOperation(window.EXIT_ON_CLOSE); //A supprimer lors de la mise en place
         window.setVisible(true);
     }
     

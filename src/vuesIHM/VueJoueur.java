@@ -1,5 +1,6 @@
 package vuesIHM;
 
+import Ile.Aventurier;
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.util.ArrayList;
@@ -19,6 +20,7 @@ import javax.swing.JPanel;
  * @author varinp
  */
 public class VueJoueur{
+    //Données
     private VueJeu vueJeu;
     private JFrame window = new JFrame("Vue Joueur");
     private JPanel contenu = new JPanel(new BorderLayout());
@@ -32,7 +34,6 @@ public class VueJoueur{
     private JLabel listeCartes = new JLabel("listeCartes");
     private JLabel nbactions = new JLabel("nbactions");
     
-    
     private JButton deplacer = new JButton("Se déplacer");
     private JButton assecher = new JButton("Assécher");
     private JButton donner = new JButton("Donner");
@@ -42,9 +43,9 @@ public class VueJoueur{
     
     private ArrayList<JButton> listeBoutons = new ArrayList<>();
     
-
-    public VueJoueur(String nom,VueJeu jeu) {
-        this.vueJeu = vueJeu;
+    //Constructeur
+    public VueJoueur(Aventurier a,VueJeu jeu) {
+        this.vueJeu = jeu;
         //Initialisation collection
         listeBoutons.add(deplacer);
         listeBoutons.add(assecher);
@@ -54,10 +55,13 @@ public class VueJoueur{
         listeBoutons.add(finir);
         
         //Configuraton de contenuHaut
+        nomJoueur.setText(a.getNomJoueur());
+        nomRole.setText(a.getStringRole());
         contenuHaut.add(nomJoueur);
         contenuHaut.add(nomRole);
         
         //Configuration de contenuMillieu
+        nbactions.setText(Integer.toString(a.getNbaction()));
         contenuMillieu.add(nbactions);
         contenuMillieu.add(listeTresors);
         contenuMillieu.add(listeCartes);
@@ -75,7 +79,6 @@ public class VueJoueur{
         //Configuration window
         window.setSize(500,500);
         window.add(contenu);
-        window.setDefaultCloseOperation(window.EXIT_ON_CLOSE); //A supprimer lors de la mise en place
         window.setVisible(true);
         
     }
