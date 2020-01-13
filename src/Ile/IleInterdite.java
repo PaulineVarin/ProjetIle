@@ -28,13 +28,20 @@ public class IleInterdite extends Observe {
     
     
     
-    //Constructeur
+    //Constructeur    
+    public IleInterdite() {
+        // commencerPartie();
+    }
+    
 
-    
-    public IleInterdite() {  
-    }    
-    
-    
+    private void commencerPartie(int niveau, ArrayList<String> collectNom, int nbJoueur) {
+        this.niveauEau = niveau;
+        for (int i = 0; i < nbJoueur; i++) {
+            
+            Aventurier a = new Aventurier(collectNom.get(i), this) {};
+            aventuriers.add(a);
+        }
+    }
 
     //Méthodes
     /* à faire quand le diagramme de séquence sera fait
@@ -77,7 +84,19 @@ public class IleInterdite extends Observe {
         // utiliser this.niveauEau pour le nombre de carte
         System.out.println("Pensez à programmer tirageCartesInondation");
     }
+    
+    private void initialisationPartie() {
+        
+    }
 
+    public void addObservateur(Controleur o) {
+        o.add(new Observateur());
+        // très probablement faux, on ne sait pas quoi mettre
+    }
+
+    
+
+    // getters/setters :
     /**
      * @return the niveauEau
      */
