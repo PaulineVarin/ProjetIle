@@ -17,7 +17,7 @@ import javax.swing.JPanel;
 import javax.swing.border.MatteBorder;
 
 public class VueNiveau {
-
+    private VueJeu vueJeu;
     private Integer niveau ;
     private final JFrame window ;
     private final HashMap<Integer, JPanel> panelsGauches ;
@@ -25,7 +25,8 @@ public class VueNiveau {
     private final Integer cellHeight = (Parameters.HAUTEUR_AUTRES_VUES - 25 - (Parameters.UNDECORATED ? 0 : Parameters.DECORATION_HEIGHT)) / 10 ;
     private final JPanel mainPanel;
 
-    public VueNiveau(Integer niveauInitial) {
+    public VueNiveau(VueJeu vueJeu,Integer niveauInitial) {
+        this.vueJeu = vueJeu;
         this.niveau = niveauInitial;
         panelsGauches = new HashMap<>();
 
@@ -170,19 +171,5 @@ public class VueNiveau {
             default :
                 return "" ;
         }
-    }
-    //a enlever 
-    public static void main(String[] args) {
-        VueNiveau vueNiveau = new VueNiveau(1);
-
-        Scanner scanner = new Scanner(System.in);
-
-        System.out.println("Pour passer au niveau 5, appuyer sur entrée");
-        scanner.nextLine();
-        vueNiveau.setNiveau(5);
-
-        System.out.println("Pour passer au niveau 5, appuyer sur entrée");
-        scanner.nextLine();
-        vueNiveau.setNiveau(10);
     }
 }

@@ -16,7 +16,7 @@ import javax.swing.JPanel;
  * @author varinp
  */
 public class VueResume {
-    private VueJeu jeu = new VueJeu();
+    private VueJeu vueJeu;
     
     private JFrame window = new JFrame("VueRésumé");
     private JPanel contenu = new JPanel(new BorderLayout());
@@ -27,7 +27,8 @@ public class VueResume {
     private JLabel libelNiveauEau = new JLabel("NiveauEau");
     private JLabel libelTirage = new JLabel("Tirage Cartes");
 
-    public VueResume(/*ajouter element vueJeu*/) {
+    public VueResume(VueJeu vueJeu) {
+        this.vueJeu = vueJeu;
         //Configuration contenuCentre
         contenuCentre.add(libeljoueurcourant);
         contenuCentre.add(libelNiveauEau);

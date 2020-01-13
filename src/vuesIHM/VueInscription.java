@@ -84,6 +84,7 @@ public class VueInscription {
         jouer.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent arg0) {
+                window.dispose();
                 ArrayList<String> collectNomsJoueurs = new ArrayList<>();
                 
                 //Récupération du nombre de joueurs

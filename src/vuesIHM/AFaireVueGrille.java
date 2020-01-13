@@ -17,18 +17,15 @@ import javax.swing.JPanel;
  * @author varinp
  */
 public class AFaireVueGrille {
-    private VueJeu jeu = new VueJeu();
+    private VueJeu vueJeu ;
     
     private JFrame window = new JFrame("Grille");
     private JPanel contenu = new JPanel(new BorderLayout());
     private JPanel contenuCentre = new JPanel(new GridLayout(6, 6));
     private ArrayList<JButton> listeBouttons  = new ArrayList<>();
     
-    
-    
-    
-    
-    public AFaireVueGrille(/*ajouter element vueJeu*/) {
+    public AFaireVueGrille(VueJeu vueJeu) {
+        this.vueJeu = vueJeu;
        //Configuration contenuCentre
        
        //Configuration contenu

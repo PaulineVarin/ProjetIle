@@ -204,8 +204,48 @@ public class IleInterdite extends Observe<Message> {
     public void setAventuriers(Aventurier a) {
         getAventuriers().add(a);
     }
+    
  
-
+    
+        public ArrayList<Aventurier> determinationRole(ArrayList<String> collectNomsJoueurs){
+            
+            ArrayList<TypeRole> roleshasard = new ArrayList<>();
+            ArrayList<Aventurier> joueurs = new ArrayList<>();
+        
+            for (TypeRole tr : TypeRole.values()){
+                roleshasard.add(tr);
+            }
+            
+            Collections.shuffle(roleshasard);
+            
+            for (int i = 0; i<collectNomsJoueurs.size(); i++){
+                if (roleshasard.get(i) == TypeRole.EXPLORATEUR){
+                    joueurs.add(new Explorateur(collectNomsJoueurs.get(i), this));
+                }
+                
+                if (roleshasard.get(i) == TypeRole.NAVIGATEUR){
+                    joueurs.add(new Navigateur(collectNomsJoueurs.get(i), this));
+                }
+                
+                if (roleshasard.get(i) == TypeRole.INGENIEUR){
+                    joueurs.add(new Ingenieur(collectNomsJoueurs.get(i), this));
+                }
+                
+                if (roleshasard.get(i) == TypeRole.MESSAGER){
+                    joueurs.add(new Messager(collectNomsJoueurs.get(i), this));
+                }
+                
+                if (roleshasard.get(i) == TypeRole.PILOTE){
+                    joueurs.add(new Pilote(collectNomsJoueurs.get(i), this));
+                }
+                
+                if (roleshasard.get(i) == TypeRole.PLONGEUR){
+                    joueurs.add(new Plongeur(collectNomsJoueurs.get(i), this));
+                }
+              
+            }
+            return joueurs ;
+        }
 }
     
 

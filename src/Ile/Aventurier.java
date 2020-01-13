@@ -37,23 +37,14 @@ public abstract class Aventurier {
     // constructeur
     public Aventurier(String nom, IleInterdite ile) {
         setIle(ile);
+        setNomJoueur(nom);
         //a voir en fonction de commencerPartie getIle().addAventurier(this);
         setNbaction(3);
     }
     
     //Méthodes
     
-    public void determinationRole(int nbj){
-        ArrayList<TypeRole> roleshasard = new ArrayList<>();
-        for (TypeRole tr : TypeRole.values()){
-            roleshasard.add(tr);
-        }
-        Collections.shuffle(roleshasard);
-        for (int i = 0; i<nbj; i++){
-            setRole(roleshasard.get(i));
-              
-        }
-    }
+
 
     /**
      * @return the nomJoueur
@@ -74,7 +65,7 @@ public abstract class Aventurier {
      */
     public TypeRole getRole() {
         return role;
-        //return TypeRole.values()[new Random().nextInt(TypeRole.values().length)];   
+          
         
         
     }

@@ -3,6 +3,8 @@ package Jeu;
 import Ile.*;
 import Ile.Tuile;
 import Enumeration.TypeTresorTuile;
+import Ile.Aventurier;
+import Ile.IleInterdite;
 import java.util.ArrayList;
 import patterns.observateur.Controleur;
 import vuesIHM.IHM;
@@ -25,21 +27,23 @@ public class ProjetIle {
      */
     public static void main(String[] args) {
        
-        
+       
+       
        IleInterdite ile = new IleInterdite(new Controleur());
+        ArrayList<String> noms = new ArrayList<>();
+        noms.add("P");
+        noms.add("E");
+        noms.add("E");
+        noms.add("A");
+        
        
+        ArrayList<Aventurier> test = ile.determinationRole(noms);
+        
+        for(Aventurier a : test) {
+            System.out.println(a.getNomJoueur());
+            System.out.println(a.getRole());
+        }
        
-       ArrayList <String> test = new ArrayList<>();
-       test.add("Navigateur");
-       test.add("Plongeur");
-       test.add("Explorateur");
-       test.add("Pilote");
-       test.add("messager");
-       test.add("Ingenieur");
-  
-       ile.attributionRole(test,4);
-       
-       Aventurier nono = new Aventurier("nonolecon", ile);
       
        
        
