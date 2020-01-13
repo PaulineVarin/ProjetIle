@@ -8,6 +8,7 @@ package Ile;
 import Enumeration.TypeRole;
 import Enumeration.CouleurJoueur;
 import java.util.ArrayList;
+import java.util.Random;
 
 /**
  *
@@ -59,7 +60,8 @@ public abstract class Aventurier {
      * @return the role
      */
     public TypeRole getRole() {
-        return role;
+        // return role;
+        return TypeRole.values()[new Random().nextInt(TypeRole.values().length)];
     }
 
     /**
