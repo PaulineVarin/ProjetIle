@@ -10,6 +10,7 @@ import Enumeration.TypeTresorTuile;
 import patterns.observateur.Observe;
 import patterns.observateur.Observateur;
 import java.util.ArrayList;
+import java.util.Collections;
 import patterns.observateur.Controleur;
 import patterns.observateur.Message;
 
@@ -204,7 +205,7 @@ public class IleInterdite extends Observe<Message> {
         getAventuriers().add(a);
     }
     
-    public void CommencerPartie(int niveau, ArrayList<String> collectNom, int nbJoueur){
+    /* public void CommencerPartie(int niveau, ArrayList<String> collectNom, int nbJoueur){
         this.niveauEau = niveau;
         for (int i = 0; i < nbJoueur; i++) {
             
@@ -235,9 +236,51 @@ public class IleInterdite extends Observe<Message> {
             }
             r1[r] = 0;
         }
+        
+        
             
            
-    }
+    } */
+    
+        public ArrayList<Aventurier> determinationRole(ArrayList<String> collectNomsJoueurs){
+            
+            ArrayList<TypeRole> roleshasard = new ArrayList<>();
+            ArrayList<Aventurier> joueurs = new ArrayList<>();
+        
+            for (TypeRole tr : TypeRole.values()){
+                roleshasard.add(tr);
+            }
+            
+            Collections.shuffle(roleshasard);
+            
+            for (int i = 0; i<collectNomsJoueurs.size(); i++){
+                if (roleshasard.get(i) == TypeRole.EXPLORATEUR){
+                    joueurs.add(new Explorateur(collectNomsJoueurs.get(i), this));
+                }
+                
+                if (roleshasard.get(i) == TypeRole.NAVIGATEUR){
+                    joueurs.add(new Navigateur(collectNomsJoueurs.get(i), this));
+                }
+                
+                if (roleshasard.get(i) == TypeRole.INGENIEUR){
+                    joueurs.add(new Ingenieur(collectNomsJoueurs.get(i), this));
+                }
+                
+                if (roleshasard.get(i) == TypeRole.MESSAGER){
+                    joueurs.add(new Messager(collectNomsJoueurs.get(i), this));
+                }
+                
+                if (roleshasard.get(i) == TypeRole.PILOTE){
+                    joueurs.add(new Pilote(collectNomsJoueurs.get(i), this));
+                }
+                
+                if (roleshasard.get(i) == TypeRole.PLONGEUR){
+                    joueurs.add(new Plongeur(collectNomsJoueurs.get(i), this));
+                }
+              
+            }
+            return joueurs ;
+        }
 }
     
 
