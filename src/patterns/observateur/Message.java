@@ -44,6 +44,11 @@ public class Message implements Serializable {
     
     
     //Méthodes
+    public Message  test() {
+        return new Message(TypeMessage.INITIALISATION);
+    }
+    
+    
     
   
     

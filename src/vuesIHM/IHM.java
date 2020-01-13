@@ -1,6 +1,8 @@
 package vuesIHM;
 
 
+import Enumeration.TypeMessage;
+import java.util.ArrayList;
 import patterns.observateur.Message;
 import patterns.observateur.*;
 import vuesIHM.*;
@@ -32,6 +34,18 @@ public class IHM extends Observe<Message>  {
     }
     
     //Méthodes
+    
+    public void inscriptionJoueurs() {
+        this.inscription = new VueInscription(this);
+    }
+    
+    public void debutJeu() {
+        Message temp = new Message(TypeMessage.INITIALISATION);
+        Message m = temp.test();
+        notifierObservateurs(m);
+        
+        
+    }
     
     
     
