@@ -45,6 +45,9 @@ public class Message implements Serializable {
     
     
     //Méthodes
+    public static Message initialisation() {
+       return new Message(TypeMessage.DONNER);
+    }
 
     /**
      * @return the typeM

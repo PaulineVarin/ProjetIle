@@ -42,7 +42,16 @@ public class VueIntroduction {
         commencer.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent arg0) {
+                ihm.inscriptionJoueurs();
+                window.setVisible(false);
                 
+            }
+        });
+        
+        quitter.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent arg0) {
+               System.exit(0);
             }
         });
         
@@ -56,7 +65,6 @@ public class VueIntroduction {
         //Configuration fenetre 
         window.add(contenu);
         window.setSize(500,500);
-        window.setDefaultCloseOperation(window.EXIT_ON_CLOSE); //A supprimer lors de la mise en place
         window.setVisible(true);
         
         

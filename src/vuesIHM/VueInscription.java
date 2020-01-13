@@ -4,8 +4,12 @@
  * and open the template in the editor.
  */
 package vuesIHM;
+import Enumeration.TypeMessage;
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -13,6 +17,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+import patterns.observateur.Message;
 
 /**
  *
@@ -43,6 +48,23 @@ public class VueInscription {
     private JButton jouer = new JButton("Jouer");
     
     public VueInscription(IHM ihm) {
+        //Configuration boutons
+        jouer.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent arg0) {
+              int nbJoueurs = (int)listeNbJoueurs.getSelectedItem();
+              for (int i=0;i<nbJoueurs;i++) {
+                  //collect avec nomjoueurs + vérifier que tout les noms sont initialisées
+                  //recupère niveau eau (transformation du texte en int)
+                  //
+                  
+              }
+              
+              
+                
+            }
+        });
+        
         //Configuration JLabel
         titre.setHorizontalAlignment(SwingConstants.CENTER);
       
