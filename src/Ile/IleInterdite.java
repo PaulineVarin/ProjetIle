@@ -206,46 +206,38 @@ public class IleInterdite extends Observe<Message> {
     
     public void CommencerPartie(int niveau, ArrayList<String> collectNom, int nbJoueur){
         this.niveauEau = niveau;
-        for (int i = 0; i < nbJoueur; i++) {            
-            Aventurier a;
+        for (int i = 0; i < nbJoueur; i++) {
             
             ArrayList <TypeRole> collectJoueurs = new ArrayList<>();
             
-            boolean r1 = true;
+            int r1[] = {1, 1, 1, 1, 1, 1};
+            
+            int r = 0;
+            
+            do {
+                r = (int) Math.random()*6;
+            } while(r1[r] == 0);
             
             
-            ArrayList <Integer> dejaPris = new ArrayList<>();
-            
-            int r = (int) Math.random()*6;
-            
-            for (int j=0; j<dejaPris.size(); j++) {
-                if (r == dejaPris.get(j)) {
-                    r1 = !r1;
-                }
+            switch(r){
+                case 0 : aventuriers.add(new Ingenieur(collectNom.get(i), this));
+                break;
+                case 1 : aventuriers.add(new Messager(collectNom.get(i), this));
+                break;
+                case 2 : aventuriers.add(new Plongeur(collectNom.get(i), this));
+                break;
+                case 3 : aventuriers.add(new Explorateur(collectNom.get(i), this));
+                break;
+                case 4 : aventuriers.add(new Pilote(collectNom.get(i), this));
+                break;
+                case 5 : aventuriers.add(new Navigateur(collectNom.get(i), this));
+                break;
             }
-            
-            if (r1) {
-                switch(r){
-                    case 0 : a= new Ingenieur(collectNom.get(i), this);
-                    break;
-                    case 1 : a= new Messager(collectNom.get(i), this);
-                    break;
-                    case 2 : a= new Plongeur(collectNom.get(i), this);
-                    break;
-                    case 3 : a= new Explorateur(collectNom.get(i), this);
-                    break;
-                    case 4 : a= new Pilote(collectNom.get(i), this);
-                    break;
-                    case 5 : a= new Navigateur(collectNom.get(i), this);
-                    break;
-                }
-            }
-            dejaPris.add(r);}
-            r1 = true;
-            aventuriers.add(a);
+            r1[r] = 0;
         }
             
            
     }
+}
     
 
