@@ -28,7 +28,6 @@ public class IHM extends Observe<Message>  {
     
     //Constructeur
     public IHM(Observateur<Message> observateur) {
-        //test des vues
       this.addObservateur(observateur);
       this.introduction = new VueIntroduction(this); 
       
@@ -45,9 +44,9 @@ public class IHM extends Observe<Message>  {
         notifierObservateurs(m);
     }
     
-    public void demarrerJeu(ArrayList<Tuile> collectTuiles,ArrayList<Aventurier> collectAventuriers,int niveauEau,int nbJoueurs) {
+    public void demarrerJeu(ArrayList<Tuile> collectTuiles,ArrayList<Aventurier> collectAventuriers,int niveauEau) {
         this.jeu = new VueJeu(this);
-        jeu.initialisationVueJeu(collectTuiles,collectAventuriers,niveauEau,nbJoueurs);
+        jeu.initialisationVueJeu(collectTuiles,collectAventuriers,niveauEau);
     }
     
     
