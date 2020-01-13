@@ -7,11 +7,14 @@ package vuesIHM;
 
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
+import patterns.observateur.Message;
 
 
 /**
@@ -35,6 +38,14 @@ public class VueIntroduction {
         boutons.add(commencer);
         boutons.add(quitter);
         
+        //Configuration des boutons
+        commencer.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent arg0) {
+                
+            }
+        });
+        
         //Configuration JLabel
         titre.setHorizontalAlignment(SwingConstants.CENTER);
         
@@ -47,6 +58,8 @@ public class VueIntroduction {
         window.setSize(500,500);
         window.setDefaultCloseOperation(window.EXIT_ON_CLOSE); //A supprimer lors de la mise en place
         window.setVisible(true);
+        
+        
         
         
     }

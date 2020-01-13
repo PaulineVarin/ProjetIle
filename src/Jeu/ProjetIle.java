@@ -2,6 +2,7 @@ package Jeu;
 
 import Ile.Tuile;
 import Enumeration.TypeTresorTuile;
+import patterns.observateur.Controleur;
 import vuesIHM.IHM;
 import vuesIHM.VueIntroduction;
 //commentaire
@@ -21,15 +22,8 @@ public class ProjetIle {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
-        System.out.println("Hello");
-        System.out.println("Hellantoine");
-        int nb=0;
-       System.out.println("Hello Edouard");
        
-       System.out.println("hello ,its me elie");
-       
-       IHM i = new IHM();
+       new Controleur();
       
        
        

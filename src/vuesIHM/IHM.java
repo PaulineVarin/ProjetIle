@@ -18,19 +18,21 @@ import vuesIHM.*;
  * @author varinp
  */
 public class IHM extends Observe<Message>  {
+    //Donnees
     private VueInscription inscription;
     private VueIntroduction introduction;
     private VueJeu jeu;
     
-
+    //Constructeur
     public IHM(Observateur<Message> observateur) {
         //test des vues
       this.addObservateur(observateur);
-      this.inscription = new VueInscription(this);
       this.introduction = new VueIntroduction(this); 
-      VueJoueur joueur = new VueJoueur();
-      AFaireVueGrille grille = new AFaireVueGrille();
-      VueResume resum = new VueResume();
+      
     }
+    
+    //Méthodes
+    
+    
     
 }
