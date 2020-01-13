@@ -40,6 +40,7 @@ public class Message implements Serializable {
     //Constructeur
     public Message(TypeMessage typeM) {
         this.typeM = typeM;
+        
     }
     
     
@@ -53,3 +54,8 @@ public class Message implements Serializable {
   
     
 }
+
+
+
+
+
