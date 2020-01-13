@@ -23,7 +23,7 @@ public Controleur(){
     this.ileinterdite = new IleInterdite(this);
     this.ihm = new IHM(this);
 }   
-    
+
     
     public void traiterMessage(Message msg) {
 
@@ -43,6 +43,7 @@ public Controleur(){
                 break;
                 
             case DEBUT_TOUR:
+            
                 
             
             
@@ -51,13 +52,15 @@ public Controleur(){
                 break;
             
                 
+
             
-        
+        }
+
+
     }
-    
-    
+
+
 }
 
     }
 
-}
