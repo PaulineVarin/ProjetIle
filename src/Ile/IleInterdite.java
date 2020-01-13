@@ -40,6 +40,7 @@ public class IleInterdite extends Observe<Message> {
     public void commencerPartie(int niveauEau,ArrayList<String> collectNomsJoueurs,int nbJoueurs) {      
         determinationRole(collectNomsJoueurs);
         setNiveauEau(niveauEau);
+        setGrille(new Grille());
         Message m = Message.demarrerJeu(/*collectTuiles*/getAventuriers(),getNiveauEau());
         notifierObservateurs(m);
     }

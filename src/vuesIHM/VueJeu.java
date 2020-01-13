@@ -28,12 +28,12 @@ public class VueJeu {
 
     //Méthodes
     public void initialisationVueJeu(ArrayList<Tuile> collectTuiles,ArrayList<Aventurier> collectAventuriers,int niveauEau) {
-        //this.vueGrille = new VueGrille(this);
-        //vueGrille.initialiserPlateau(//a besoin de la collectDeTuiles)
-        this.vueNiveauEau = new VueNiveau(this,niveauEau);
-        this.vueResume = new VueResume(this);
+        this.vueGrille = new VueGrille(this);
+        vueGrille.initialiserPlateau(collectTuiles);
+        //this.vueNiveauEau = new VueNiveau(this,niveauEau);
+        //this.vueResume = new VueResume(this);
         for(Aventurier a : collectAventuriers) {
-            addVuesJoueurs(new VueJoueur(a, this));
+           // addVuesJoueurs(new VueJoueur(a, this));
         }
     }
 

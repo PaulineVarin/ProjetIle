@@ -1,6 +1,9 @@
 package vuesIHM;
 
 import java.awt.Color;
+import java.awt.List;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 
 /**
  *
@@ -31,6 +34,16 @@ public final class Parameters {
     public static final Integer NB_MONTEES_DES_EAUX = (SIMPLIFIED ? 2 : 3) ; // Nombre de cartes Montées des Eaux en jeu simplifié ou non
     public static final Integer NB_HELICOPTERES = 3 ; // Nombre de cartes Hélicoptère
     public static final Integer NB_SACS_DE_SABLE = 2 ; // Nombre de cartes Sacs de Sable
+    public static final Integer NB_TUILES = 36;
+    public static final Integer NB_LIGNES = 6;
+    public static final Integer NB_COLONNES =6;
+    
+    public static final String[]NOMS_TUILES = {"La Caverne des Ombres","Le Val du Crépuscule","La Porte de Cuivre","La Porte de Fer",
+                                                "Le Marais Brumeux","Jardin des murmures","La Caverne du Brasier","La Porte d'Or",
+                                                "Le Temple du soleil","Le Pont des Abimes","La Porte d'Argent","Jardin des Hurlements",
+                                                "Les Dunes de l'Illusion","Les Falaises de l'Oubli","L'observatoire","Le Palais des Marées",
+                                                "L'héliport","Le Temple de la Lune","La Forêt Pourpre","Le Lagon Perdu","La Porte de Bronze",
+                                                "Le Palais de Corail","La Tour de Guet"};
 
     // ====================================================================================
     // COULEURS

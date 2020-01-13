@@ -5,7 +5,12 @@
  */
 package Ile;
 
+import Enumeration.TypeTresorTuile;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
+import vuesIHM.Parameters;
 
 /**
  *
@@ -23,6 +28,32 @@ public class Grille {
     
     //Méthodes
     public void creationTuiles() {
+       int nbTuile = 0;
+        ArrayList<String> nomTuiles = new ArrayList<String>(Arrays.asList(Parameters.NOMS_TUILES));
+        ArrayList<Tuile> tuiles = new ArrayList<>();
+        Collections.shuffle(nomTuiles);
+        
+        
+        //creer 1 ligne puis 6 colonnes
+        for(int i=0;i<Parameters.NB_LIGNES;i++) {
+            System.out.println("nb i "+i);
+            for(int j=0;j<Parameters.NB_COLONNES;j++) {
+                System.out.println(""+i+j+"NBTUILE"+nbTuile);
+                tuiles.add(new Tuile(i, j, nomTuiles.get(nbTuile)));
+                nbTuile = nbTuile+1;
+                System.out.println("Fin colonne"+j);
+            }
+            
+        }
+        
+        
+        for (Tuile t : tuiles) {
+            collectTuiles.put(t.getNomTuile(), t);
+            System.out.println("Nom Tuile  "+t.getNomTuile());
+            System.out.println("Id tuile"+t.getIdTuile());
+        }
+       
+        
         
     }
 

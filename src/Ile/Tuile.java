@@ -26,7 +26,7 @@ public class Tuile {
     private ArrayList<Aventurier> collectAventuriers = new ArrayList<>();
     
 
-    public Tuile(int lig, int col, String nomTuile, TypeTresorTuile tresor) {
+    public Tuile(int lig, int col, String nomTuile) {
         setLigne(lig);
         setColonne(col);
         setNomTuile(nomTuile);
