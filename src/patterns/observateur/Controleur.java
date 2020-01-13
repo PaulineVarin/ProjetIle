@@ -5,6 +5,7 @@
  */
 package patterns.observateur;
 
+
 import vuesIHM.*;
 import Ile.*;
 
@@ -24,36 +25,44 @@ public Controleur(){
     this.ihm = new IHM(this);
 }   
 
-    @Override
+    
     public void traiterMessage(Message msg) {
-        if (msg.getTypeM() != null)
-            switch(msg.getTypeM()){
-                case INITIALISATION:
-                    System.out.println("Noms des joueurs : J'attend collectnoms");
-                    System.out.println("Niveau de l'eau : ");
-                    System.out.println("Nombre de joueurs : ");
-                    break;
-                  
-                case DEBUT_JEU:
-                    System.out.println("Les tuiles sont :");
-                    System.out.println("Les joueurs sont :");
-                    System.out.println("Le niveau d'eau est :");
+
+     if (msg.getTypeM() != null) {
+        switch(msg.getTypeM()) {
+            case INITIALISATION:
+                System.out.println("Noms des joueurs :");
+                System.out.println("Niveau d'eau :");
+                System.out.println("Nombre de joueurs :");
+                break;
                 
-                 
-                    
-                   
-                    
+            case DEBUT_JEU:
+                System.out.println("Les Tuiles :");
+                System.out.println("Les joueurs :");
+                System.out.println("Niveau d'eau :");
+                System.out.println("Nombre de joueurs :");
+                break;
                 
+            case DEBUT_TOUR:
+                kk
+            
                 
-             
-                    
+            
+            
+            
+            
+                break;
+            
+                
+
             
         }
 
+
     }
 
-    
 
-    
-    
 }
+
+    }
+
