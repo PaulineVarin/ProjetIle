@@ -40,9 +40,7 @@ public class IHM extends Observe<Message>  {
     }
     
     public void debutJeu() {
-        Message temp = new Message(TypeMessage.INITIALISATION);
-        Message m = temp.test();
-        notifierObservateurs(m);
+        
         
         
     }
