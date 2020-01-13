@@ -16,41 +16,34 @@ import Ile.*;
  * @author tardieue
  */
 public class Controleur implements Observateur<Message> {
-        
-        private IHM ihm;
-        private IleInterdite ileinterdite;
+    //Données
+    private IHM ihm;
+    private IleInterdite ileInterdite;
     
-public Controleur(){
-    this.ileinterdite = new IleInterdite(this);
-    this.ihm = new IHM(this);
-}   
+    //Constructeur
+    public Controleur(){
+        this.ileInterdite = new IleInterdite(this);
+        this.ihm = new IHM(this);
+    }   
 
     
     public void traiterMessage(Message msg) {
-
-     if (msg.getTypeM() != null) {
-        switch(msg.getTypeM()) {
-            case INITIALISATION:
-                System.out.println("Noms des joueurs :");
-                System.out.println("Niveau d'eau :");
-                System.out.println("Nombre de joueurs :");
-                break;
+        if (msg.getTypeM() != null) {
+            switch(msg.getTypeM()) {
+                case INITIALISATION:
+                    System.out.println("Noms des joueurs :");
+                    System.out.println("Niveau d'eau :");
+                    System.out.println("Nombre de joueurs :");
+                    break;
+                case DEBUT_JEU:
+                    System.out.println("Les Tuiles :");
+                    System.out.println("Les joueurs :");
+                    System.out.println("Niveau d'eau :");
+                    System.out.println("Nombre de joueurs :");
+                    break;
                 
-            case DEBUT_JEU:
-                System.out.println("Les Tuiles :");
-                System.out.println("Les joueurs :");
-                System.out.println("Niveau d'eau :");
-                System.out.println("Nombre de joueurs :");
-                break;
+                case DEBUT_TOUR:
                 
-            case DEBUT_TOUR:
-                
-            
-                
-            
-            
-            
-            
                 break;
             
                 
