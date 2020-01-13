@@ -45,8 +45,138 @@ public class Message implements Serializable {
     
     
     //Méthodes
-    public static Message  test() {
-        return new Message(TypeMessage.INITIALISATION);
+
+    /**
+     * @return the typeM
+     */
+    public TypeMessage getTypeM() {
+        return typeM;
+    }
+
+    /**
+     * @return the typeA
+     */
+    public TypeAction getTypeA() {
+        return typeA;
+    }
+
+    /**
+     * @return the a
+     */
+    public Aventurier getA() {
+        return a;
+    }
+
+    /**
+     * @return the niveauEau
+     */
+    public int getNiveauEau() {
+        return niveauEau;
+    }
+
+    /**
+     * @return the nbJoueurs
+     */
+    public int getNbJoueurs() {
+        return nbJoueurs;
+    }
+
+    /**
+     * @return the nbActions
+     */
+    public int getNbActions() {
+        return nbActions;
+    }
+
+    /**
+     * @return the nbActionsDonneur
+     */
+    public int getNbActionsDonneur() {
+        return nbActionsDonneur;
+    }
+
+    /**
+     * @return the nomRole
+     */
+    public String getNomRole() {
+        return nomRole;
+    }
+
+    /**
+     * @return the nomCarte
+     */
+    public String getNomCarte() {
+        return nomCarte;
+    }
+
+    /**
+     * @return the nomRoleDonneur
+     */
+    public String getNomRoleDonneur() {
+        return nomRoleDonneur;
+    }
+
+    /**
+     * @return the nomRoleReceveur
+     */
+    public String getNomRoleReceveur() {
+        return nomRoleReceveur;
+    }
+
+    /**
+     * @return the nomTuile
+     */
+    public String getNomTuile() {
+        return nomTuile;
+    }
+
+    /**
+     * @return the typeTresor
+     */
+    public TypeTresorTuile getTypeTresor() {
+        return typeTresor;
+    }
+
+    /**
+     * @return the collectCartesSpe
+     */
+    public ArrayList<CarteTirage> getCollectCartesSpe() {
+        return collectCartesSpe;
+    }
+
+    /**
+     * @return the collectCartesTresor
+     */
+    public ArrayList<CarteTirage> getCollectCartesTresor() {
+        return collectCartesTresor;
+    }
+
+    /**
+     * @return the collectCartesJoueur
+     */
+    public ArrayList<CarteTirage> getCollectCartesJoueur() {
+        return collectCartesJoueur;
+    }
+
+    /**
+     * @return the collectJoueurs
+     */
+    public ArrayList<Aventurier> getCollectJoueurs() {
+        return collectJoueurs;
+    }
+
+    /**
+     * @return the collectTuiles
+     */
+    public ArrayList<Tuile> getCollectTuiles() {
+        return collectTuiles;
+    }
+
+    /**
+     * @return the collectNomsJoueurs
+     */
+    public ArrayList<String> getCollectNomsJoueurs() {
+        return collectNomsJoueurs;
     }
     
     
