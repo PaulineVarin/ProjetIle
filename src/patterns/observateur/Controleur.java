@@ -18,7 +18,10 @@ public class Controleur implements Observateur {
         private IHM ihm;
         private IleInterdite ileinterdite;
     
-    
+public Controleur(){
+    this.ileinterdite = new IleInterdite(this);
+    this.ihm = new IHM(this);
+}   
     
     @Override
     public void traiterMessage(Object msg) {

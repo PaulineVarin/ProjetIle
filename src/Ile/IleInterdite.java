@@ -10,6 +10,7 @@ import patterns.observateur.Observe;
 import patterns.observateur.Observateur;
 import java.util.ArrayList;
 import patterns.observateur.Controleur;
+import patterns.observateur.Message;
 
 
 
@@ -18,7 +19,7 @@ import patterns.observateur.Controleur;
  *
  * @author tardieue
  */
-public class IleInterdite extends Observe {
+public class IleInterdite extends Observe<Message> {
     //Données
     private int niveauEau;
     private Grille grille;
@@ -34,7 +35,7 @@ public class IleInterdite extends Observe {
     //Constructeur    
     public IleInterdite(Observateur<Message> observateur) {
         // commencerPartie();
-        this.addObservateur(o);
+        this.addObservateur(observateur);
     }
     
 
@@ -86,10 +87,6 @@ public class IleInterdite extends Observe {
         
     }
 
-    public void addObservateur(Controleur o) {
-        
-        
-    }
 
     
 

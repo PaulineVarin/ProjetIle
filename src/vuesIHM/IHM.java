@@ -1,6 +1,8 @@
 package vuesIHM;
 
 
+import patterns.observateur.Message;
+import patterns.observateur.*;
 import vuesIHM.*;
 
 
@@ -15,14 +17,15 @@ import vuesIHM.*;
  *
  * @author varinp
  */
-public class IHM {
+public class IHM extends Observe<Message>  {
     private VueInscription inscription;
     private VueIntroduction introduction;
     private VueJeu jeu;
     
 
-    public IHM() {
+    public IHM(Observateur<Message> observateur) {
         //test des vues
+      this.addObservateur(observateur);
       this.inscription = new VueInscription(this);
       this.introduction = new VueIntroduction(this); 
       VueJoueur joueur = new VueJoueur();
