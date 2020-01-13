@@ -34,14 +34,7 @@ public class IleInterdite extends Observe {
     }
     
 
-    private void commencerPartie(int niveau, ArrayList<String> collectNom, int nbJoueur) {
-        this.niveauEau = niveau;
-        for (int i = 0; i < nbJoueur; i++) {
-            
-            Aventurier a = new Aventurier(collectNom.get(i), this) {};
-            aventuriers.add(a);
-        }
-    }
+
 
     //Méthodes
     /* à faire quand le diagramme de séquence sera fait
@@ -209,9 +202,15 @@ public class IleInterdite extends Observe {
         getAventuriers().add(a);
     }
     
-    public void CommencerPartie(){
-        
+    public void CommencerPartie(int niveau, ArrayList<String> collectNom, int nbJoueur){
+                this.niveauEau = niveau;
+        for (int i = 0; i < nbJoueur; i++) {
+            
+            Aventurier a = new Aventurier(collectNom.get(i), this) {};
+            aventuriers.add(a);
     }
     
     
+}
+
 }
