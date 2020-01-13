@@ -9,6 +9,8 @@ import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -29,38 +31,81 @@ public class VueInscription {
     private JPanel contenu = new JPanel(new BorderLayout());
     private JPanel contenuMillieu = new JPanel(new GridLayout(6, 2));
     private JLabel titre = new JLabel("Inscription des joueurs");
-    private JLabel libelNbjoueurs = new JLabel("Nombre de joueurs");
-    private JLabel libelNomJoueur1 = new JLabel("Nom du joueur n°1");
-    private JLabel libelNomJoueur2 = new JLabel("Nom du joueur n°2");
-    private JLabel libelNomJoueur3 = new JLabel("Nom du joueur n°3");
-    private JLabel libelNomJoueur4 = new JLabel("Nom du joueur n°4");
-    private JLabel libelNiveauEau = new JLabel("Niveau d'eau");
+    private JLabel labelNbjoueurs = new JLabel("Nombre de joueurs");
+    private JLabel labelNomJoueur1 = new JLabel("Nom du joueur n°1");
+    private JLabel labelNomJoueur2 = new JLabel("Nom du joueur n°2");
+    private JLabel labelNomJoueur3 = new JLabel("Nom du joueur n°3");
+    private JLabel labelNomJoueur4 = new JLabel("Nom du joueur n°4");
+    private JLabel labelNiveauEau = new JLabel("Niveau d'eau");
     private JTextField nomJoueur1 = new JTextField();
     private JTextField nomJoueur2 = new JTextField();
     private JTextField nomJoueur3 = new JTextField();
     private JTextField nomJoueur4 = new JTextField();
-    private final String [] nbjoueurs = {"2","3","4"};
+    
+    private final JLabel [] labelsJoueurs = new JLabel[4];
+    private final JTextField [] nomsJoueurs = new JTextField[4];
+    
+    
+    private final Integer [] nbjoueurs = {2,3,4};
     private JComboBox listeNbJoueurs = new JComboBox(nbjoueurs);
     
-    private final String [] niveauEau = {"E","1"};
-    private JComboBox listeNiveauEau = new JComboBox(niveauEau);
+    private final String [] nomsNiveauEau = {"Novice","Normal","Elite","Légendaire"};
+    private JComboBox listeNiveauEau = new JComboBox(nomsNiveauEau);
     
     private JButton jouer = new JButton("Jouer");
     
     public VueInscription(IHM ihm) {
+        //Configuration listes
+        labelsJoueurs[0] = labelNomJoueur1;
+        labelsJoueurs[1] = labelNomJoueur2;
+        labelsJoueurs[2] = labelNomJoueur3;
+        labelsJoueurs[3] = labelNomJoueur4;
+        
+        nomsJoueurs[0] = nomJoueur1;
+        nomsJoueurs[1] = nomJoueur2;
+        nomsJoueurs[2] = nomJoueur3;
+        nomsJoueurs[3] = nomJoueur4;
+
+        listeNbJoueurs.addItemListener(new ItemListener() {
+            @Override
+            public void itemStateChanged(ItemEvent arg0) {
+                //Modifier les choix possibles en fonction du nombre de joueurs
+                int nbJoueurs = (int)listeNbJoueurs.getSelectedItem();
+                
+                for(int i = 0; i < labelsJoueurs.length; i++) {
+                    labelsJoueurs[i].setEnabled(i < nbJoueurs);
+                    nomsJoueurs[i].setEnabled(i < nbJoueurs);
+                }
+                
+            }
+        });
+        
         //Configuration boutons
         jouer.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent arg0) {
-              int nbJoueurs = (int)listeNbJoueurs.getSelectedItem();
-              for (int i=0;i<nbJoueurs;i++) {
-                  //collect avec nomjoueurs + vérifier que tout les noms sont initialisées
-                  //recupère niveau eau (transformation du texte en int)
-                  //
-                  
-              }
-              
-              
+                ArrayList<String> collectNomsJoueurs = new ArrayList<>();
+                
+                //Récupération du nombre de joueurs
+                int nbJoueurs = (int)listeNbJoueurs.getSelectedItem();
+
+                //Récupération du nom des joueurs
+                for(int i =0;i<nbJoueurs;i++) {
+                    String s = nomsJoueurs[i].getText();
+                    if(s.equals("")) {
+                        s = "Joueur"+i;
+                    }
+                    collectNomsJoueurs.add(s); 
+                }
+                //Récupération du niveau d'eau
+                int niveauEau = 2;
+                String niveau = listeNiveauEau.getSelectedItem().toString();
+                if (niveau.equals("Légendaire")) {
+                    niveauEau = 3;
+                }
+                
+                ihm.debutJeu(collectNomsJoueurs, niveauEau, nbJoueurs);
+                    
                 
             }
         });
@@ -69,22 +114,22 @@ public class VueInscription {
         titre.setHorizontalAlignment(SwingConstants.CENTER);
       
         //Configuration panel contenuMillieu
-        libelNomJoueur3.setEnabled(false);
-        libelNomJoueur4.setEnabled(false);
+        labelNomJoueur3.setEnabled(false);
+        labelNomJoueur4.setEnabled(false);
         nomJoueur3.setEnabled(false);
         nomJoueur4.setEnabled(false);
         
-        contenuMillieu.add(libelNbjoueurs);
+        contenuMillieu.add(labelNbjoueurs);
         contenuMillieu.add(listeNbJoueurs);
-        contenuMillieu.add(libelNomJoueur1);
+        contenuMillieu.add(labelNomJoueur1);
         contenuMillieu.add(nomJoueur1);
-        contenuMillieu.add(libelNomJoueur2);
+        contenuMillieu.add(labelNomJoueur2);
         contenuMillieu.add(nomJoueur2);
-        contenuMillieu.add(libelNomJoueur3);
+        contenuMillieu.add(labelNomJoueur3);
         contenuMillieu.add(nomJoueur3);
-        contenuMillieu.add(libelNomJoueur4);
+        contenuMillieu.add(labelNomJoueur4);
         contenuMillieu.add(nomJoueur4);
-        contenuMillieu.add(libelNiveauEau);
+        contenuMillieu.add(labelNiveauEau);
         contenuMillieu.add(listeNiveauEau);
         
         //Configuration panel contenu

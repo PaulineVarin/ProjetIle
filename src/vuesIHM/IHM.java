@@ -39,10 +39,8 @@ public class IHM extends Observe<Message>  {
         this.inscription = new VueInscription(this);
     }
     
-    public void debutJeu(int niveauEau,int nbJoueurs) {
+    public void debutJeu(ArrayList collectNoms,int niveauEau,int nbJoueurs) {
         Message.initialisation();
-        
-        
     }
     
     
