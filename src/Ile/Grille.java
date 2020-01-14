@@ -65,7 +65,7 @@ public class Grille {
         joueur noir = porte de fer;
         joueur gris = porte d'argent'x;*/
         Tuile t = new Tuile(0, 0, "default");
-        for(Aventurier a : collectJoueurs) {
+        /*for(Aventurier a : collectJoueurs) {
             System.out.println("Debut ajout");
             if(a.getRole().equals(TypeRole.EXPLORATEUR)) {
                 System.out.println("JOueur trouvé");
@@ -106,7 +106,7 @@ public class Grille {
                 a.setTuileDeDepart(t);
                 a.setTuileCourante(t);
             }
-        }
+        }*/
       
         //Ajout des trésors
         
@@ -114,7 +114,7 @@ public class Grille {
         //Ajout a la hasmap
                 
         for (Tuile tu : tuiles) {
-            System.out.println(tu.getIdTuile()+tu.getNomTuile()+tu.getTresor()+tu.getJoueurDepart().getNomJoueur());
+            System.out.println(tu.getIdTuile()+tu.getNomTuile()+tu.getTresor());
         }
         return tuiles;
     }
