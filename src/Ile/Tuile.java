@@ -160,13 +160,12 @@ public class Tuile {
     public ArrayList<Aventurier> getCollectAventuriers() {
         return collectAventuriers;
     }
-
-    /**
-     * @param collectAventuriers the collectAventuriers to set
-     */
+    
     public void addAventurier(Aventurier a) {
-       this.getCollectAventuriers().add(a);
+        getCollectAventuriers().add(a);
     }
+
+    
  
 }
 
