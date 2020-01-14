@@ -34,12 +34,11 @@ public class IHM extends Observe<Message>  {
     }
     
     //Méthodes
-    
     public void inscriptionJoueurs() {
         this.inscription = new VueInscription(this);
     }
     
-    public void debutJeu(ArrayList<String> collectNoms,int niveauEau,int nbJoueurs) {
+    public void initialisationJeu(ArrayList<String> collectNoms,int niveauEau,int nbJoueurs) {
         Message m = Message.initialisation(collectNoms,niveauEau,nbJoueurs);
         notifierObservateurs(m);
     }

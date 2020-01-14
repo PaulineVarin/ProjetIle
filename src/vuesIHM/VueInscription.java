@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 package vuesIHM;
-import Enumeration.TypeMessage;
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -99,7 +98,7 @@ public class VueInscription {
                 }
                 //Récupération du niveau d'eau
                 
-                int niveauEau = 1;
+                int niveauEau = 0;
                 String niveau = listeNiveauEau.getSelectedItem().toString();
                 if(niveau.equals("Novice")) {
                     niveauEau=1;
@@ -111,7 +110,7 @@ public class VueInscription {
                     niveauEau = 4;
                 }
                 
-                ihm.debutJeu(collectNomsJoueurs, niveauEau, nbJoueurs);  
+                ihm.initialisationJeu(collectNomsJoueurs, niveauEau, nbJoueurs);  
             }
         });
         

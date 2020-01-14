@@ -56,6 +56,8 @@ public class Message implements Serializable {
        return m;
     }
     
+    
+    //Méthodes IleInterdite
     public static Message demarrerJeu(ArrayList<Tuile> collectTuiles,ArrayList<Aventurier> collectJoueurs,int niveauEau) {
         Message m = new Message(TypeMessage.DEBUT_JEU);
         m.collectJoueurs=collectJoueurs;
@@ -83,7 +85,7 @@ public class Message implements Serializable {
     
    
     
-    //Méthodes IleInterdite
+    
 
     /**
      * @return the typeM

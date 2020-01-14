@@ -5,6 +5,8 @@
  */
 package vuesIHM;
 
+import Enumeration.EtatTuile;
+import Enumeration.TypeTresorTuile;
 import Ile.Tuile;
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
@@ -43,6 +45,7 @@ public class VueGrille {
            }
            contenuCentre.add(j);
        }
+       contenuCentre.setBackground(Parameters.PLATEAU_BG);
        
        //Configuration contenu
        contenu.add(contenuCentre,BorderLayout.CENTER);
@@ -55,11 +58,22 @@ public class VueGrille {
     
     //Méthodes
     public void initialiserPlateau(ArrayList<Tuile> collectTuiles) {
+        JButton j = new JButton();
         for (int i=0;i<collectTuiles.size();i++) {
+            //Ajout du nom des tuiles sur les boutons
             if (i!=0 && i!=1 && i!=4 && i!=5 && i!=6 && i!=11 && i!=24 && i!=29 && i!=30 && i!=31 && i!=34 && i!=35) {
-               JButton j = listeBouttons.get(i);
+               j = listeBouttons.get(i);
                j.setText(collectTuiles.get(i).getNomTuile());
+               j.setBackground(Parameters.TUILE_ASSECHEE_BG);
+
            }
+            //Ajout de la couleur pour les tuiles inondées
+            if(collectTuiles.get(i).getEtat().equals(EtatTuile.INONDEE)) {
+              j.setBackground(Parameters.TUILE_INONDEE_BG);
+            }
+            
+            
+            
         } 
     }  
 }

@@ -63,7 +63,7 @@ public abstract class Aventurier {
         ArrayList<Tuile> cases = new ArrayList<>();     // pour le return
         ArrayList<Tuile> tuiles = new ArrayList<>();    // pour les calculs
         Grille g = a.getIle().getGrille();
-        tuiles = g.getCollectTuiles();
+       // tuiles = g.getCollectTuiles();
         EtatTuile etatTuile;
         int id = t.getIdTuile();
         
