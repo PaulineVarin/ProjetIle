@@ -9,6 +9,7 @@ import Enumeration.TypeRole;
 import Enumeration.TypeTresorTuile;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 import javax.swing.JButton;
@@ -110,6 +111,21 @@ public class Grille {
       
         //Ajout des trésors
         
+    
+
+        for(int i=1;i<=6;i++) {
+            for(int j=0;j<Parameters.NB_COLONNES;j++) {
+                tuiles.add(new Tuile(i, j,""+i+j));
+            }
+        }
+        
+        int nb=0;
+        for (int i=0;i<tuiles.size();i++) {
+            if (i!=0 && i!=1 && i!=4 && i!=5 && i!=6 && i!=11 && i!=24 && i!=29 && i!=30 & i!=31 & i!=34 & i!=35) {
+                Tuile t = tuiles.get(i);
+                t.setNomTuile(nomTuiles.get(nb));
+                nb= nb+1;
+            }
                 
         //Ajout a la hasmap
                 
@@ -118,19 +134,33 @@ public class Grille {
         }
         return tuiles;
     }
+   
+    public ArrayList<Tuile> getTuilesGrille() {
+        HashMap<String, Tuile> map = getCollectTuiles();
+        Collection<Tuile> values = map.values();
+
+        ArrayList<Tuile> tuiles = new ArrayList<>(values);
+        return tuiles;
+    }
+
+    public Tuile getTuile(String nom) {
+        Tuile t = null;
+        ArrayList<Tuile> tuiles = getTuilesGrille();
+        
+        for (int i = 0; i< tuiles.size(); i++) {
+            if (tuiles.get(i).getNomTuile() == nom) {
+                t= tuiles.get(i);
+            }
+        }
+        
+        return t;
+    }
 
     /**
      * @return the collectTuiles
      */
     public HashMap<String,Tuile> getCollectTuiles() {
         return collectTuiles;
-    }
-
-    /**
-     * @param collectTuiles the collectTuiles to set
-     */
-    public void addCollectTuiles(Tuile t) {
-        getCollectTuiles().put(t.getNomTuile(), t);
     }
     
     

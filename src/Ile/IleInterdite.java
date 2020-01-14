@@ -97,8 +97,17 @@ public class IleInterdite extends Observe<Message> {
 
         Message m = Message.tourJeu(temp.getStringRole(), collectCases);
         notifierObservateurs(m);
+    }
 
-    }*/
+    private /*ArrayList<Aventurier>*/void choixJoueur(String nomTuile) {
+        ArrayList<Aventurier> joueursPoss = new ArrayList<>();
+        Grille g = this.getGrille();
+        Tuile t = g.getTuile(nomTuile);
+        
+        joueursPoss = g.getCollectJoueurs(t);
+
+        //return joueursPoss;
+    }
 
     /* à faire quand le diagramme de séquence sera fait
     public void finDeTour(String nomAventurier) {
