@@ -31,13 +31,6 @@ public class Grille {
  
     }
     
-    // Méthodes :
-    
-    public void getTuile(String nomTuile){
-        collectTuiles.get(this);
-
-    }
-    
     //Méthodes
     public ArrayList<Tuile> creationTuiles(ArrayList<Aventurier> collectJoueurs) {
         
