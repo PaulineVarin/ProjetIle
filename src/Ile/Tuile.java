@@ -37,23 +37,15 @@ public class Tuile {
     // Méthodes :
     
     public void removeJoueur(Aventurier a){
-        Tuile t = null; // Initialisation automatique à revoir
-        if (t.collectAventuriers.contains(a)){
-            collectAventuriers.remove(a);
-            
-        }
-        
-        
+        Tuile t = a.getTuileCourante();
+        t.getCollectAventuriers().remove(a);    
     }
     
     public void addJoueur(Aventurier a){
-        Tuile t = null; // Initialisation automatique à revoir
-        if (!t.collectAventuriers.contains(a)){
-            collectAventuriers.remove(a);
-        }
+        Tuile t = a.getTuileCourante();
+        t.getCollectAventuriers().add(a);        
     }
-    
-   
+       
 
     /**
      * @return the ligne
@@ -160,13 +152,12 @@ public class Tuile {
     public ArrayList<Aventurier> getCollectAventuriers() {
         return collectAventuriers;
     }
-
-    /**
-     * @param collectAventuriers the collectAventuriers to set
-     */
+    
     public void addAventurier(Aventurier a) {
-       this.getCollectAventuriers().add(a);
+        getCollectAventuriers().add(a);
     }
+
+    
  
 }
 
