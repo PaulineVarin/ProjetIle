@@ -43,11 +43,9 @@ public class Tuile {
     
     public void addJoueur(Aventurier a){
         Tuile t = a.getTuileCourante();
-        t.getCollectAventuriers().add(a);
-        
+        t.getCollectAventuriers().add(a);        
     }
-    
-   
+       
 
     /**
      * @return the ligne

@@ -66,11 +66,8 @@ public class Grille {
             System.out.println("Debut ajout");
             if(a.getRole().equals(TypeRole.EXPLORATEUR)) {
                 System.out.println("JOueur trouvé"+a.getNomJoueur());
-                
                 t = getCollectTuiles().get("La Porte de Cuivre");
-                
                 System.out.println(t.getNomTuile());
-                
                 t.setJoueurDepart(a);
                 t.addAventurier(a);
                 a.setTuileDeDepart(t);
@@ -146,13 +143,11 @@ public class Grille {
     
     public ArrayList<Aventurier> getCollectJoueurs(Tuile t) {
         ArrayList<Aventurier> aventuriers = new ArrayList<>();
-        
         aventuriers = t.getCollectAventuriers();
-        
         return aventuriers;
     }
     
-    public ArrayList<collectCartesJoueur> getJoueurs() {
+ /*   public ArrayList<collectCartesJoueur> getJoueurs() {
         ArrayList<collectCartesJoueur> collectCartesJoueur = new ArrayList<>();
         collectCartesJoueur = t.getcollectCartesJoueur;
         if (collectCartesJoueur.size() > 5){
@@ -160,15 +155,15 @@ public class Grille {
         }
         else 
         return t.getCollectAventuriers;        
-    }
+    }*/
     
     
     // getters
     public ArrayList<Tuile> getTuilesGrille() {
         HashMap<String, Tuile> map = getCollectTuiles();
         Collection<Tuile> values = map.values();
-
         ArrayList<Tuile> tuiles = new ArrayList<>(values);
+        
         return tuiles;
     }
 
