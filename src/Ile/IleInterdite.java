@@ -90,7 +90,7 @@ public class IleInterdite extends Observe<Message> {
     
     
 
-    /*public void tourDeJeu(String nomRole, int nbActions) {
+    public void tourDeJeu(String nomRole, int nbActions) {
 
         Aventurier temp;
         temp = getAventurier(nomRole);
@@ -99,7 +99,7 @@ public class IleInterdite extends Observe<Message> {
 
         Message m = Message.tourJeu(temp.getStringRole(), collectCases);
         notifierObservateurs(m);
-    }*/
+    }
 
     private /*ArrayList<Aventurier>*/void choixJoueur(String nomTuile) {
         ArrayList<Aventurier> joueursPoss = new ArrayList<>();
@@ -108,27 +108,31 @@ public class IleInterdite extends Observe<Message> {
         
         joueursPoss = g.getCollectJoueurs(t);
 
-        //return joueursPoss;
+        return joueursPoss;
     }
     
     
-    public void seDeplacer(String nomTuile, String nomRole, int nbActions){
+    public void seDeplacer(String nomRole, String nomTuile, int nbActions){
         
         Aventurier temp;
         temp = getAventurier(nomRole);
         
         Tuile t;
         t = temp.getTuileCourante();
-        
         t.removeJoueur(temp);
         
+        Grille g = new Grille();
         
+        Tuile t1 = g.getTuile(nomTuile);
+        temp.setTuileCourante(t1);
+        t1.addJoueur(temp);
         
+        temp.MiseAJourNbActions();
+        temp.getStringRole();
         
-        // getGrille();
-        
-        
-        
+        Message m = Message.deplace(temp.getStringRole(), t1.getNomTuile(), temp.getNbaction());
+        notifierObservateurs(m);
+   
         
         
     }
