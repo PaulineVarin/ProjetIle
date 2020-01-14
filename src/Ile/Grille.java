@@ -121,7 +121,17 @@ public class Grille {
         }
         return tuiles;
     }
-   
+    
+    public ArrayList<Aventurier> getCollectJoueurs(Tuile t) {
+        ArrayList<Aventurier> aventuriers = new ArrayList<>();
+        
+        aventuriers = t.getCollectAventuriers();
+        
+        return aventuriers;
+    }
+    
+    
+    // getters
     public ArrayList<Tuile> getTuilesGrille() {
         HashMap<String, Tuile> map = getCollectTuiles();
         Collection<Tuile> values = map.values();
