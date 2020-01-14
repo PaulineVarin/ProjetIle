@@ -59,50 +59,58 @@ public class Grille {
                 getCollectTuiles().put(t.getNomTuile(), t);
             }
         }
-        //Ajout des aventuriers sur les tuiles départ
         
-        /*joueur bleu(pilote) = heliport; 
-        joueur rouge = porte de bronze;x
-        joueur jaune = porte d'or';
-        joueur vert = porte de cuivrex
-        joueur noir = porte de fer;
-        joueur gris = porte d'argent'x;*/
+        //Ajout des aventuriers sur les tuiles départ
         Tuile t = new Tuile(0, 0, "default");
         for(Aventurier a : collectJoueurs) {
             System.out.println("Debut ajout");
             if(a.getRole().equals(TypeRole.EXPLORATEUR)) {
-                System.out.println("JOueur trouvé");
+                System.out.println("JOueur trouvé"+a.getNomJoueur());
+                
                 t = getCollectTuiles().get("La Porte de Cuivre");
+                
                 System.out.println(t.getNomTuile());
+                
                 t.setJoueurDepart(a);
                 t.addAventurier(a);
                 a.setTuileDeDepart(t);
                 a.setTuileCourante(t);
-            }else if(a.getRole().equals(TypeRole.INGENIEUR)){
+            }
+         
+            if(a.getRole().equals(TypeRole.INGENIEUR)){
+                System.out.println("JOueur trouvé"+a.getNomJoueur());
                 t = getCollectTuiles().get("La Porte de Bronze");
                 t.setJoueurDepart(a);
                 t.addAventurier(a);
                 a.setTuileDeDepart(t);
                 a.setTuileCourante(t);
-            }else if (a.getRole().equals(TypeRole.MESSAGER)) {
+            }
+            if (a.getRole().equals(TypeRole.MESSAGER)) {
+                System.out.println("JOueur trouvé"+a.getNomJoueur());
                 t=getCollectTuiles().get("La Porte d'Argent");
                 t.setJoueurDepart(a);
                 t.addAventurier(a);
                 a.setTuileDeDepart(t);
                 a.setTuileCourante(t);
-            }else if(a.getRole().equals(TypeRole.NAVIGATEUR)) {
+            }
+            if(a.getRole().equals(TypeRole.NAVIGATEUR)) {
+                System.out.println("JOueur trouvé"+a.getNomJoueur());
                 t=getCollectTuiles().get("La Porte d'Or");
                 t.setJoueurDepart(a);
                 t.addAventurier(a);
                 a.setTuileDeDepart(t);
                 a.setTuileCourante(t);
-            }else if(a.getRole().equals(TypeRole.PILOTE)) {
+            }
+            if(a.getRole().equals(TypeRole.PILOTE)) {
+                System.out.println("JOueur trouvé"+a.getNomJoueur());
                 t=getCollectTuiles().get("L'héliport");
                 t.setJoueurDepart(a);
                 t.addAventurier(a);
                 a.setTuileDeDepart(t);
                 a.setTuileCourante(t);
-            }else {
+            }
+            if(a.getRole().equals(TypeRole.PLONGEUR)) {
+                System.out.println("JOueur trouvé"+a.getNomJoueur());
                 t=getCollectTuiles().get("La Porte de Fer");
                 t.setJoueurDepart(a);
                 t.addAventurier(a);
@@ -112,16 +120,40 @@ public class Grille {
         }
       
         //Ajout des trésors
-       
-                
-        //Ajout a la hasmap
-                
+        for (Tuile tu : tuiles) {
+            if(tu.getNomTuile().equals("Le Temple de la Lune") || tu.getNomTuile().equals("Le Temple du soleil")) {
+                tu.setTresor(TypeTresorTuile.PIERRE);
+            }else if(tu.getNomTuile().equals("Jardin des murmures") || tu.getNomTuile().equals("Jardin des Hurlements")) {
+                tu.setTresor(TypeTresorTuile.ZEPHYR);
+            }else if(tu.getNomTuile().equals("La Caverne des Ombres") || tu.getNomTuile().equals("La Caverne du Brasier")) {
+                tu.setTresor(TypeTresorTuile.CRISTAL);
+            }else if(tu.getNomTuile().equals("Le Palais des Marées") || tu.getNomTuile().equals("Le Palais de Corail")) {
+                tu.setTresor(TypeTresorTuile.CALICE);
+            }
+        }
+        
+        
+        
         for (Tuile tu : tuiles) {
             System.out.println(tu.getIdTuile()+tu.getNomTuile()+tu.getTresor());
+            if(tu.getJoueurDepart()!=null) {
+                System.out.print(tu.getIdTuile()+tu.getNomTuile()+tu.getTresor());
+                System.out.println(tu.getJoueurDepart().getNomJoueur());
+            }
         }
         return tuiles;
     }
-   
+    
+    public ArrayList<Aventurier> getCollectJoueurs(Tuile t) {
+        ArrayList<Aventurier> aventuriers = new ArrayList<>();
+        
+        aventuriers = t.getCollectAventuriers();
+        
+        return aventuriers;
+    }
+    
+    
+    // getters
     public ArrayList<Tuile> getTuilesGrille() {
         HashMap<String, Tuile> map = getCollectTuiles();
         Collection<Tuile> values = map.values();

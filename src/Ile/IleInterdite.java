@@ -101,8 +101,7 @@ public class IleInterdite extends Observe<Message> {
         notifierObservateurs(m);
     }
 
-    
-    private ArrayList<Aventurier>void choixJoueur(String nomTuile) {
+    private /*ArrayList<Aventurier>*/void choixJoueur(String nomTuile) {
         ArrayList<Aventurier> joueursPoss = new ArrayList<>();
         Grille g = this.getGrille();
         Tuile t = g.getTuile(nomTuile);
@@ -152,7 +151,7 @@ public class IleInterdite extends Observe<Message> {
     changementJoueur();                 // on change de joueur
     }
     }*/
- /*private void tirageCartes(Aventurier av) {
+    private void tirageCartes(Aventurier av) {
         // à finir
         System.out.println("Pensez à programmer tirageCarte");
         Aventurier av_temp = av;
@@ -178,7 +177,7 @@ public class IleInterdite extends Observe<Message> {
         // utiliser this.niveauEau pour le nombre de carte
         System.out.println("Pensez à programmer tirageCartesInondation");
     }
-     */
+
 
     // getters/setters :
     /**
