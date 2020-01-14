@@ -43,8 +43,9 @@ public abstract class Aventurier {
         setNbaction(3);
     }
     
+   
     //Méthodes
-    public ArrayList<Tuile> calculCases(TypeMessage action) {
+    /*public ArrayList<Tuile> calculCases(TypeMessage action) {
         ArrayList<Tuile> tuiles = new ArrayList<>();
         Tuile t = getTuileCourante();
         Grille g = getIle().getGrille();
@@ -56,13 +57,13 @@ public abstract class Aventurier {
         }
         
         return tuiles;
-    }
-    
-    private ArrayList<Tuile> getTuiles(Tuile t, TypeMessage action, Aventurier a) {
+    }*/
+    //a refaire car pas prise en compte de la hasmap
+    /*private ArrayList<Tuile> getTuiles(Tuile t, TypeMessage action, Aventurier a) {
         ArrayList<Tuile> cases = new ArrayList<>();     // pour le return
         ArrayList<Tuile> tuiles = new ArrayList<>();    // pour les calculs
         Grille g = a.getIle().getGrille();
-        tuiles = g.getTuilesGrille();
+        tuiles = g.getCollectTuiles();
         EtatTuile etatTuile;
         int id = t.getIdTuile();
         
@@ -120,9 +121,9 @@ public abstract class Aventurier {
             }
         }
         return cases;
-    }
-
-
+    }*/
+    
+    
     // getters setters :
     /**
      * @return the nomJoueur
@@ -137,12 +138,19 @@ public abstract class Aventurier {
     public void setNomJoueur(String nomJoueur) {
         this.nomJoueur = nomJoueur;
     }
-
+    
+        /**
+     * @return the role
+     */
+    public TypeRole getRole() {
+        return role;
+    }
+    
     /**
      * @return the role
      */
     public String getStringRole() {
-        return role.toString();    
+        return getRole().toString();    
     }
 
     /**

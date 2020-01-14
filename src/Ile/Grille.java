@@ -5,13 +5,15 @@
  */
 package Ile;
 
+import Enumeration.TypeRole;
 import Enumeration.TypeTresorTuile;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
-import java.util.Set;
+import javax.swing.JButton;
+import patterns.observateur.Controleur;
 import vuesIHM.Parameters;
 
 /**
@@ -28,32 +30,86 @@ public class Grille {
     }
     
     //Méthodes
-    public ArrayList<Tuile> creationTuiles() {
+    public ArrayList<Tuile> creationTuiles(ArrayList<Aventurier> collectJoueurs) {
+        
         ArrayList<String> nomTuiles = new ArrayList<String>(Arrays.asList(Parameters.NOMS_TUILES));
         ArrayList<Tuile> tuiles = new ArrayList<>();
         Collections.shuffle(nomTuiles);
-        
-        
-        //creer 1 ligne puis 6 colonnes
-        for(int i=0;i<Parameters.NB_LIGNES;i++) {
-            System.out.println("nb i "+i);
+        //Creation Tuiles vides
+        for(int i=1;i<=6;i++) {
             for(int j=0;j<Parameters.NB_COLONNES;j++) {
-                System.out.println(""+i+j+"NBTUILE"+nbTuile);
-                tuiles.add(new Tuile(i, j, nomTuiles.get(nbTuile)));
-                nbTuile = nbTuile+1;
-                System.out.println("Fin colonne"+j);
+                tuiles.add(new Tuile(i, j,""));
             }
-            
+        }
+        //Ajout des nomsTuiles
+        int nb=0;
+        for (int i=0;i<tuiles.size();i++) {
+            if (i!=0 && i!=1 && i!=4 && i!=5 && i!=6 && i!=11 && i!=24 && i!=29 && i!=30 & i!=31 & i!=34 & i!=35) {
+                Tuile t = tuiles.get(i);
+                t.setNomTuile(nomTuiles.get(nb));
+                nb= nb+1;
+            }
         }
         
-        
+        //Ajout à la HashMap
         for (Tuile t : tuiles) {
-            getCollectTuiles().put(t.getNomTuile(), t);
-            System.out.println("Nom Tuile  "+t.getNomTuile());
-            System.out.println("Id tuile"+t.getIdTuile());
+            if(t.getNomTuile().equals("")==false) {
+                getCollectTuiles().put(t.getNomTuile(), t);
+            }
         }
-       
+        //Ajout des aventuriers sur les tuiles départ
         
+        /*joueur bleu(pilote) = heliport; 
+        joueur rouge = porte de bronze;x
+        joueur jaune = porte d'or';
+        joueur vert = porte de cuivrex
+        joueur noir = porte de fer;
+        joueur gris = porte d'argent'x;*/
+        Tuile t = new Tuile(0, 0, "default");
+        for(Aventurier a : collectJoueurs) {
+            System.out.println("Debut ajout");
+            if(a.getRole().equals(TypeRole.EXPLORATEUR)) {
+                System.out.println("JOueur trouvé");
+                t = getCollectTuiles().get("La Porte de Cuivre");
+                System.out.println(t.getNomTuile());
+                t.setJoueurDepart(a);
+                t.addAventurier(a);
+                a.setTuileDeDepart(t);
+                a.setTuileCourante(t);
+            }else if(a.getRole().equals(TypeRole.INGENIEUR)){
+                t = getCollectTuiles().get("La Porte de Bronze");
+                t.setJoueurDepart(a);
+                t.addAventurier(a);
+                a.setTuileDeDepart(t);
+                a.setTuileCourante(t);
+            }else if (a.getRole().equals(TypeRole.MESSAGER)) {
+                t=getCollectTuiles().get("La Porte d'Argent");
+                t.setJoueurDepart(a);
+                t.addAventurier(a);
+                a.setTuileDeDepart(t);
+                a.setTuileCourante(t);
+            }else if(a.getRole().equals(TypeRole.NAVIGATEUR)) {
+                t=getCollectTuiles().get("La Porte d'Or");
+                t.setJoueurDepart(a);
+                t.addAventurier(a);
+                a.setTuileDeDepart(t);
+                a.setTuileCourante(t);
+            }else if(a.getRole().equals(TypeRole.PILOTE)) {
+                t=getCollectTuiles().get("L'héliport");
+                t.setJoueurDepart(a);
+                t.addAventurier(a);
+                a.setTuileDeDepart(t);
+                a.setTuileCourante(t);
+            }else {
+                t=getCollectTuiles().get("La Porte de Fer");
+                t.setJoueurDepart(a);
+                t.addAventurier(a);
+                a.setTuileDeDepart(t);
+                a.setTuileCourante(t);
+            }
+        }
+      
+        //Ajout des trésors
         
     
 
@@ -70,6 +126,11 @@ public class Grille {
                 t.setNomTuile(nomTuiles.get(nb));
                 nb= nb+1;
             }
+                
+        //Ajout a la hasmap
+                
+        for (Tuile tu : tuiles) {
+            System.out.println(tu.getIdTuile()+tu.getNomTuile()+tu.getTresor()+tu.getJoueurDepart().getNomJoueur());
         }
         return tuiles;
     }

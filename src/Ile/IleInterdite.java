@@ -39,8 +39,11 @@ public class IleInterdite extends Observe<Message> {
     public void commencerPartie(int niveauEau, ArrayList<String> collectNomsJoueurs, int nbJoueurs) {
         determinationRole(collectNomsJoueurs);
         setNiveauEau(niveauEau);
+        System.out.println("Grille");
         setGrille(new Grille());
-        Message m = Message.demarrerJeu(getGrille().creationTuiles(),getAventuriers(),getNiveauEau());
+        System.out.println("Message");
+        Message m = Message.demarrerJeu(getGrille().creationTuiles(getAventuriers()),getAventuriers(),getNiveauEau());
+        System.out.println("Notifier");
         notifierObservateurs(m);
 
     }
@@ -85,7 +88,7 @@ public class IleInterdite extends Observe<Message> {
         return null;
     }
 
-    public void tourDeJeu(String nomRole, int nbActions) {
+    /*public void tourDeJeu(String nomRole, int nbActions) {
 
         Aventurier temp;
         temp = getAventurier(nomRole);
