@@ -57,6 +57,8 @@ public class Grille {
         
     }
 
-    
-    
+    public ArrayList<Tuile> getTuilesGrille() {
+        ArrayList<Tuile> tuiles = new ArrayList<>();
+        return tuiles;
+    }
 }
