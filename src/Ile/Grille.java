@@ -59,7 +59,13 @@ public class Grille {
         
     }
 
-    // à refaire
+    public ArrayList<Aventurier> getCollectJoueur(Tuile t) {
+        ArrayList<Aventurier> joueurs = new ArrayList<>();        
+        joueurs= t.getCollectAventuriers();
+        return joueurs;
+    }       // cette méthode utilise elle-même ?
+
+    // getters
     public ArrayList<Tuile> getTuilesGrille() {
         HashMap<String, Tuile> map = getCollectTuiles();
         Collection<Tuile> values = map.values();
@@ -81,8 +87,6 @@ public class Grille {
         return t;
     }
 
-
-    // getter
     /**
      * @return the collectTuiles
      */

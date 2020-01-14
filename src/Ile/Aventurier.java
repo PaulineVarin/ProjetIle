@@ -8,10 +8,7 @@ package Ile;
 import Enumeration.TypeRole;
 import Enumeration.CouleurJoueur;
 import Enumeration.EtatTuile;
-import Enumeration.TypeAction;
 import Enumeration.TypeMessage;
-import static Enumeration.TypeMessage.DONNER;
-import static Enumeration.TypeMessage.PRENDRE;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
@@ -124,8 +121,8 @@ public abstract class Aventurier {
         }
         return cases;
     }
-    
-    
+
+
     // getters setters :
     /**
      * @return the nomJoueur
