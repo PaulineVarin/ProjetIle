@@ -34,7 +34,7 @@ public class VueNiveau {
 
         window = new JFrame() ;
         window.setSize(cellWidth*2+Parameters.SWING_BORDERS_HEIGHT, Parameters.HAUTEUR_AUTRES_VUES);
-        //window.setLocation(30, Parameters.TOP_AUTRES_VUES);
+        window.setLocation(30, Parameters.TOP_AUTRES_VUES);
         window.setDefaultCloseOperation(javax.swing.JFrame.EXIT_ON_CLOSE);
 
         window.setUndecorated(Parameters.UNDECORATED);
@@ -48,7 +48,7 @@ public class VueNiveau {
 
         JLabel labelTitre = new JLabel("Niveau", JLabel.CENTER);
         this.mainPanel.add(labelTitre, BorderLayout.NORTH);
-        // labelTitre.setFont(labelTitre.getFont().deriveFont(Font.BOLD));
+        labelTitre.setFont(labelTitre.getFont().deriveFont(Font.BOLD));
         labelTitre.setFont(new Font("Copperplate Gothic Bold", Font.BOLD, 14));
 
         JPanel panelNiveaux = new JPanel(new GridBagLayout());

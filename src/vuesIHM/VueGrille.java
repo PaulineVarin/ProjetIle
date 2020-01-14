@@ -32,12 +32,15 @@ public class VueGrille {
     public VueGrille(VueJeu vueJeu) {
         this.vueJeu = vueJeu;
        //Configuration contenuCentre
-       for (int i=0;i<Parameters.NB_TUILES;i++) {
-           listeBouttons.add(new JButton(""+i));  
+       for (int i=0;i<36;i++) {
+           listeBouttons.add(new JButton("")); 
        }
        
-       for (JButton j : listeBouttons) {
-           j.setVisible(true);
+       for (int i=0;i<36;i++) {
+           JButton j = listeBouttons.get(i);
+           if (i==0 || i==1 || i==4 || i==5 || i==6 || i==11 ||i==24 ||i==29 || i==30 || i==31 || i==34 || i==35) {
+               j.setVisible(false);
+           }
            contenuCentre.add(j);
        }
        
@@ -52,9 +55,11 @@ public class VueGrille {
     
     //Méthodes
     public void initialiserPlateau(ArrayList<Tuile> collectTuiles) {
-        for (int i=0;i<listeBouttons.size();i++) {
-            JButton j = listeBouttons.get(i);
-            j.setText(collectTuiles.get(i).getNomTuile());
-        }    
+        for (int i=0;i<collectTuiles.size();i++) {
+            if (i!=0 && i!=1 && i!=4 && i!=5 && i!=6 && i!=11 && i!=24 && i!=29 && i!=30 && i!=31 && i!=34 && i!=35) {
+               JButton j = listeBouttons.get(i);
+               j.setText(collectTuiles.get(i).getNomTuile());
+           }
+        } 
     }  
 }

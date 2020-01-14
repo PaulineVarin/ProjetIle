@@ -30,7 +30,8 @@ public class VueJeu {
     public void initialisationVueJeu(ArrayList<Tuile> collectTuiles,ArrayList<Aventurier> collectAventuriers,int niveauEau) {
         this.vueGrille = new VueGrille(this);
         vueGrille.initialiserPlateau(collectTuiles);
-        //this.vueNiveauEau = new VueNiveau(this,niveauEau);
+        this.vueNiveauEau = new VueNiveau(this,niveauEau);
+        this.vueNiveauEau.getColoredNiveau();
         //this.vueResume = new VueResume(this);
         for(Aventurier a : collectAventuriers) {
            // addVuesJoueurs(new VueJoueur(a, this));
