@@ -42,6 +42,11 @@ public abstract class Aventurier {
     }
     
     //Méthodes
+    public ArrayList<Tuile> calculCases() {
+        
+    }
+    
+    // getters setters :
     /**
      * @return the nomJoueur
      */
