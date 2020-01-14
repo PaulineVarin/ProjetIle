@@ -68,7 +68,12 @@ public class Message implements Serializable {
     }
     
     
-
+    public static Message tourJeu (String nomRole,int nbActions){
+        Message m = new Message(TypeAction.CHOIX_JOUEUR);
+        m.nomRole = nomRole;
+        m.nbActions = nbActions;
+        return m;
+    }
     
     //Méthodes IleInterdite
 

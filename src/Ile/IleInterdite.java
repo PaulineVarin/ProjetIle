@@ -14,69 +14,88 @@ import java.util.ArrayList;
 import java.util.Collections;
 import patterns.observateur.Message;
 
-
-
-
 /**
  *
  * @author tardieue
  */
 public class IleInterdite extends Observe<Message> {
+
     //Données
     private int niveauEau;
     private Grille grille;
-    private ArrayList <TypeTresorTuile> tresorsRecuperes = new ArrayList<>();
-    private ArrayList <CarteTirage> cartesTirageTire = new ArrayList <>();
-    private ArrayList <CarteTirage> cartesTirageDefausse = new ArrayList <>();
-    private ArrayList <CarteInondation> cartesInondeTire = new ArrayList <>();
-    private ArrayList <CarteInondation> carteInondeDefausse = new ArrayList <>();
-    private ArrayList <Aventurier> aventuriers = new ArrayList <>();   
+    private ArrayList<TypeTresorTuile> tresorsRecuperes = new ArrayList<>();
+    private ArrayList<CarteTirage> cartesTirageTire = new ArrayList<>();
+    private ArrayList<CarteTirage> cartesTirageDefausse = new ArrayList<>();
+    private ArrayList<CarteInondation> cartesInondeTire = new ArrayList<>();
+    private ArrayList<CarteInondation> carteInondeDefausse = new ArrayList<>();
+    private ArrayList<Aventurier> aventuriers = new ArrayList<>();
 
     //Constructeur    
     public IleInterdite(Observateur<Message> observateur) {
         this.addObservateur(observateur);
     }
-    
+
     //Méthodes
-    public void commencerPartie(int niveauEau,ArrayList<String> collectNomsJoueurs,int nbJoueurs) {      
+    public void commencerPartie(int niveauEau, ArrayList<String> collectNomsJoueurs, int nbJoueurs) {
         determinationRole(collectNomsJoueurs);
         setNiveauEau(niveauEau);
         setGrille(new Grille());
-        Message m = Message.demarrerJeu(/*collectTuiles*/getAventuriers(),getNiveauEau());
+        Message m = Message.demarrerJeu(/*collectTuiles*/getAventuriers(), getNiveauEau());
         notifierObservateurs(m);
-        
+
     }
-    
-    public void determinationRole(ArrayList<String> collectNomsJoueurs){
+
+    public void determinationRole(ArrayList<String> collectNomsJoueurs) {
         ArrayList<TypeRole> roleshasard = new ArrayList<>();
-        for (TypeRole tr : TypeRole.values()){
+        for (TypeRole tr : TypeRole.values()) {
             roleshasard.add(tr);
         }
         Collections.shuffle(roleshasard);
-        for (int i = 0; i<collectNomsJoueurs.size(); i++){
-            if (roleshasard.get(i) == TypeRole.EXPLORATEUR){
+        for (int i = 0; i < collectNomsJoueurs.size(); i++) {
+            if (roleshasard.get(i) == TypeRole.EXPLORATEUR) {
                 addAventuriers(new Explorateur(collectNomsJoueurs.get(i), this));
             }
-            if (roleshasard.get(i) == TypeRole.NAVIGATEUR){
+            if (roleshasard.get(i) == TypeRole.NAVIGATEUR) {
                 addAventuriers(new Navigateur(collectNomsJoueurs.get(i), this));
-            }   
-            if (roleshasard.get(i) == TypeRole.INGENIEUR){
+            }
+            if (roleshasard.get(i) == TypeRole.INGENIEUR) {
                 addAventuriers(new Ingenieur(collectNomsJoueurs.get(i), this));
-            }   
-            if (roleshasard.get(i) == TypeRole.MESSAGER){
+            }
+            if (roleshasard.get(i) == TypeRole.MESSAGER) {
                 addAventuriers(new Messager(collectNomsJoueurs.get(i), this));
             }
-            if (roleshasard.get(i) == TypeRole.PILOTE){
+            if (roleshasard.get(i) == TypeRole.PILOTE) {
                 addAventuriers(new Pilote(collectNomsJoueurs.get(i), this));
             }
-                
-            if (roleshasard.get(i) == TypeRole.PLONGEUR){
+
+            if (roleshasard.get(i) == TypeRole.PLONGEUR) {
                 addAventuriers(new Plongeur(collectNomsJoueurs.get(i), this));
             }
-              
+
         }
     }
-    
+
+    public Aventurier getAventurier(String nomRole) {
+        for (Aventurier a : aventuriers) {
+            if (a.getStringRole().equals(nomRole)) {
+                return a;
+            }
+        }
+        return null;
+    }
+
+    public void tourDeJeu(String nomRole, int nbActions) {
+
+        Aventurier temp;
+        temp = getAventurier(nomRole);
+        ArrayList<Tuile> collectCases = new ArrayList<>();
+        collectCases = temp.calculCases(TypeMessage.DEBUT_TOUR); // à revoir
+
+        Message m = Message.tourJeu(temp.getStringRole(), temp.getNbaction());
+        notifierObservateurs(m);
+
+    }
+
     /* à faire quand le diagramme de séquence sera fait
     public void finDeTour(String nomAventurier) {
     Aventurier av = null;
@@ -91,7 +110,7 @@ public class IleInterdite extends Observe<Message> {
     changementJoueur();                 // on change de joueur
     }
     }*/
-    /*private void tirageCartes(Aventurier av) {
+ /*private void tirageCartes(Aventurier av) {
         // à finir
         System.out.println("Pensez à programmer tirageCarte");
         Aventurier av_temp = av;
@@ -117,31 +136,8 @@ public class IleInterdite extends Observe<Message> {
         // utiliser this.niveauEau pour le nombre de carte
         System.out.println("Pensez à programmer tirageCartesInondation");
     }
-  */
-    
-    public Aventurier getAventurier(String nomRole){
-        for (Aventurier a : aventuriers) {
-            if (a.getStringRole().equals(nomRole)){
-                return a;
-            }
-        }
-        return null;
-    }
-    
-    public void TourDeJeu(String nomRole, int nbActions){
-        getAventurier(nomRole);
-        ArrayList <Tuile> collectCases = new ArrayList<>();
-        
-        
-        
-        
-    }
-        
-                
-    
-    
-    
-    
+     */
+
     // getters/setters :
     /**
      * @return the niveauEau
@@ -174,7 +170,7 @@ public class IleInterdite extends Observe<Message> {
     /**
      * @return the tresorsRecuperes
      */
-    public ArrayList <TypeTresorTuile> getTresorsRecuperes() {
+    public ArrayList<TypeTresorTuile> getTresorsRecuperes() {
         return tresorsRecuperes;
     }
 
@@ -182,13 +178,13 @@ public class IleInterdite extends Observe<Message> {
      * @param tresorsRecuperes the tresorsRecuperes to set
      */
     public void setTresorsRecuperes(TypeTresorTuile tresor) {
-       getTresorsRecuperes().add(tresor);
+        getTresorsRecuperes().add(tresor);
     }
 
     /**
      * @return the cartesTirageTire
      */
-    public ArrayList <CarteTirage> getCartesTirageTire() {
+    public ArrayList<CarteTirage> getCartesTirageTire() {
         return cartesTirageTire;
     }
 
@@ -202,7 +198,7 @@ public class IleInterdite extends Observe<Message> {
     /**
      * @return the cartesTirageDefausse
      */
-    public ArrayList <CarteTirage> getCartesTirageDefausse() {
+    public ArrayList<CarteTirage> getCartesTirageDefausse() {
         return cartesTirageDefausse;
     }
 
@@ -216,7 +212,7 @@ public class IleInterdite extends Observe<Message> {
     /**
      * @return the cartesInondeTire
      */
-    public ArrayList <CarteInondation> getCartesInondeTire() {
+    public ArrayList<CarteInondation> getCartesInondeTire() {
         return cartesInondeTire;
     }
 
@@ -230,7 +226,7 @@ public class IleInterdite extends Observe<Message> {
     /**
      * @return the carteInondeDefausse
      */
-    public ArrayList <CarteInondation> getCarteInondeDefausse() {
+    public ArrayList<CarteInondation> getCarteInondeDefausse() {
         return carteInondeDefausse;
     }
 
@@ -244,7 +240,7 @@ public class IleInterdite extends Observe<Message> {
     /**
      * @return the aventuriers
      */
-    public ArrayList <Aventurier> getAventuriers() {
+    public ArrayList<Aventurier> getAventuriers() {
         return aventuriers;
     }
 
@@ -254,7 +250,5 @@ public class IleInterdite extends Observe<Message> {
     public void addAventuriers(Aventurier a) {
         getAventuriers().add(a);
     }
-    
-}
-    
 
+}
