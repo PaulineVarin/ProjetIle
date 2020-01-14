@@ -67,9 +67,15 @@ public abstract class Aventurier {
         Grille g = a.getIle().getGrille();
         tuiles = g.getTuilesGrille();
         EtatTuile etatTuile;
+        int id = t.getIdTuile();
         
-        if (action == TypeAction.SE_DEPLACER) {
-            
+        if (action == TypeMessage.SE_DEPLACER) {
+            for (int i = 0; i<tuiles.size(); i++) {
+                int idb = tuiles.get(i).getIdTuile();
+                if (idb = id-1 || idb = id+1) {
+                    
+                }
+            }
         }
         
         return cases;
