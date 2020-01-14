@@ -75,6 +75,16 @@ public class Message implements Serializable {
         return m;
     }
     
+    public static Message deplace (String nomTuile ,String nomRole, int nbActions){
+       Message m = new Message(TypeMessage.SE_DEPLACER);
+       m.nomTuile = nomTuile;
+       m.nomRole = nomRole;
+       m.nbActions = nbActions;
+       return m;
+   }
+    
+   
+    
     //Méthodes IleInterdite
 
     /**

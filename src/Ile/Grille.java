@@ -10,6 +10,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.Map;
+import java.util.Map.Entry;
 import javax.swing.JButton;
 import vuesIHM.Parameters;
 
@@ -24,6 +26,13 @@ public class Grille {
     //Constructeur
     public Grille() {
  
+    }
+    
+    // Méthodes :
+    
+    public void getTuile(String nomTuile){
+        collectTuiles.get(this);
+
     }
     
     //Méthodes

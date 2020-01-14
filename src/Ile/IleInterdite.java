@@ -84,17 +84,41 @@ public class IleInterdite extends Observe<Message> {
         }
         return null;
     }
+    
+    
 
     public void tourDeJeu(String nomRole, int nbActions) {
 
         Aventurier temp;
         temp = getAventurier(nomRole);
         ArrayList<Tuile> collectCases = new ArrayList<>();
-        collectCases = temp.calculCases(TypeMessage.DEBUT_TOUR); // à revoir
+        collectCases = temp.calculCases(TypeMessage.AFFICHAGE_CASE); // à revoir
 
         Message m = Message.tourJeu(temp.getStringRole(), collectCases);
         notifierObservateurs(m);
 
+    }
+    
+    
+    public void seDeplacer(String nomTuile, String nomRole, int nbActions){
+        
+        Aventurier temp;
+        temp = getAventurier(nomRole);
+        
+        Tuile t;
+        t = temp.getTuileCourante();
+        
+        t.removeJoueur(temp);
+        
+        
+        
+        
+        // getGrille();
+        
+        
+        
+        
+        
     }
 
     /* à faire quand le diagramme de séquence sera fait

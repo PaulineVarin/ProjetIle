@@ -125,6 +125,30 @@ public abstract class Aventurier {
         return cases;
     }
     
+    public int MiseAJourNbActions(){
+        
+        int nbactions = 3;
+        
+        if (getNbaction() == 0){
+            nbactions = 3;
+        }
+        
+        if (getNbaction() == 1){
+            nbactions = 2;
+        }
+        
+        if (getNbaction() == 2){
+            nbactions = 1;
+        }
+        
+        if (getNbaction() == 3){
+            nbactions = 0;
+        }
+        
+        return nbactions;
+        
+    }
+    
     
     // getters setters :
     /**
