@@ -24,6 +24,6 @@ public enum TypeAction {
    FIN_CHOIX,
    GAGNER,
    PERDRE,
-   CHANGEMENT_JOUEUR;
-    
+   CHANGEMENT_JOUEUR,
+   SE_DEPLACER;
 }

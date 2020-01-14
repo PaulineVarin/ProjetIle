@@ -7,6 +7,8 @@ package Ile;
 
 import Enumeration.TypeRole;
 import Enumeration.CouleurJoueur;
+import Enumeration.EtatTuile;
+import Enumeration.TypeAction;
 import Enumeration.TypeMessage;
 import static Enumeration.TypeMessage.DONNER;
 import static Enumeration.TypeMessage.PRENDRE;
@@ -64,6 +66,11 @@ public abstract class Aventurier {
         ArrayList<Tuile> tuiles = new ArrayList<>();    // pour les calculs
         Grille g = a.getIle().getGrille();
         tuiles = g.getTuilesGrille();
+        EtatTuile etatTuile;
+        
+        if (action == TypeAction.SE_DEPLACER) {
+            
+        }
         
         return cases;
     }
