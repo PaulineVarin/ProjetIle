@@ -8,8 +8,10 @@ package Ile;
 import Enumeration.TypeTresorTuile;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.Set;
 import vuesIHM.Parameters;
 
 /**
@@ -48,7 +50,7 @@ public class Grille {
         
         
         for (Tuile t : tuiles) {
-            collectTuiles.put(t.getNomTuile(), t);
+            getCollectTuiles().put(t.getNomTuile(), t);
             System.out.println("Nom Tuile  "+t.getNomTuile());
             System.out.println("Id tuile"+t.getIdTuile());
         }
@@ -57,8 +59,36 @@ public class Grille {
         
     }
 
+    // à refaire
     public ArrayList<Tuile> getTuilesGrille() {
-        ArrayList<Tuile> tuiles = new ArrayList<>();
+        HashMap<String, Tuile> map = getCollectTuiles();
+        Collection<Tuile> values = map.values();
+
+        ArrayList<Tuile> tuiles = new ArrayList<>(values);
         return tuiles;
     }
+
+    public Tuile getTuile(String nom) {
+        Tuile t = null;
+        ArrayList<Tuile> tuiles = getTuilesGrille();
+        
+        for (int i = 0; i< tuiles.size(); i++) {
+            if (tuiles.get(i).getNomTuile() == nom) {
+                t= tuiles.get(i);
+            }
+        }
+        
+        return t;
+    }
+
+
+    // getter
+    /**
+     * @return the collectTuiles
+     */
+    public HashMap<String,Tuile> getCollectTuiles() {
+        return collectTuiles;
+    }
+    
+    
 }
