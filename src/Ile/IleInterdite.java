@@ -5,6 +5,7 @@
  */
 package Ile;
 
+import Enumeration.*;
 import Enumeration.TypeRole;
 import Enumeration.TypeTresorTuile;
 import patterns.observateur.Observe;
@@ -29,7 +30,7 @@ public class IleInterdite extends Observe<Message> {
     private ArrayList <CarteTirage> cartesTirageDefausse = new ArrayList <>();
     private ArrayList <CarteInondation> cartesInondeTire = new ArrayList <>();
     private ArrayList <CarteInondation> carteInondeDefausse = new ArrayList <>();
-    private ArrayList <Aventurier> aventuriers = new ArrayList <>();
+    private ArrayList <Aventurier> aventuriers = new ArrayList <>();   
 
     //Constructeur    
     public IleInterdite(Observateur<Message> observateur) {
@@ -43,6 +44,7 @@ public class IleInterdite extends Observe<Message> {
         setGrille(new Grille());
         Message m = Message.demarrerJeu(/*collectTuiles*/getAventuriers(),getNiveauEau());
         notifierObservateurs(m);
+        
     }
     
     public void determinationRole(ArrayList<String> collectNomsJoueurs){
@@ -116,6 +118,30 @@ public class IleInterdite extends Observe<Message> {
         System.out.println("Pensez à programmer tirageCartesInondation");
     }
   */
+    
+    public Aventurier getAventurier(String nomRole){
+        for (Aventurier a : aventuriers) {
+            if (a.getStringRole().equals(nomRole)){
+                return a;
+            }
+        }
+        return null;
+    }
+    
+    public void TourDeJeu(String nomRole, int nbActions){
+        getAventurier(nomRole);
+        ArrayList <Tuile> collectCases = new ArrayList<>();
+        
+        
+        
+        
+    }
+        
+                
+    
+    
+    
+    
     // getters/setters :
     /**
      * @return the niveauEau
