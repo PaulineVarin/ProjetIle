@@ -50,7 +50,7 @@ public abstract class Aventurier {
     public ArrayList<Tuile> calculCases(TypeMessage action) {
         ArrayList<Tuile> tuiles = new ArrayList<>();
         Tuile t = getTuileCourante();
-        Grille g = ile.getGrille();
+        Grille g = getIle().getGrille();
         
         if (action != TypeMessage.DONNER & action != TypeMessage.PRENDRE) {
             tuiles = getTuiles(t, action, this);

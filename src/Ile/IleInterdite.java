@@ -92,7 +92,7 @@ public class IleInterdite extends Observe<Message> {
         ArrayList<Tuile> collectCases = new ArrayList<>();
         collectCases = temp.calculCases(TypeMessage.DEBUT_TOUR); // à revoir
 
-        Message m = Message.tourJeu(temp.getStringRole(), temp.getNbaction());
+        Message m = Message.tourJeu(temp.getStringRole(), collectCases);
         notifierObservateurs(m);
 
     }

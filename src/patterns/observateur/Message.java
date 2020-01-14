@@ -68,10 +68,10 @@ public class Message implements Serializable {
     }
     
     
-    public static Message tourJeu (String nomRole,int nbActions){
+    public static Message tourJeu (String nomRole, ArrayList<Tuile> collectTuiles){
         Message m = new Message(TypeAction.CHOIX_JOUEUR);
         m.nomRole = nomRole;
-        m.nbActions = nbActions;
+        m.collectTuiles = collectTuiles;
         return m;
     }
     
