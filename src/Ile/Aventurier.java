@@ -7,6 +7,9 @@ package Ile;
 
 import Enumeration.TypeRole;
 import Enumeration.CouleurJoueur;
+import Enumeration.TypeMessage;
+import static Enumeration.TypeMessage.DONNER;
+import static Enumeration.TypeMessage.PRENDRE;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
@@ -42,9 +45,29 @@ public abstract class Aventurier {
     }
     
     //Méthodes
-    public ArrayList<Tuile> calculCases() {
+    public ArrayList<Tuile> calculCases(TypeMessage action) {
+        ArrayList<Tuile> tuiles = new ArrayList<>();
+        Tuile t = getTuileCourante();
+        Grille g = ile.getGrille();
         
+        if (action != TypeMessage.DONNER & action != TypeMessage.PRENDRE) {
+            tuiles = getTuiles(t, action, this);
+        } else {
+            tuiles.add(getTuileCourante());
+        }
+        
+        return tuiles;
     }
+    
+    private ArrayList<Tuile> getTuiles(Tuile t, TypeMessage action, Aventurier a) {
+        ArrayList<Tuile> cases = new ArrayList<>();     // pour le return
+        ArrayList<Tuile> tuiles = new ArrayList<>();    // pour les calculs
+        Grille g = a.getIle().getGrille();
+        tuiles = g.getTuilesGrille();
+        
+        return cases;
+    }
+    
     
     // getters setters :
     /**
@@ -239,7 +262,4 @@ public abstract class Aventurier {
     public void addCollectCartesJoueur(CarteTirage ct) {
         this.getCollectCartesJoueur().add(ct);
     }
-    
-    
-
 }
