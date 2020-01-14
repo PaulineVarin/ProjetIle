@@ -13,6 +13,7 @@ public enum TypeMessage {
     INITIALISATION,
     DEBUT_JEU,
     DEBUT_TOUR,
+    AFFICHAGE_CASE,
     SE_DEPLACER,
     ASSECHER,
     DONNER,

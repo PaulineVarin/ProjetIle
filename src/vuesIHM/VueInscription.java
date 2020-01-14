@@ -98,10 +98,17 @@ public class VueInscription {
                     collectNomsJoueurs.add(s); 
                 }
                 //Récupération du niveau d'eau
-                int niveauEau = 2;
+                
+                int niveauEau = 1;
                 String niveau = listeNiveauEau.getSelectedItem().toString();
-                if (niveau.equals("Légendaire")) {
+                if(niveau.equals("Novice")) {
+                    niveauEau=1;
+                }else if (niveau.equals("Normal")) {
+                    niveauEau = 2;
+                }else if(niveau.equals("Elite")) {
                     niveauEau = 3;
+                }else {
+                    niveauEau = 4;
                 }
                 
                 ihm.debutJeu(collectNomsJoueurs, niveauEau, nbJoueurs);  

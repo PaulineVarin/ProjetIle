@@ -24,13 +24,11 @@ public class Grille {
     
     //Constructeur
     public Grille() {
-        creationTuiles();
-        
+ 
     }
     
     //Méthodes
-    public void creationTuiles() {
-       int nbTuile = 0;
+    public ArrayList<Tuile> creationTuiles() {
         ArrayList<String> nomTuiles = new ArrayList<String>(Arrays.asList(Parameters.NOMS_TUILES));
         ArrayList<Tuile> tuiles = new ArrayList<>();
         Collections.shuffle(nomTuiles);
@@ -57,15 +55,25 @@ public class Grille {
        
         
         
+    
+
+        for(int i=1;i<=6;i++) {
+            for(int j=0;j<Parameters.NB_COLONNES;j++) {
+                tuiles.add(new Tuile(i, j,""+i+j));
+            }
+        }
+        
+        int nb=0;
+        for (int i=0;i<tuiles.size();i++) {
+            if (i!=0 && i!=1 && i!=4 && i!=5 && i!=6 && i!=11 && i!=24 && i!=29 && i!=30 & i!=31 & i!=34 & i!=35) {
+                Tuile t = tuiles.get(i);
+                t.setNomTuile(nomTuiles.get(nb));
+                nb= nb+1;
+            }
+        }
+        return tuiles;
     }
-
-    public ArrayList<Aventurier> getCollectJoueur(Tuile t) {
-        ArrayList<Aventurier> joueurs = new ArrayList<>();        
-        joueurs= t.getCollectAventuriers();
-        return joueurs;
-    }       // cette méthode utilise elle-même ?
-
-    // getters
+   
     public ArrayList<Tuile> getTuilesGrille() {
         HashMap<String, Tuile> map = getCollectTuiles();
         Collection<Tuile> values = map.values();

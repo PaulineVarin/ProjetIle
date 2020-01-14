@@ -40,12 +40,13 @@ public class IleInterdite extends Observe<Message> {
         determinationRole(collectNomsJoueurs);
         setNiveauEau(niveauEau);
         setGrille(new Grille());
-        Message m = Message.demarrerJeu(/*collectTuiles*/getAventuriers(), getNiveauEau());
+        Message m = Message.demarrerJeu(getGrille().creationTuiles(),getAventuriers(),getNiveauEau());
         notifierObservateurs(m);
 
     }
-
-    public void determinationRole(ArrayList<String> collectNomsJoueurs) {
+    
+    public void determinationRole(ArrayList<String> collectNomsJoueurs){
+        //met à jour la collection d'aventuriers de l'ile
         ArrayList<TypeRole> roleshasard = new ArrayList<>();
         for (TypeRole tr : TypeRole.values()) {
             roleshasard.add(tr);
@@ -91,7 +92,7 @@ public class IleInterdite extends Observe<Message> {
         ArrayList<Tuile> collectCases = new ArrayList<>();
         collectCases = temp.calculCases(TypeMessage.DEBUT_TOUR); // à revoir
 
-        Message m = Message.tourJeu(temp.getStringRole(), temp.getNbaction());
+        Message m = Message.tourJeu(temp.getStringRole(), collectCases);
         notifierObservateurs(m);
     }
 

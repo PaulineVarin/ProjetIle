@@ -58,20 +58,20 @@ public class Message implements Serializable {
        return m;
     }
     
-    public static Message demarrerJeu(/*collectTuile*/ArrayList<Aventurier> collectJoueurs,int niveauEau) {
+    public static Message demarrerJeu(ArrayList<Tuile> collectTuiles,ArrayList<Aventurier> collectJoueurs,int niveauEau) {
         Message m = new Message(TypeMessage.DEBUT_JEU);
         m.collectJoueurs=collectJoueurs;
-        //m.collectTuiles=;
+        m.collectTuiles=collectTuiles;
         m.niveauEau = niveauEau;
         m.nbJoueurs=collectJoueurs.size();
         return m;
     }
     
     
-    public static Message tourJeu (String nomRole,int nbActions){
+    public static Message tourJeu (String nomRole, ArrayList<Tuile> collectTuiles){
         Message m = new Message(TypeAction.CHOIX_JOUEUR);
         m.nomRole = nomRole;
-        m.nbActions = nbActions;
+        m.collectTuiles = collectTuiles;
         return m;
     }
     
