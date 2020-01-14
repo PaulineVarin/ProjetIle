@@ -42,6 +42,10 @@ public class Message implements Serializable {
         this.typeM = typeM;
         
     }
+    
+    public Message (TypeAction typeA){
+        this.typeA = typeA;
+    }
 
     //Méthodes
     //Méthodes IHM
@@ -62,6 +66,9 @@ public class Message implements Serializable {
         m.nbJoueurs=collectJoueurs.size();
         return m;
     }
+    
+    
+
     
     //Méthodes IleInterdite
 
