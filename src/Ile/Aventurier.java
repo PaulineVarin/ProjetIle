@@ -72,12 +72,56 @@ public abstract class Aventurier {
         if (action == TypeMessage.SE_DEPLACER) {
             for (int i = 0; i<tuiles.size(); i++) {
                 int idb = tuiles.get(i).getIdTuile();
-                if (idb = id-1 || idb = id+1) {
-                    
+                if (idb == id-1 || idb == id+1 || idb == id+10 || idb == id-10) {
+                    if (tuiles.get(i).getEtat() != EtatTuile.COULEE) {
+                        cases.add(tuiles.get(i));
+                    }
+                }
+            }
+            
+            if (a.isDeplacementDiagonal()) {
+                for (int i = 0; i<tuiles.size(); i++) {
+                    int idb = tuiles.get(i).getIdTuile();
+                    if (idb == id-11 || idb == id+11 || idb == id-9 ||idb == id+9) {
+                        if (tuiles.get(i).getEtat() != EtatTuile.COULEE) {
+                            cases.add(tuiles.get(i));
+                        }
+                    }
+                }
+            }
+        } else if (action == TypeMessage.ASSECHER) {
+            for (int i = 0; i< tuiles.size(); i++) {
+                int idb = tuiles.get(i).getIdTuile();
+                if (idb == id-1 || idb == id+1 || idb == id-10 || idb == id+10 ) {
+                    if (tuiles.get(i).getEtat() == EtatTuile.INONDEE) {
+                        cases.add(tuiles.get(i));
+                    }
+                }
+            }
+            
+            if (a.isAssechementDiagonal()) {
+                for (int i = 0; i<tuiles.size(); i++) {
+                    int idb = tuiles.get(i).getIdTuile();
+                    if (idb == id-11 || idb == id+11 || idb == id-9 ||idb == id+9) {
+                        if (tuiles.get(i).getEtat() == EtatTuile.INONDEE) {
+                            cases.add(tuiles.get(i));
+                        }
+                    }
+                }
+            }
+        } else if (action == TypeMessage.DEPLACEMENT_SPE) {
+            for (int i=0; i<tuiles.size(); i++) {
+                if (tuiles.get(i).getEtat() != EtatTuile.COULEE) {
+                    cases.add(tuiles.get(i));
+                }
+            }
+        } else if (action == TypeMessage.ASSECHER_SPE) {
+            for (int i=0; i<tuiles.size(); i++) {
+                if (tuiles.get(i).getEtat() == EtatTuile.INONDEE) {
+                    cases.add(tuiles.get(i));
                 }
             }
         }
-        
         return cases;
     }
     
