@@ -41,7 +41,7 @@ public class Grille {
         //Creation Tuiles sans nom
         for(int i=1;i<=6;i++) {
             for(int j=0;j<Parameters.NB_COLONNES;j++) {
-                tuiles.add(new Tuile(i, j,""));
+                tuiles.add(new Tuile(i, j,""+i+j));
             }
         }
         //Ajout des nomsTuiles
@@ -62,7 +62,7 @@ public class Grille {
         }
         
         //Ajout des aventuriers sur les tuiles départ
-        Tuile t = new Tuile(0, 0, "default");
+        Tuile t ;
         for(Aventurier a : collectJoueurs) {
             if(a.getRole().equals(TypeRole.EXPLORATEUR)) {
                 t = getCollectTuiles().get("La Porte de Cuivre");
@@ -128,14 +128,16 @@ public class Grille {
                 getCollectTuiles().put(tui.getNomTuile(), tui);
             }
         }
-        
-        for (Tuile tu : tuiles) {
+        //Affichage test de l'emplacement des tuiles
+        /*for (Tuile tu : tuiles) {
+            System.out.println("ID TUILE");
             System.out.println(tu.getIdTuile()+tu.getNomTuile()+tu.getTresor());
             if(tu.getJoueurDepart()!=null) {
                 System.out.print(tu.getIdTuile()+tu.getNomTuile()+tu.getTresor());
                 System.out.println(tu.getJoueurDepart().getNomJoueur());
             }
-        }
+        }*/
+        
         return tuiles;
     }
     

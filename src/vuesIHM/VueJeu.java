@@ -7,7 +7,11 @@ package vuesIHM;
 
 import Ile.Aventurier;
 import Ile.*;
+import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.util.ArrayList;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
 
 /**
  *
@@ -17,6 +21,8 @@ public class VueJeu {
     //Données
     private IHM ihm;
     private ArrayList<VueJoueur> vuesJoueurs = new ArrayList<>();
+    private JFrame window = new JFrame("Jeu");
+    private JPanel jeu = new JPanel(new BorderLayout());
     private VueGrille vueGrille;
     private VueResume vueResume;
     private VueNiveau vueNiveauEau;
@@ -27,14 +33,27 @@ public class VueJeu {
     }
 
     //Méthodes
+    public int tailleFenetreHauteur() {
+        Dimension tailleEcran = java.awt.Toolkit.getDefaultToolkit().getScreenSize(); 
+        int hauteur = (int)tailleEcran.getHeight();
+        return hauteur;
+        
+    }
+    
+    public int tailleFenetreLareur() {
+        Dimension tailleEcran = java.awt.Toolkit.getDefaultToolkit().getScreenSize(); 
+        int largeur = (int)tailleEcran.getWidth();  System.out.println(largeur);
+        return largeur;
+    }
     public void initialisationVueJeu(ArrayList<Tuile> collectTuiles,ArrayList<Aventurier> collectAventuriers,int niveauEau) {
         this.vueGrille = new VueGrille(this);
         vueGrille.initialiserPlateau(collectTuiles);
-        //this.vueNiveauEau = new VueNiveau(this,niveauEau);
-        //this.vueResume = new VueResume(this);
+        this.vueNiveauEau = new VueNiveau(this,niveauEau);
+        this.vueResume = new VueResume(this);
         for(Aventurier a : collectAventuriers) {
-           // addVuesJoueurs(new VueJoueur(a, this));
+           addVuesJoueurs(new VueJoueur(a, this));
         }
+        //mettre les vues joueurs dans l'état pour tourDeJeu
     }
 
     /**

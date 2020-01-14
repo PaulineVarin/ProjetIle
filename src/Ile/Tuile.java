@@ -28,9 +28,9 @@ public class Tuile {
 
     public Tuile(int lig, int col, String nomTuile) {
         setNomTuile(nomTuile);
-        setIdTuile();
         setLigne(lig);
         setColonne(col);
+        setIdTuile();
         setEtat(EtatTuile.ASSECHEE);
         setTresor(TypeTresorTuile.NEUTRE);
     }

@@ -1,6 +1,7 @@
 package vuesIHM;
 
 import Ile.Aventurier;
+import Ile.CarteTirage;
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.util.ArrayList;
@@ -27,11 +28,12 @@ public class VueJoueur{
     private JPanel contenuHaut = new JPanel(new GridLayout(2, 1));
     private JPanel contenuMillieu = new JPanel(new GridLayout(4, 1));
     private JPanel contenuBas = new JPanel(new GridLayout(2, 3));
+    private JPanel contenuCartes;
     
     private JLabel nomJoueur = new JLabel("NomJoueur");
     private JLabel nomRole = new JLabel("nomRole");
-    private JLabel listeTresors = new JLabel("Trésors");
-    private JLabel listeCartes = new JLabel("listeCartes");
+    private JLabel listeTresors = new JLabel();
+    //private JLabel nomCarte = new JLabel("");
     private JLabel nbactions = new JLabel("nbactions");
     
     private JButton deplacer = new JButton("Se déplacer");
@@ -63,8 +65,15 @@ public class VueJoueur{
         //Configuration de contenuMillieu
         nbactions.setText(Integer.toString(a.getNbaction()));
         contenuMillieu.add(nbactions);
+        listeTresors.setText("Aucun trésor");
         contenuMillieu.add(listeTresors);
-        contenuMillieu.add(listeCartes);
+        
+        contenuCartes = new JPanel(new GridLayout(a.getCollectCartesJoueur().size(), 1));
+        for(CarteTirage ct : a.getCollectCartesJoueur()) {
+            JLabel j = new JLabel(ct.getNom());
+            contenuCartes.add(j);
+        }
+        contenuMillieu.add(contenuCartes);
     
         //Configuration de contenuBas
         for (JButton j : listeBoutons) {

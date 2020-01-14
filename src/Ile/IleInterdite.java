@@ -83,10 +83,21 @@ public class IleInterdite extends Observe<Message> {
     
     public void distributionCartesTresor() {
         creationCartesTirage();
+        int nbCartes = 0;
+        int indice = 0;
         for(Aventurier a : getAventuriers()) {
-            for(int i=0;i<2;i++) {
-                
+            while (nbCartes<2) {
+                CarteTirage ct = getCartesTirageTire().get(indice);
+                System.out.println(ct.getNom());
+                if(ct.getNom().equals("Carte Montée des eaux")==false) {
+                    a.getCollectCartesJoueur().add(ct);
+                    getCartesTirageTire().remove(ct);
+                    nbCartes = nbCartes+1;
+                }else {
+                    indice = indice+1;
+                }  
             }
+            nbCartes = 0;
         }
     }
     
@@ -95,6 +106,7 @@ public class IleInterdite extends Observe<Message> {
         creationCartesInondation();
         for(int i=0;i<Parameters.NB_INONDATIONS_INITIALES;i++) {
             CarteInondation cti = getCartesInondeTire().get(i);
+            System.out.println(cti.getTuile().getNomTuile());
             inondationPlateau(cti.getTuile(),cti);  
         }
         

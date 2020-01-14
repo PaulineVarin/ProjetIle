@@ -143,6 +143,7 @@ public class VueInscription {
         //Configuration fenetre
         window.setSize(500,500);
         window.add(contenu);
+        window.setLocationRelativeTo(null);
         window.setVisible(true);
         
     }
