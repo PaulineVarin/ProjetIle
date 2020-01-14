@@ -41,7 +41,7 @@ public class Controleur implements Observateur<Message> {
 
             switch (msg.getTypeA()) {
                 case CHOIX_JOUEUR:
-                    ileInterdite.tourDeJeu(msg.getNomRole(), msg.getNbActions());
+                    //ileInterdite.tourDeJeu(msg.getNomRole(), msg.getNbActions());
                     break;
             }
         }

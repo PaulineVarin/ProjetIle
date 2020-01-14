@@ -1,5 +1,6 @@
 package Jeu;
 
+import Enumeration.TypeRole;
 import Ile.*;
 import Ile.Tuile;
 import Enumeration.TypeTresorTuile;
@@ -27,5 +28,7 @@ public class ProjetIle {
      */
     public static void main(String[] args) {
         new Controleur();
+        
+                
     } 
 }
