@@ -130,6 +130,16 @@ public class Grille {
         return aventuriers;
     }
     
+    public ArrayList<collectCartesJoueur> getJoueurs() {
+        ArrayList<collectCartesJoueur> collectCartesJoueur = new ArrayList<>();
+        collectCartesJoueur = t.getcollectCartesJoueur;
+        if (collectCartesJoueur.size() > 5){
+            return System.out.println("échange inderdit");           
+        }
+        else 
+        return t.getCollectAventuriers;        
+    }
+    
     
     // getters
     public ArrayList<Tuile> getTuilesGrille() {
