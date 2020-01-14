@@ -37,20 +37,14 @@ public class Tuile {
     // Méthodes :
     
     public void removeJoueur(Aventurier a){
-        Tuile t = null; // Initialisation automatique à revoir
-        if (t.collectAventuriers.contains(a)){
-            collectAventuriers.remove(a);
-            
-        }
-        
-        
+        Tuile t = a.getTuileCourante();
+        t.getCollectAventuriers().remove(a);    
     }
     
     public void addJoueur(Aventurier a){
-        Tuile t = null; // Initialisation automatique à revoir
-        if (!t.collectAventuriers.contains(a)){
-            collectAventuriers.remove(a);
-        }
+        Tuile t = a.getTuileCourante();
+        t.getCollectAventuriers().add(a);
+        
     }
     
    
