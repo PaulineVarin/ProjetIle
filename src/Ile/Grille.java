@@ -49,4 +49,8 @@ public class Grille {
         return tuiles;
     }
    
+    public ArrayList<Tuile> getTuilesGrille() {
+        ArrayList<Tuile> tuiles = new ArrayList<>();
+        return tuiles;
+    }
 }

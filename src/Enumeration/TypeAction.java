@@ -25,5 +25,4 @@ public enum TypeAction {
    GAGNER,
    PERDRE,
    CHANGEMENT_JOUEUR;
-    
 }

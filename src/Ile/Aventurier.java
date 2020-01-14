@@ -7,6 +7,11 @@ package Ile;
 
 import Enumeration.TypeRole;
 import Enumeration.CouleurJoueur;
+import Enumeration.EtatTuile;
+import Enumeration.TypeAction;
+import Enumeration.TypeMessage;
+import static Enumeration.TypeMessage.DONNER;
+import static Enumeration.TypeMessage.PRENDRE;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
@@ -42,6 +47,86 @@ public abstract class Aventurier {
     }
     
     //Méthodes
+    public ArrayList<Tuile> calculCases(TypeMessage action) {
+        ArrayList<Tuile> tuiles = new ArrayList<>();
+        Tuile t = getTuileCourante();
+        Grille g = ile.getGrille();
+        
+        if (action != TypeMessage.DONNER & action != TypeMessage.PRENDRE) {
+            tuiles = getTuiles(t, action, this);
+        } else {
+            tuiles.add(getTuileCourante());
+        }
+        
+        return tuiles;
+    }
+    
+    private ArrayList<Tuile> getTuiles(Tuile t, TypeMessage action, Aventurier a) {
+        ArrayList<Tuile> cases = new ArrayList<>();     // pour le return
+        ArrayList<Tuile> tuiles = new ArrayList<>();    // pour les calculs
+        Grille g = a.getIle().getGrille();
+        tuiles = g.getTuilesGrille();
+        EtatTuile etatTuile;
+        int id = t.getIdTuile();
+        
+        if (action == TypeMessage.SE_DEPLACER) {
+            for (int i = 0; i<tuiles.size(); i++) {
+                int idb = tuiles.get(i).getIdTuile();
+                if (idb == id-1 || idb == id+1 || idb == id+10 || idb == id-10) {
+                    if (tuiles.get(i).getEtat() != EtatTuile.COULEE) {
+                        cases.add(tuiles.get(i));
+                    }
+                }
+            }
+            
+            if (a.isDeplacementDiagonal()) {
+                for (int i = 0; i<tuiles.size(); i++) {
+                    int idb = tuiles.get(i).getIdTuile();
+                    if (idb == id-11 || idb == id+11 || idb == id-9 ||idb == id+9) {
+                        if (tuiles.get(i).getEtat() != EtatTuile.COULEE) {
+                            cases.add(tuiles.get(i));
+                        }
+                    }
+                }
+            }
+        } else if (action == TypeMessage.ASSECHER) {
+            for (int i = 0; i< tuiles.size(); i++) {
+                int idb = tuiles.get(i).getIdTuile();
+                if (idb == id-1 || idb == id+1 || idb == id-10 || idb == id+10 ) {
+                    if (tuiles.get(i).getEtat() == EtatTuile.INONDEE) {
+                        cases.add(tuiles.get(i));
+                    }
+                }
+            }
+            
+            if (a.isAssechementDiagonal()) {
+                for (int i = 0; i<tuiles.size(); i++) {
+                    int idb = tuiles.get(i).getIdTuile();
+                    if (idb == id-11 || idb == id+11 || idb == id-9 ||idb == id+9) {
+                        if (tuiles.get(i).getEtat() == EtatTuile.INONDEE) {
+                            cases.add(tuiles.get(i));
+                        }
+                    }
+                }
+            }
+        } else if (action == TypeMessage.DEPLACEMENT_SPE) {
+            for (int i=0; i<tuiles.size(); i++) {
+                if (tuiles.get(i).getEtat() != EtatTuile.COULEE) {
+                    cases.add(tuiles.get(i));
+                }
+            }
+        } else if (action == TypeMessage.ASSECHER_SPE) {
+            for (int i=0; i<tuiles.size(); i++) {
+                if (tuiles.get(i).getEtat() == EtatTuile.INONDEE) {
+                    cases.add(tuiles.get(i));
+                }
+            }
+        }
+        return cases;
+    }
+    
+    
+    // getters setters :
     /**
      * @return the nomJoueur
      */
@@ -234,7 +319,4 @@ public abstract class Aventurier {
     public void addCollectCartesJoueur(CarteTirage ct) {
         this.getCollectCartesJoueur().add(ct);
     }
-    
-    
-
 }

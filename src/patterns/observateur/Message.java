@@ -42,6 +42,10 @@ public class Message implements Serializable {
         this.typeM = typeM;
         
     }
+    
+    public Message (TypeAction typeA){
+        this.typeA = typeA;
+    }
 
     //Méthodes
     //Méthodes IHM
@@ -60,6 +64,14 @@ public class Message implements Serializable {
         m.collectTuiles=collectTuiles;
         m.niveauEau = niveauEau;
         m.nbJoueurs=collectJoueurs.size();
+        return m;
+    }
+    
+    
+    public static Message tourJeu (String nomRole,int nbActions){
+        Message m = new Message(TypeAction.CHOIX_JOUEUR);
+        m.nomRole = nomRole;
+        m.nbActions = nbActions;
         return m;
     }
     
