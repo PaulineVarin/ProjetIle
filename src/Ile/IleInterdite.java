@@ -39,8 +39,11 @@ public class IleInterdite extends Observe<Message> {
     public void commencerPartie(int niveauEau, ArrayList<String> collectNomsJoueurs, int nbJoueurs) {
         determinationRole(collectNomsJoueurs);
         setNiveauEau(niveauEau);
+        System.out.println("Grille");
         setGrille(new Grille());
-        Message m = Message.demarrerJeu(getGrille().creationTuiles(),getAventuriers(),getNiveauEau());
+        System.out.println("Message");
+        Message m = Message.demarrerJeu(getGrille().creationTuiles(getAventuriers()),getAventuriers(),getNiveauEau());
+        System.out.println("Notifier");
         notifierObservateurs(m);
 
     }
@@ -84,17 +87,51 @@ public class IleInterdite extends Observe<Message> {
         }
         return null;
     }
+    
+    
 
-    public void tourDeJeu(String nomRole, int nbActions) {
+    /*public void tourDeJeu(String nomRole, int nbActions) {
 
         Aventurier temp;
         temp = getAventurier(nomRole);
         ArrayList<Tuile> collectCases = new ArrayList<>();
-        collectCases = temp.calculCases(TypeMessage.DEBUT_TOUR); // à revoir
+        collectCases = temp.calculCases(TypeMessage.AFFICHAGE_CASE); // à revoir
 
         Message m = Message.tourJeu(temp.getStringRole(), collectCases);
         notifierObservateurs(m);
+    }*/
 
+    /*
+    private ArrayList<Aventurier>void choixJoueur(String nomTuile) {
+        ArrayList<Aventurier> joueursPoss = new ArrayList<>();
+        Grille g = this.getGrille();
+        Tuile t = g.getTuile(nomTuile);
+        
+        joueursPoss = g.getCollectJoueurs(t);
+
+        //return joueursPoss;
+    }
+    
+    
+    public void seDeplacer(String nomTuile, String nomRole, int nbActions){
+        
+        Aventurier temp;
+        temp = getAventurier(nomRole);
+        
+        Tuile t;
+        t = temp.getTuileCourante();
+        
+        t.removeJoueur(temp);
+        
+        
+        
+        
+        // getGrille();
+        
+        
+        
+        
+        
     }
 
     /* à faire quand le diagramme de séquence sera fait

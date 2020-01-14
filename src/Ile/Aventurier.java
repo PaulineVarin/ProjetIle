@@ -8,10 +8,7 @@ package Ile;
 import Enumeration.TypeRole;
 import Enumeration.CouleurJoueur;
 import Enumeration.EtatTuile;
-import Enumeration.TypeAction;
 import Enumeration.TypeMessage;
-import static Enumeration.TypeMessage.DONNER;
-import static Enumeration.TypeMessage.PRENDRE;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
@@ -46,8 +43,9 @@ public abstract class Aventurier {
         setNbaction(3);
     }
     
+   
     //Méthodes
-    public ArrayList<Tuile> calculCases(TypeMessage action) {
+    /*public ArrayList<Tuile> calculCases(TypeMessage action) {
         ArrayList<Tuile> tuiles = new ArrayList<>();
         Tuile t = getTuileCourante();
         Grille g = getIle().getGrille();
@@ -59,13 +57,13 @@ public abstract class Aventurier {
         }
         
         return tuiles;
-    }
-    
-    private ArrayList<Tuile> getTuiles(Tuile t, TypeMessage action, Aventurier a) {
+    }*/
+    //a refaire car pas prise en compte de la hasmap
+    /*private ArrayList<Tuile> getTuiles(Tuile t, TypeMessage action, Aventurier a) {
         ArrayList<Tuile> cases = new ArrayList<>();     // pour le return
         ArrayList<Tuile> tuiles = new ArrayList<>();    // pour les calculs
         Grille g = a.getIle().getGrille();
-        tuiles = g.getTuilesGrille();
+        tuiles = g.getCollectTuiles();
         EtatTuile etatTuile;
         int id = t.getIdTuile();
         
@@ -123,6 +121,30 @@ public abstract class Aventurier {
             }
         }
         return cases;
+    }*/
+    
+    public int MiseAJourNbActions(){
+        
+        int nbactions = 3;
+        
+        if (getNbaction() == 0){
+            nbactions = 3;
+        }
+        
+        if (getNbaction() == 1){
+            nbactions = 2;
+        }
+        
+        if (getNbaction() == 2){
+            nbactions = 1;
+        }
+        
+        if (getNbaction() == 3){
+            nbactions = 0;
+        }
+        
+        return nbactions;
+        
     }
     
     
@@ -140,12 +162,19 @@ public abstract class Aventurier {
     public void setNomJoueur(String nomJoueur) {
         this.nomJoueur = nomJoueur;
     }
-
+    
+        /**
+     * @return the role
+     */
+    public TypeRole getRole() {
+        return role;
+    }
+    
     /**
      * @return the role
      */
     public String getStringRole() {
-        return role.toString();    
+        return getRole().toString();    
     }
 
     /**

@@ -33,6 +33,27 @@ public class Tuile {
         setTresor(tresor);
         setIdTuile();
     }
+    
+    // Méthodes :
+    
+    public void removeJoueur(Aventurier a){
+        Tuile t = null; // Initialisation automatique à revoir
+        if (t.collectAventuriers.contains(a)){
+            collectAventuriers.remove(a);
+            
+        }
+        
+        
+    }
+    
+    public void addJoueur(Aventurier a){
+        Tuile t = null; // Initialisation automatique à revoir
+        if (!t.collectAventuriers.contains(a)){
+            collectAventuriers.remove(a);
+        }
+    }
+    
+   
 
     /**
      * @return the ligne
