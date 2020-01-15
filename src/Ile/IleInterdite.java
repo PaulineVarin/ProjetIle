@@ -132,9 +132,13 @@ public class IleInterdite extends Observe<Message> {
         
         Message m = Message.deplace(temp.getStringRole(), t1.getNomTuile(), temp.getNbaction());
         notifierObservateurs(m);
-   
+    
+    }
+    
+    
+    public void Assecher (String nomTuile){
         
-        
+        Aventurier temp;
     }
 
     /* à faire quand le diagramme de séquence sera fait
