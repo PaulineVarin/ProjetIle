@@ -175,7 +175,7 @@ public class IleInterdite extends Observe<Message> {
     }
 
     
-    private /*ArrayList<Aventurier>*/void choixJoueur(String nomTuile) {
+    private void choixJoueur(String nomTuile) {
         ArrayList<Aventurier> joueursPoss = new ArrayList<>();
         Grille g = this.getGrille();
         Tuile t = g.getTuile(nomTuile);        
@@ -185,8 +185,6 @@ public class IleInterdite extends Observe<Message> {
         
         Message m =  Message.donner(t.getCollectAventuriers(),temp.getCollectCartesJoueur());
         notifierObservateurs(m);
-
-        //return joueursPoss;
     }
 
     public void seDeplacer(String nomRole, String nomTuile, int nbActions) {
