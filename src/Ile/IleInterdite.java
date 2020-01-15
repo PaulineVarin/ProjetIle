@@ -184,7 +184,7 @@ IL est urgent d'avoir un moyen de récupérer le joueur actif
         Tuile t = g.getTuile(nomTuile);        
         joueursPoss = g.getCollectJoueurs(t);
         
-        Aventurier temp=null; //bessoin d'une méthode retournant l'aventurier active grace a nomTuile(String)
+        Aventurier temp= ; //bessoin d'une méthode retournant l'aventurier active grace a nomTuile(String)
         
         Message m =  Message.donner(t.getCollectAventuriers(),temp.getCollectCartesJoueur());
         notifierObservateurs(m);
