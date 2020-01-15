@@ -45,6 +45,10 @@ public class Controleur implements Observateur<Message> {
                     System.out.println("ASSECHER");
                     ileInterdite.Assecher(msg.getNomTuile());
                     break;
+                case FIN_TOUR:
+                    System.out.println("FIN TOUR");
+                    
+                    break;
             }
 
             switch (msg.getTypeA()) {

@@ -174,16 +174,14 @@ public class IleInterdite extends Observe<Message> {
         notifierObservateurs(m);
     }
 
-    
-    private /*ArrayList<Aventurier>*/void choixJoueur(String nomTuile) {
+    private /*ArrayList<Aventurier>*/ void choixJoueur(String nomTuile) {
         ArrayList<Aventurier> joueursPoss = new ArrayList<>();
         Grille g = this.getGrille();
         Tuile t = g.getTuile(nomTuile);
-        
-        joueursPoss = g.getCollectJoueurs(t);
-        
-        Message m = new Message(TypeMessage.DONNER, TypeAction.POSSIBILITEES_JOUEUR, joueursPoss);
 
+        joueursPoss = g.getCollectJoueurs(t);
+
+        //   Message m = new Message(TypeMessage.DONNER, TypeAction.POSSIBILITEES_JOUEUR, joueursPoss);
         //return joueursPoss;
     }
 
@@ -216,26 +214,25 @@ public class IleInterdite extends Observe<Message> {
         temp = getAventurier(temp.getStringRole());
         Tuile t;
         t = temp.getTuileCourante();*/
-
         Grille g = new Grille();
 
         Tuile t = g.getTuile(nomTuile);
         t.miseAjourEtat();
-        
+
         Aventurier temp = null; // à revoir
         temp = getAventurier(temp.getStringRole()); // On récupère le role avant de mettre à jour les actions contrairement au diagramme de séquence
         temp.MiseAJourNbActions();
 
         Message m = Message.asseche(t.getNomTuile());
         notifierObservateurs(m);
-  
+
     }
 
     private boolean tiragePossible(/*ArrayList<CarteTirage> cartesTirageTire*/) {
         return (getCartesTirageTire().size() >= 2);
-        
+
     }
-     
+
     /*private ArrayList<CarteTirage> tiragePossible() {
         ArrayList<CarteTirage> tiree = new ArrayList<>();
         for (int i=0; i<2; i++) {
@@ -243,25 +240,23 @@ public class IleInterdite extends Observe<Message> {
         }
         return tiree;
     }*/
-    
-    private void majCollectCartesTire(){
-       
+    private void majCollectCartesTire() {
+
         Collections.shuffle(cartesTirageDefausse);
         cartesTirageTire.addAll(cartesTirageDefausse);
         cartesTirageDefausse.clear();
-    
+
     }
-    
+
     /*private void viderCollectCartesDefausse(){
         
     }*/
-    
-    private void verificationTirage(){
+    private void verificationTirage() {
         ArrayList<CarteTirage> collectCartesTire = new ArrayList<>();
         collectCartesTire = getCartesTirageTire();
-        
-        if (!tiragePossible()){
-           /* ArrayList<CarteTirage> collectCartesDefausse = new ArrayList<>();
+
+        if (!tiragePossible()) {
+            /* ArrayList<CarteTirage> collectCartesDefausse = new ArrayList<>();
             collectCartesDefausse = getCartesTirageDefausse();
             
             ArrayList<ArrayList<CarteTirage>> arrayTemp= new ArrayList<>();
@@ -272,22 +267,25 @@ public class IleInterdite extends Observe<Message> {
             
             collectCartesTire = 
             
-           */
-           majCollectCartesTire();
+             */
+            majCollectCartesTire();
 
-            
         }
     }
-    
-    private void VerificatinDistribution(Aventurier a){
-        
-        if(a.getNbCartes() == 4){
-           a.getCollectCartesJoueur();
-           Message m = Message.tirecartes(a);
-           notifierObservateurs(m);
+
+    private void VerificatinDistribution(Aventurier a) {
+
+        if (a.getNbCartes() == 4) {
+            // a.getCollectCartesJoueur() = getCartesTirageTire();
+            Message m = Message.tirecartes(a.getCollectCartesJoueur());
+            notifierObservateurs(m);
         }
     }
-    
+
+    private void majCollectCartesJoueur(String nomCarte) {
+          
+    }
+
     /* à faire quand le diagramme de séquence sera fait
     public void finDeTour(String nomAventurier) {
     Aventurier av = null;
