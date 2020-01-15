@@ -16,8 +16,7 @@ public abstract class CarteTirage {
     //Constructeur
     public CarteTirage(String nom) {
         setNom(nom);
-    }
-    
+    }    
     
     //Méthodes
     /**
@@ -33,6 +32,5 @@ public abstract class CarteTirage {
     public void setNom(String nom) {
         this.nom = nom;
     }
-
 
 }

@@ -36,7 +36,14 @@ public class Controleur implements Observateur<Message> {
                     System.out.println("DEBUT_JEU");
                     ihm.demarrerJeu(msg.getCollectTuiles(),msg.getCollectJoueurs(),msg.getNiveauEau());
                     break;
-
+                case SE_DEPLACER:
+                    System.out.println("SE_DEPLACER");
+                    ileInterdite.seDeplacer(msg.getNomRole(), msg.getNomTuile(), msg.getNbActions());
+                    break;
+                case ASSECHER:
+                    System.out.println("ASSECHER");
+                    ileInterdite.Assecher(msg.getNomTuile());
+                    break;
             }
 
             switch (msg.getTypeA()) {

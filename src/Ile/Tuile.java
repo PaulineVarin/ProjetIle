@@ -19,7 +19,7 @@ public class Tuile {
     private int idTuile;
     private int ligne;
     private int colonne;
-    private EtatTuile etat = EtatTuile.ASSECHEE;
+    private EtatTuile etat;
     private TypeTresorTuile tresor = TypeTresorTuile.NEUTRE;
     private Aventurier joueurDepart;
     
@@ -27,33 +27,33 @@ public class Tuile {
     
 
     public Tuile(int lig, int col, String nomTuile) {
+        setNomTuile(nomTuile);
         setLigne(lig);
         setColonne(col);
-        setNomTuile(nomTuile);
-        setTresor(tresor);
         setIdTuile();
+        setEtat(EtatTuile.ASSECHEE);
+        setTresor(TypeTresorTuile.NEUTRE);
     }
     
     // Méthodes :
     
-    public void removeJoueur(Aventurier a){
-        Tuile t = null; // Initialisation automatique à revoir
-        if (t.collectAventuriers.contains(a)){
-            collectAventuriers.remove(a);
-            
+    public void miseAjourEtat() {
+        if (getEtat().equals(EtatTuile.INONDEE)){
+            setEtat(EtatTuile.ASSECHEE);
+
         }
-        
-        
+    }
+    
+    public void removeJoueur(Aventurier a){
+        Tuile t = a.getTuileCourante();
+        t.getCollectAventuriers().remove(a);    
     }
     
     public void addJoueur(Aventurier a){
-        Tuile t = null; // Initialisation automatique à revoir
-        if (!t.collectAventuriers.contains(a)){
-            collectAventuriers.remove(a);
-        }
+        Tuile t = a.getTuileCourante();
+        t.getCollectAventuriers().add(a);        
     }
-    
-   
+       
 
     /**
      * @return the ligne
@@ -160,13 +160,12 @@ public class Tuile {
     public ArrayList<Aventurier> getCollectAventuriers() {
         return collectAventuriers;
     }
-
-    /**
-     * @param collectAventuriers the collectAventuriers to set
-     */
+    
     public void addAventurier(Aventurier a) {
-       this.getCollectAventuriers().add(a);
+        getCollectAventuriers().add(a);
     }
+
+    
  
 }
 
