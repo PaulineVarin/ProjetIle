@@ -47,7 +47,7 @@ public class VueJeu {
     }
     
     
-    public void initialisationVueJeu(ArrayList<Tuile> collectTuiles,ArrayList<Aventurier> collectAventuriers,int niveauEau) {
+    public void initialisationVueJeu(ArrayList<Tuile> collectTuiles,ArrayList<Aventurier> collectAventuriers,int niveauEau,int nbJoueurCourant) {
         //Initialisation Grille
         this.vueGrille = new VueGrille(this);
         getVueGrille().initialiserPlateau(collectTuiles);
@@ -57,7 +57,7 @@ public class VueJeu {
         
         //Initialisation vueResume
         this.vueResume = new VueResume(this);
-        getVueResume().initialisationVue(collectAventuriers.get(0).getStringRole(),niveauEau);
+        getVueResume().initialisationVue(collectAventuriers.get(nbJoueurCourant).getStringRole(),niveauEau);
         
         //Initialisation vueJoueur
         for(Aventurier a : collectAventuriers) {
@@ -67,6 +67,8 @@ public class VueJeu {
         for(VueJoueur joueur : getVuesJoueurs()) {
             joueur.positionsFenetres();
         }
+        
+        getVuesJoueurs().get(nbJoueurCourant).debutTour();
     }
     
     public void fermerFenetres() {

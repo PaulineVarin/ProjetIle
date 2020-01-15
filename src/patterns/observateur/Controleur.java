@@ -35,7 +35,7 @@ public class Controleur implements Observateur<Message> {
                     break;
                 case DEBUT_JEU:
                     System.out.println("DEBUT_JEU");
-                    ihm.demarrerJeu(msg.getCollectTuiles(),msg.getCollectJoueurs(),msg.getNiveauEau());
+                    ihm.demarrerJeu(msg.getCollectTuiles(),msg.getCollectJoueurs(),msg.getNiveauEau(),nbJoueurCourant);
                     break;
                 case SE_DEPLACER:
                     System.out.println("SE_DEPLACER");
@@ -44,12 +44,6 @@ public class Controleur implements Observateur<Message> {
                 case ASSECHER:
                     System.out.println("ASSECHER");
                     ileInterdite.Assecher(msg.getNomTuile());
-                    break;
-            }
-
-            switch (msg.getTypeA()) {
-                case CHOIX_JOUEUR:
-                    //ileInterdite.tourDeJeu(msg.getNomRole(), msg.getNbActions());
                     break;
             }
         }
