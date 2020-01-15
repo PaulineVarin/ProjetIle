@@ -186,6 +186,19 @@ public class IleInterdite extends Observe<Message> {
         Message m =  Message.donner(t.getCollectAventuriers(),temp.getCollectCartesJoueur());
         notifierObservateurs(m);
     }
+    
+    public Aventurier getReceveur(String nomRoleReceveur) {
+        Aventurier receveur = null;
+        boolean encore = true;
+        for (int i = 0; i< aventuriers.size() && encore; i++) {
+            if (aventuriers.get(i).getRole().toString().equals(nomRoleReceveur)) {
+                receveur = aventuriers.get(i);
+                encore = false;
+            }
+        }
+        
+        return receveur;
+    }
 
     public void seDeplacer(String nomRole, String nomTuile, int nbActions) {
 
