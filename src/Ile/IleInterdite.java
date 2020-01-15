@@ -287,8 +287,19 @@ IL est urgent d'avoir un moyen de récupérer le joueur actif
            notifierObservateurs(m);
         }
     }
+    
+    private void addCarteDefausse(CarteTirage cti){
+        cartesTirageDefausse.add(cti);
+    }
 
     private void majCollectCartesJoueur(String nomCarte) {
+        Aventurier temp = null; // à revoir
+        CarteTirage cti;
+        cti = temp.getCarte(nomCarte);
+        temp.removeCarteTirage(cti);
+        addCarteDefausse(cti);
+        
+        
           
     }
 

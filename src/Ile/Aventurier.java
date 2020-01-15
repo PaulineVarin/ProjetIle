@@ -153,9 +153,20 @@ public abstract class Aventurier {
         return collectCartesJoueur.size();
 
     }
+
     
-    public String getCartes(){
-        return ;
+    public CarteTirage getCarte(String nomCarte){
+        for (CarteTirage ct : collectCartesJoueur){
+            if (ct.getNom().equals(nomCarte)){
+                return ct;
+            }
+        }
+        return null;
+    }
+    
+    public void removeCarteTirage(CarteTirage cti){
+        collectCartesJoueur.remove(cti);
+        
     }
     // getters setters :
     /**
