@@ -15,6 +15,7 @@ import java.util.Collections;
 import patterns.observateur.Message;
 import vuesIHM.Parameters;
 
+
 /**
  *
  * @author tardieue
@@ -174,8 +175,10 @@ public class IleInterdite extends Observe<Message> {
         notifierObservateurs(m);
     }
 
-    
-    private /*ArrayList<Aventurier>*/void choixJoueur(String nomTuile) {
+    /*
+IL est urgent d'avoir un moyen de récupérer le joueur actif
+    */
+    private void choixJoueur(String nomTuile) {
         ArrayList<Aventurier> joueursPoss = new ArrayList<>();
         Grille g = this.getGrille();
         Tuile t = g.getTuile(nomTuile);        
@@ -185,8 +188,28 @@ public class IleInterdite extends Observe<Message> {
         
         Message m =  Message.donner(t.getCollectAventuriers(),temp.getCollectCartesJoueur());
         notifierObservateurs(m);
+    }
+    
+    public Aventurier getReceveur(String nomRoleReceveur) {
+        Aventurier receveur = null;
+        boolean encore = true;
+        for (int i = 0; i< aventuriers.size() && encore; i++) {
+            if (aventuriers.get(i).getRole().toString().equals(nomRoleReceveur)) {
+                receveur = aventuriers.get(i);
+                encore = false;
+            }
+        }
+        
+        return receveur;
+    }
 
-        //return joueursPoss;
+    /*
+IL est urgent d'avoir un moyen de récupérer le joueur actif
+    */
+    public void choixCarte() {
+        ArrayList<CarteTresor> collectCartesTresors = new ArrayList<>();
+        collectCartesTresors = null;
+        System.out.println("ON NE SAIT PAS QUI EST LE JOUEUR ACTIFS ! ! ! ! ! !");
     }
 
     public void seDeplacer(String nomRole, String nomTuile, int nbActions) {
