@@ -15,12 +15,12 @@ import java.util.Collections;
 import patterns.observateur.Message;
 import vuesIHM.Parameters;
 
-
 /**
  *
  * @author tardieue
  */
 public class IleInterdite extends Observe<Message> {
+
     //Données
     private int niveauEau;
     private Grille grille;
@@ -44,11 +44,11 @@ public class IleInterdite extends Observe<Message> {
         ArrayList<Tuile> collectTuiles = getGrille().creationTuiles(getAventuriers());
         commencerInondation();
         distributionCartesTresor();
-        Message m = Message.demarrerJeu(collectTuiles, getAventuriers(), getNiveauEau(),nbJoueurs);
+        Message m = Message.demarrerJeu(collectTuiles, getAventuriers(), getNiveauEau(), nbJoueurs);
         notifierObservateurs(m);
     }
 
-    public void determinationRole(ArrayList<String> collectNomsJoueurs) {
+    private void determinationRole(ArrayList<String> collectNomsJoueurs) {
         //création de la collection de rôles
         ArrayList<TypeRole> roleshasard = new ArrayList<>();
         for (TypeRole tr : TypeRole.values()) {
@@ -81,7 +81,7 @@ public class IleInterdite extends Observe<Message> {
         }
     }
 
-    public void distributionCartesTresor() {
+    private void distributionCartesTresor() {
         creationCartesTirage();
         int nbCartes = 0;
         int indice = 0;
@@ -101,7 +101,7 @@ public class IleInterdite extends Observe<Message> {
         }
     }
 
-    public void commencerInondation() {
+    private void commencerInondation() {
         creationCartesInondation();
         for (int i = 0; i < Parameters.NB_INONDATIONS_INITIALES; i++) {
             CarteInondation cti = getCartesInondeTire().get(i);
@@ -111,7 +111,7 @@ public class IleInterdite extends Observe<Message> {
 
     }
 
-    public void creationCartesTirage() {
+    private void creationCartesTirage() {
         //Creation des cartes Tresor
         for (TypeTresorCarte tr : TypeTresorCarte.values()) {
             for (int i = 0; i < Parameters.NB_CARTES_TRESOR; i++) {
@@ -136,14 +136,14 @@ public class IleInterdite extends Observe<Message> {
         Collections.shuffle(getCartesTirageTire());
     }
 
-    public void creationCartesInondation() {
+    private void creationCartesInondation() {
         for (int i = 0; i < Parameters.NOMS_TUILES.length; i++) {
             getCartesInondeTire().add(new CarteInondation(Parameters.NOMS_TUILES[i], getGrille().getTuile(Parameters.NOMS_TUILES[i])));
         }
         Collections.shuffle(getCartesInondeTire());
     }
 
-    public void inondationPlateau(Tuile t, CarteInondation cti) {
+    private void inondationPlateau(Tuile t, CarteInondation cti) {
         t.miseAjourEtat();
         if (t.getEtat().equals(EtatTuile.INONDEE)) {
             getCarteInondeDefausse().add(cti);
@@ -154,8 +154,17 @@ public class IleInterdite extends Observe<Message> {
 
     }
 
-    public Aventurier getAventurier(String nomRole) {
-        for (Aventurier a : aventuriers) {
+    public void tourDeJeu(String nomRole, int nbActions, TypeMessage action) {
+        while (nbActions != 0 && (action.equals(TypeMessage.FIN_TOUR) == false)) {
+            Aventurier a = getAventurier(nomRole);
+            ArrayList<Tuile> collectCases = a.calculCases(action);
+            Message m = Message.afficherCases(collectCases);
+            notifierObservateurs(m);
+        }
+    }
+
+    private Aventurier getAventurier(String nomRole) {
+        for (Aventurier a : getAventuriers()) {
             if (a.getStringRole().equals(nomRole)) {
                 return a;
             }
@@ -163,17 +172,8 @@ public class IleInterdite extends Observe<Message> {
         return null;
     }
 
-    public void tourDeJeu(String nomRole, int nbActions) {
-        Aventurier temp;
-        temp = getAventurier(nomRole);
-        ArrayList<Tuile> collectCases = new ArrayList<>();
-        collectCases = temp.calculCases(TypeMessage.AFFICHAGE_CASE); // à revoir
-
-        Message m = Message.tourJeu(temp.getStringRole(), collectCases);
-        notifierObservateurs(m);
-    }
-
-    private /*ArrayList<Aventurier>*/ void choixJoueur(String nomTuile) {
+    /*
+    private ArrayList<Aventurier>void choixJoueur(String nomTuile) {
         ArrayList<Aventurier> joueursPoss = new ArrayList<>();
         Grille g = this.getGrille();
         Tuile t = g.getTuile(nomTuile);        
@@ -197,10 +197,6 @@ public class IleInterdite extends Observe<Message> {
         
         return receveur;
     }
-
-    /*
-IL est urgent d'avoir un moyen de récupérer le joueur actif
-    */
     public void choixCarte() {
         ArrayList<CarteTresor> collectCartesTresors = new ArrayList<>();
         collectCartesTresors = null;
@@ -242,7 +238,7 @@ IL est urgent d'avoir un moyen de récupérer le joueur actif
         notifierObservateurs(m);
     }
 
-    private boolean tiragePossible(/*ArrayList<CarteTirage> cartesTirageTire*/) {
+    private boolean tiragePossible(ArrayList<CarteTirage> cartesTirageTire) {
         return (getCartesTirageTire().size() >= 2);
     }
 
@@ -262,7 +258,7 @@ IL est urgent d'avoir un moyen de récupérer le joueur actif
     /*private void viderCollectCartesDefausse(){
         
     }*/
-    
+ /*
     private void verificationTirage(){
         if (!tiragePossible()){
            majCollectCartesTire();
@@ -290,9 +286,9 @@ IL est urgent d'avoir un moyen de récupérer le joueur actif
         
         
           
-    }
+    }*/
 
-    /* à faire quand le diagramme de séquence sera fait
+ /* à faire quand le diagramme de séquence sera fait
     public void finDeTour(String nomAventurier) {
     Aventurier av = null;
     for (int i = 0; i < aventuriers.size(); i++) {

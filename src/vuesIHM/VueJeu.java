@@ -8,6 +8,7 @@ package vuesIHM;
 import Ile.Aventurier;
 import Ile.*;
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.util.ArrayList;
 import javax.swing.JFrame;
@@ -20,6 +21,7 @@ import javax.swing.JPanel;
 public class VueJeu {
     //Données
     private IHM ihm;
+    private int nbJoueurCourant;
     private ArrayList<VueJoueur> vuesJoueurs = new ArrayList<>();
     private JFrame window = new JFrame("Jeu");
     private JPanel jeu = new JPanel(new BorderLayout());
@@ -48,6 +50,8 @@ public class VueJeu {
     
     
     public void initialisationVueJeu(ArrayList<Tuile> collectTuiles,ArrayList<Aventurier> collectAventuriers,int niveauEau,int nbJoueurCourant) {
+        //Initialisation VueJeu
+        setNbJoueurCourant(nbJoueurCourant);
         //Initialisation Grille
         this.vueGrille = new VueGrille(this);
         getVueGrille().initialiserPlateau(collectTuiles);
@@ -63,14 +67,12 @@ public class VueJeu {
         for(Aventurier a : collectAventuriers) {
            addVuesJoueurs(new VueJoueur(a, this));
         }
+        //mettre les vues joueurs dans l'état pour tourDeJeu
         getVuesJoueurs().get(nbJoueurCourant).debutTour();
         
-        //mettre les vues joueurs dans l'état pour tourDeJeu
         for(VueJoueur joueur : getVuesJoueurs()) {
             joueur.positionsFenetres();
-        }
-        
-        
+        }        
     }
     
     public void fermerFenetres() {
@@ -124,6 +126,20 @@ public class VueJeu {
      */
     public VueNiveau getVueNiveauEau() {
         return vueNiveauEau;
+    }
+
+    /**
+     * @return the nbJoueurCourant
+     */
+    public int getNbJoueurCourant() {
+        return nbJoueurCourant;
+    }
+
+    /**
+     * @param nbJoueurCourant the nbJoueurCourant to set
+     */
+    public void setNbJoueurCourant(int nbJoueurCourant) {
+        this.nbJoueurCourant = nbJoueurCourant;
     }
     
     

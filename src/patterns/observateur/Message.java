@@ -15,9 +15,11 @@ import java.util.ArrayList;
  * @author tardieue
  */
 public class Message implements Serializable {
+
     //Donnees
     private TypeMessage typeM;
     private TypeAction typeA;
+    private TypeMessage action;
     private Aventurier a;
     private int niveauEau;
     private int nbJoueurs;
@@ -35,39 +37,57 @@ public class Message implements Serializable {
     private ArrayList<Aventurier> collectJoueurs;
     private ArrayList<Tuile> collectTuiles;
     private ArrayList<String> collectNomsJoueurs;
-   
-    
+
     //Constructeur
     public Message(TypeMessage typeM) {
         this.typeM = typeM;        
     }
-    
-    public Message (TypeAction typeA){
-        this.typeA = typeA;
-    }
 
     //Méthodes
     //Méthodes IHM
-    public static Message initialisation(ArrayList collectNoms,int niveauEau,int nbJoueurs) {
-       Message m = new Message(TypeMessage.INITIALISATION);
-       m.collectNomsJoueurs = collectNoms;
-       m.niveauEau = niveauEau;
-       m.nbJoueurs = nbJoueurs;       
-       return m;
-    }
-    
-    
-    //Méthodes IleInterdite
-    public static Message demarrerJeu(ArrayList<Tuile> collectTuiles,ArrayList<Aventurier> collectJoueurs,int niveauEau,int nbjoueurs) {
-        Message m = new Message(TypeMessage.DEBUT_JEU);
-        m.collectJoueurs=collectJoueurs;
-        m.collectTuiles=collectTuiles;
+    public static Message initialisation(ArrayList collectNoms, int niveauEau, int nbJoueurs) {
+        Message m = new Message(TypeMessage.INITIALISATION);
+        m.collectNomsJoueurs = collectNoms;
         m.niveauEau = niveauEau;
-        m.nbJoueurs=nbjoueurs;
+        m.nbJoueurs = nbJoueurs;        
         return m;
     }
     
+    public static Message choixJoueur(TypeMessage action, String nomRoleCourant, int nbActions) {
+        Message m = new Message(TypeMessage.CHOIX_JOUEUR);
+        m.action = action;
+        m.nomRole = nomRoleCourant;
+        m.nbActions = nbActions;
+        return m;
+    }
     
+    public static Message validationJoueur(TypeMessage action, String nomTuile, String nomRoleJoueur) {
+        Message m = new Message(action);
+        System.out.print(action);
+        m.typeA = TypeAction.VALIDATION_JOUEUR;
+        m.nomTuile = nomTuile;
+        m.nomRole = nomRoleJoueur;
+        return m;
+    }
+
+    //Méthodes IleInterdite
+    public static Message demarrerJeu(ArrayList<Tuile> collectTuiles, ArrayList<Aventurier> collectJoueurs, int niveauEau, int nbjoueurs) {
+        Message m = new Message(TypeMessage.DEBUT_JEU);
+        m.collectJoueurs = collectJoueurs;
+        m.collectTuiles = collectTuiles;
+        m.niveauEau = niveauEau;
+        m.nbJoueurs = nbjoueurs;
+        return m;
+    }
+
+    public static Message afficherCases(ArrayList<Tuile> collectCases) {
+        Message m = new Message(TypeMessage.AFFICHAGE_CASE);
+        m.collectTuiles = collectCases;
+        return m;
+    }
+
+    //Message non vérifiées
+    /*
     public static Message tourJeu (String nomRole, ArrayList<Tuile> collectTuiles){
         Message m = new Message(TypeAction.CHOIX_JOUEUR);
         m.nomRole = nomRole;
@@ -238,13 +258,4 @@ public class Message implements Serializable {
         return collectNomsJoueurs;
     }
     
-    
-    
-  
-    
 }
-
-
-
-
-

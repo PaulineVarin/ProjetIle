@@ -24,16 +24,17 @@ import javax.swing.SwingConstants;
  * @author varinp
  */
 public class VueResume {
+
     private VueJeu vueJeu;
-    
+
     private JFrame window = new JFrame("VueRésumé");
     private JPanel contenu = new JPanel(new BorderLayout());
     private JPanel contenuCentre = new JPanel(new GridLayout(2, 1));
-    
+
     private JLabel libel = new JLabel("Ile Interdite");
     private JTextArea libelDeroulementPartie = new JTextArea("");
     private JLabel libelTirage = new JLabel("Tirage Cartes");
-    
+
     private JButton quitter = new JButton("Quitter");
 
     public VueResume(VueJeu vueJeu) {
@@ -45,38 +46,38 @@ public class VueResume {
                 getVueJeu().fermerFenetres();
             }
         });
-        
+
         //Configuration contenuCentre
         contenuCentre.add(libelDeroulementPartie);
 
         //Configuration contenu
         libel.setHorizontalAlignment(SwingConstants.CENTER);
-        libel.setFont(new Font(Font.SANS_SERIF,Font.BOLD, 18));
-        
+        libel.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 18));
+
         libelDeroulementPartie.setLineWrap(true);
         libelDeroulementPartie.setEditable(false);
         libelDeroulementPartie.setBackground(contenu.getBackground());
         contenu.add(libel, BorderLayout.NORTH);
-        contenu.add(libelDeroulementPartie,BorderLayout.CENTER);
-        contenu.add(quitter,BorderLayout.SOUTH);
-        
+        contenu.add(libelDeroulementPartie, BorderLayout.CENTER);
+        contenu.add(quitter, BorderLayout.SOUTH);
+
         //Configuration fenetre
-        window.setSize(330,300);
+        window.setSize(330, 300);
         window.setUndecorated(true);
-        window.setLocation((330*2)+6,110+(200/2));
+        window.setLocation((330 * 2) + 6, 110 + (200 / 2));
         window.add(contenu);
         window.setVisible(true);
     }
-    
+
     //Méthodes
-    public void initialisationVue (String nomJoueurCourant,int niveauEau) {
+    public void initialisationVue(String nomJoueurCourant, int niveauEau) {
         libel.setText("Bienvenue dans l'Ile Interdite");
         libel.setForeground(Color.BLUE);
-        if(nomJoueurCourant.equals(TypeRole.EXPLORATEUR.toString()) || nomJoueurCourant.equals(TypeRole.INGENIEUR.toString())) {
-            libelDeroulementPartie.setText("L'"+nomJoueurCourant+" commence");
-        }else {
-            libelDeroulementPartie.setText("Le "+nomJoueurCourant+" commence");
-        } 
+        if (nomJoueurCourant.equals(TypeRole.EXPLORATEUR.toString()) || nomJoueurCourant.equals(TypeRole.INGENIEUR.toString())) {
+            libelDeroulementPartie.setText("L'" + nomJoueurCourant + " commence");
+        } else {
+            libelDeroulementPartie.setText("Le " + nomJoueurCourant + " commence");
+        }
     }
 
     /**
@@ -92,10 +93,5 @@ public class VueResume {
     public JFrame getWindow() {
         return window;
     }
-    
-    
-    
-    
-    
-    
+
 }

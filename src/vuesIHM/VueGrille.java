@@ -31,7 +31,6 @@ public class VueGrille implements MouseListener{
     private JFrame window = new JFrame("Grille");
     private JPanel contenu = new JPanel(new BorderLayout());
     private JPanel contenuCentre = new JPanel(new GridLayout(6, 6));
-    
     private ArrayList<JButton> listeBouttons  = new ArrayList<>();
     //Pop_up
     JFrame pop = new JFrame("Trésor");
@@ -81,7 +80,7 @@ public class VueGrille implements MouseListener{
             //Ajout du nom des tuiles sur les boutons
             if (i!=0 && i!=1 && i!=4 && i!=5 && i!=6 && i!=11 && i!=24 && i!=29 && i!=30 && i!=31 && i!=34 && i!=35) {
                j = getListeBouttons().get(i);
-               j.setText(collectTuiles.get(i).getNomTuile());
+               j.setText(Integer.toString(collectTuiles.get(i).getIdTuile()));
                j.setBackground(Parameters.TUILE_ASSECHEE_BG);
                j.setFont(new Font(Font.SERIF,Font.ITALIC, 12));
            }
@@ -142,6 +141,14 @@ public class VueGrille implements MouseListener{
         int x = arg0.getXOnScreen();
         int y = arg0.getYOnScreen();
         
+        if(getVueJeu().getIhm().getActionEncours().equals(TypeMessage.SE_DEPLACER)) {
+            System.out.println("ActionListener");
+            String nomTuile = j.getText();
+            int nb = getVueJeu().getNbJoueurCourant();
+            String nomRole = getVueJeu().getVuesJoueurs().get(nb).getNomRole().getText();
+            getVueJeu().getIhm().validationCaseJoueur(nomTuile,nomRole);
+        }else {
+            System.out.println("Affiche");
         //Affichage du pop_up
         contenuPop.add(nomTresor,BorderLayout.CENTER);
         pop.add(contenuPop,BorderLayout.CENTER);
@@ -167,7 +174,7 @@ public class VueGrille implements MouseListener{
             nomTresor.setText("Pas de trésor");
             contenuPop.setBackground(pop.getBackground());
         }
-        
+        }
         fermer.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
