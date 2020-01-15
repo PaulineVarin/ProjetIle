@@ -178,11 +178,13 @@ public class IleInterdite extends Observe<Message> {
     private /*ArrayList<Aventurier>*/void choixJoueur(String nomTuile) {
         ArrayList<Aventurier> joueursPoss = new ArrayList<>();
         Grille g = this.getGrille();
-        Tuile t = g.getTuile(nomTuile);
-        
+        Tuile t = g.getTuile(nomTuile);        
         joueursPoss = g.getCollectJoueurs(t);
         
-        Message m = new Message(TypeMessage.DONNER, TypeAction.POSSIBILITEES_JOUEUR, joueursPoss);
+        Aventurier temp=null; //bessoin d'une méthode retournant l'aventurier active grace a nomTuile(String)
+        
+        Message m =  Message.donner(t.getCollectAventuriers(),temp.getCollectCartesJoueur());
+        notifierObservateurs(m);
 
         //return joueursPoss;
     }
