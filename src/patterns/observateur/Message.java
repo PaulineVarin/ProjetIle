@@ -90,7 +90,12 @@ public class Message implements Serializable {
         return m;
     }
    
-    
+    public static Message tirecartes (Aventurier a){
+        Message m = new Message (TypeMessage.FIN_TOUR);
+        m.a = a;
+        m.typeA = TypeAction.CHOIX_CARTE;
+        return m;
+    }
     
 
     /**
