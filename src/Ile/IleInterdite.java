@@ -231,6 +231,7 @@ public class IleInterdite extends Observe<Message> {
 
     private boolean tiragePossible(/*ArrayList<CarteTirage> cartesTirageTire*/) {
         return (getCartesTirageTire().size() >= 2);
+        
     }
      
     /*private ArrayList<CarteTirage> tiragePossible() {
@@ -241,17 +242,17 @@ public class IleInterdite extends Observe<Message> {
         return tiree;
     }*/
     
-    private void majCollectCartesTire(ArrayList<CarteTirage> defausse){
-        for (CarteTirage ct : defausse){
-            defausse.add(ct);
-        }
-        Collections.shuffle(defausse);
-      
+    private void majCollectCartesTire(){
+       
+        Collections.shuffle(cartesTirageDefausse);
+        cartesTirageTire.addAll(cartesTirageDefausse);
+        cartesTirageDefausse.clear();
+    
     }
     
-    private void viderCollectCartesDefausse(){
+    /*private void viderCollectCartesDefausse(){
         
-    }
+    }*/
     
     private void verificationTirage(){
         ArrayList<CarteTirage> collectCartesTire = new ArrayList<>();
