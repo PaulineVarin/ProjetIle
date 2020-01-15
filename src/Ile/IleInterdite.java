@@ -174,17 +174,19 @@ public class IleInterdite extends Observe<Message> {
         notifierObservateurs(m);
     }
 
-    /*
-    private ArrayList<Aventurier>void choixJoueur(String nomTuile) {
+    
+    private /*ArrayList<Aventurier>*/void choixJoueur(String nomTuile) {
         ArrayList<Aventurier> joueursPoss = new ArrayList<>();
         Grille g = this.getGrille();
         Tuile t = g.getTuile(nomTuile);
         
         joueursPoss = g.getCollectJoueurs(t);
+        
+        Message m = new Message(TypeMessage.DONNER, TypeAction.POSSIBILITEES_JOUEUR, joueursPoss);
 
-        return joueursPoss;
+        //return joueursPoss;
     }
-     */
+
     public void seDeplacer(String nomRole, String nomTuile, int nbActions) {
 
         Aventurier temp;
