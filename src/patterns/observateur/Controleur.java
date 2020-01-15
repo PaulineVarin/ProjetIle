@@ -17,6 +17,7 @@ public class Controleur implements Observateur<Message> {
     //Données
     private IHM ihm;
     private IleInterdite ileInterdite;
+    private int nbJoueurCourant = 0;
 
     //Constructeur
     public Controleur() {
@@ -39,6 +40,10 @@ public class Controleur implements Observateur<Message> {
                 case SE_DEPLACER:
                     System.out.println("SE_DEPLACER");
                     ileInterdite.seDeplacer(msg.getNomRole(), msg.getNomTuile(), msg.getNbActions());
+                    break;
+                case ASSECHER:
+                    System.out.println("ASSECHER");
+                    ileInterdite.Assecher(msg.getNomTuile());
                     break;
             }
 

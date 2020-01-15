@@ -56,6 +56,8 @@ public class Message implements Serializable {
        return m;
     }
     
+    
+    //Méthodes IleInterdite
     public static Message demarrerJeu(ArrayList<Tuile> collectTuiles,ArrayList<Aventurier> collectJoueurs,int niveauEau) {
         Message m = new Message(TypeMessage.DEBUT_JEU);
         m.collectJoueurs=collectJoueurs;
@@ -81,9 +83,27 @@ public class Message implements Serializable {
        return m;
    }
     
-   
     
-    //Méthodes IleInterdite
+    public static Message asseche (String nomTuile){
+        Message m = new Message(TypeMessage.ASSECHER);
+        m.nomTuile = nomTuile;
+        return m;
+    }
+   
+    public static Message tirecartes (Aventurier a){
+        Message m = new Message (TypeMessage.FIN_TOUR);
+        m.a = a;
+        m.typeA = TypeAction.CHOIX_CARTE;
+        return m;
+    }
+    
+    public static Message donner (ArrayList<Aventurier> collectJoueurs, ArrayList<CarteTirage> collectCartesJoueur){
+        Message m = new Message(TypeMessage.DONNER);
+        m.typeA = TypeAction.POSSIBILITEES_JOUEUR;
+        m.collectJoueurs = collectJoueurs;
+        return m;
+    }
+        
 
     /**
      * @return the typeM

@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 package vuesIHM;
-import Enumeration.TypeMessage;
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -19,7 +18,6 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
-import patterns.observateur.Message;
 
 /**
  *
@@ -99,7 +97,7 @@ public class VueInscription {
                 }
                 //Récupération du niveau d'eau
                 
-                int niveauEau = 1;
+                int niveauEau = 0;
                 String niveau = listeNiveauEau.getSelectedItem().toString();
                 if(niveau.equals("Novice")) {
                     niveauEau=1;
@@ -111,7 +109,7 @@ public class VueInscription {
                     niveauEau = 4;
                 }
                 
-                ihm.debutJeu(collectNomsJoueurs, niveauEau, nbJoueurs);  
+                ihm.initialisationJeu(collectNomsJoueurs, niveauEau, nbJoueurs);  
             }
         });
         
@@ -144,6 +142,7 @@ public class VueInscription {
         //Configuration fenetre
         window.setSize(500,500);
         window.add(contenu);
+        window.setLocationRelativeTo(null);
         window.setVisible(true);
         
     }

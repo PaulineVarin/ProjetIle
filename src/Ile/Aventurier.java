@@ -18,6 +18,7 @@ import java.util.Random;
  * @author tardieue
  */
 public abstract class Aventurier {
+
     //Données
     private String nomJoueur;
     private TypeRole role;
@@ -26,7 +27,7 @@ public abstract class Aventurier {
     private Tuile tuileDeDepart;
     private Tuile tuileCourante;
     private IleInterdite ile;
-   
+
     private boolean deplacementDiagonal = false;
     private boolean assechementDiagonal = false;
     private boolean assechementDouble = false;
@@ -35,52 +36,52 @@ public abstract class Aventurier {
     private boolean deplacementNavigateur = false;
 
     private ArrayList<CarteTirage> collectCartesJoueur = new ArrayList<>();
-    
+
     // constructeur
     public Aventurier(String nom, IleInterdite ile) {
         setIle(ile);
         setNomJoueur(nom);
         setNbaction(3);
     }
-    
-   
+
     //Méthodes
     public ArrayList<Tuile> calculCases(TypeMessage action) {
         ArrayList<Tuile> tuiles = new ArrayList<>();
         Tuile t = getTuileCourante();
         Grille g = getIle().getGrille();
-        
+
         if (action != TypeMessage.DONNER & action != TypeMessage.PRENDRE) {
             tuiles = getTuiles(t, action, this);
         } else {
             tuiles.add(getTuileCourante());
         }
-        
+
         return tuiles;
     }
+
     //a refaire car pas prise en compte de la hasmap
     private ArrayList<Tuile> getTuiles(Tuile t, TypeMessage action, Aventurier a) {
         ArrayList<Tuile> cases = new ArrayList<>();     // pour le return
         ArrayList<Tuile> tuiles = new ArrayList<>();    // pour les calculs
         Grille g = a.getIle().getGrille();
-        tuiles = g.getCollectTuiles();
+        // tuiles = g.getCollectTuiles();
         EtatTuile etatTuile;
         int id = t.getIdTuile();
-        
+
         if (action == TypeMessage.SE_DEPLACER) {
-            for (int i = 0; i<tuiles.size(); i++) {
+            for (int i = 0; i < tuiles.size(); i++) {
                 int idb = tuiles.get(i).getIdTuile();
-                if (idb == id-1 || idb == id+1 || idb == id+10 || idb == id-10) {
+                if (idb == id - 1 || idb == id + 1 || idb == id + 10 || idb == id - 10) {
                     if (tuiles.get(i).getEtat() != EtatTuile.COULEE) {
                         cases.add(tuiles.get(i));
                     }
                 }
             }
-            
+
             if (a.isDeplacementDiagonal()) {
-                for (int i = 0; i<tuiles.size(); i++) {
+                for (int i = 0; i < tuiles.size(); i++) {
                     int idb = tuiles.get(i).getIdTuile();
-                    if (idb == id-11 || idb == id+11 || idb == id-9 ||idb == id+9) {
+                    if (idb == id - 11 || idb == id + 11 || idb == id - 9 || idb == id + 9) {
                         if (tuiles.get(i).getEtat() != EtatTuile.COULEE) {
                             cases.add(tuiles.get(i));
                         }
@@ -88,19 +89,19 @@ public abstract class Aventurier {
                 }
             }
         } else if (action == TypeMessage.ASSECHER) {
-            for (int i = 0; i< tuiles.size(); i++) {
+            for (int i = 0; i < tuiles.size(); i++) {
                 int idb = tuiles.get(i).getIdTuile();
-                if (idb == id-1 || idb == id+1 || idb == id-10 || idb == id+10 ) {
+                if (idb == id - 1 || idb == id + 1 || idb == id - 10 || idb == id + 10) {
                     if (tuiles.get(i).getEtat() == EtatTuile.INONDEE) {
                         cases.add(tuiles.get(i));
                     }
                 }
             }
-            
+
             if (a.isAssechementDiagonal()) {
-                for (int i = 0; i<tuiles.size(); i++) {
+                for (int i = 0; i < tuiles.size(); i++) {
                     int idb = tuiles.get(i).getIdTuile();
-                    if (idb == id-11 || idb == id+11 || idb == id-9 ||idb == id+9) {
+                    if (idb == id - 11 || idb == id + 11 || idb == id - 9 || idb == id + 9) {
                         if (tuiles.get(i).getEtat() == EtatTuile.INONDEE) {
                             cases.add(tuiles.get(i));
                         }
@@ -108,13 +109,13 @@ public abstract class Aventurier {
                 }
             }
         } else if (action == TypeMessage.DEPLACEMENT_SPE) {
-            for (int i=0; i<tuiles.size(); i++) {
+            for (int i = 0; i < tuiles.size(); i++) {
                 if (tuiles.get(i).getEtat() != EtatTuile.COULEE) {
                     cases.add(tuiles.get(i));
                 }
             }
         } else if (action == TypeMessage.ASSECHER_SPE) {
-            for (int i=0; i<tuiles.size(); i++) {
+            for (int i = 0; i < tuiles.size(); i++) {
                 if (tuiles.get(i).getEtat() == EtatTuile.INONDEE) {
                     cases.add(tuiles.get(i));
                 }
@@ -122,32 +123,41 @@ public abstract class Aventurier {
         }
         return cases;
     }
-    
-    public int MiseAJourNbActions(){
-        
+
+    public int MiseAJourNbActions() {
+
         int nbactions = 3;
-        
-        if (getNbaction() == 0){
+
+        if (getNbaction() == 0) {
             nbactions = 3;
         }
-        
-        if (getNbaction() == 1){
+
+        if (getNbaction() == 1) {
             nbactions = 2;
         }
-        
-        if (getNbaction() == 2){
+
+        if (getNbaction() == 2) {
             nbactions = 1;
         }
-        
-        if (getNbaction() == 3){
+
+        if (getNbaction() == 3) {
             nbactions = 0;
         }
-        
+
         return nbactions;
-        
+
     }
-    
-    
+
+    public int getNbCartes() {
+
+        int nb = 0;
+        for (int i = 0; i < ile.getCartesTirageTire().size(); i++) {
+
+        }
+        return nb;
+
+    }
+
     // getters setters :
     /**
      * @return the nomJoueur
@@ -162,19 +172,19 @@ public abstract class Aventurier {
     public void setNomJoueur(String nomJoueur) {
         this.nomJoueur = nomJoueur;
     }
-    
-        /**
+
+    /**
      * @return the role
      */
     public TypeRole getRole() {
         return role;
     }
-    
+
     /**
      * @return the role
      */
     public String getStringRole() {
-        return getRole().toString();    
+        return getRole().toString();
     }
 
     /**

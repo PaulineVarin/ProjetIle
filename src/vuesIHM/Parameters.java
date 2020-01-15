@@ -34,6 +34,7 @@ public final class Parameters {
     public static final Integer NB_MONTEES_DES_EAUX = (SIMPLIFIED ? 2 : 3) ; // Nombre de cartes Montées des Eaux en jeu simplifié ou non
     public static final Integer NB_HELICOPTERES = 3 ; // Nombre de cartes Hélicoptère
     public static final Integer NB_SACS_DE_SABLE = 2 ; // Nombre de cartes Sacs de Sable
+    public static final Integer NB_CARTES_TRESOR = 5;
     public static final Integer NB_TUILES = 24;
     public static final Integer NB_LIGNES = 6;
     public static final Integer NB_COLONNES =6;
