@@ -259,7 +259,7 @@ public class IleInterdite extends Observe<Message> {
         collectCartesTire = getCartesTirageTire();
         
         if (!tiragePossible()){
-            ArrayList<CarteTirage> collectCartesDefausse = new ArrayList<>();
+           /* ArrayList<CarteTirage> collectCartesDefausse = new ArrayList<>();
             collectCartesDefausse = getCartesTirageDefausse();
             
             ArrayList<ArrayList<CarteTirage>> arrayTemp= new ArrayList<>();
@@ -270,13 +270,15 @@ public class IleInterdite extends Observe<Message> {
             
             collectCartesTire = 
             
-           
-            
-            
-            
-            
+           */
+           majCollectCartesTire();
+
             
         }
+    }
+    
+    private void VerificatinDistribution(Aventurier a){
+        
     }
     
     /* à faire quand le diagramme de séquence sera fait
