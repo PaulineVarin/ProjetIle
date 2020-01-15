@@ -31,7 +31,7 @@ public class IleInterdite extends Observe<Message> {
     private ArrayList<CarteInondation> cartesInondeTire = new ArrayList<>();
     private ArrayList<CarteInondation> carteInondeDefausse = new ArrayList<>();
     private ArrayList<Aventurier> aventuriers = new ArrayList<>();
-
+   
     //Constructeur    
     public IleInterdite(Observateur<Message> observateur) {
         this.addObservateur(observateur);
@@ -175,7 +175,7 @@ public class IleInterdite extends Observe<Message> {
         notifierObservateurs(m);
     }
 
-    private /*ArrayList<Aventurier>*/ void choixJoueur(String nomTuile) {
+    private void choixJoueur(String nomTuile) {
         ArrayList<Aventurier> joueursPoss = new ArrayList<>();
         Grille g = this.getGrille();
         Tuile t = g.getTuile(nomTuile);        
@@ -332,6 +332,12 @@ IL est urgent d'avoir un moyen de récupérer le joueur actif
     private void tirageCartesInondation() {
         // utiliser this.niveauEau pour le nombre de carte
         System.out.println("Pensez à programmer tirageCartesInondation");
+    }*/
+    
+    private void choixCarteSpe() {
+        ArrayList<CarteTresor> collectCartesTresors = new ArrayList<>();
+        collectCartesTresors = null;
+        
     }
 
 
