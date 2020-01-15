@@ -139,7 +139,7 @@ public class Grille {
     
     public ArrayList<Aventurier> getCollectJoueurs(Tuile t) {
         ArrayList<Aventurier> aventuriers = new ArrayList<>();
-        aventuriers = t.getCollectAventuriers();
+        aventuriers = t.getJoueurs();
         return aventuriers;
     }
     

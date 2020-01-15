@@ -14,7 +14,6 @@ import java.util.ArrayList;
  * @author tardieue
  */
 public class Tuile {
-    
     private String nomTuile;
     private int idTuile;
     private int ligne;
@@ -22,9 +21,8 @@ public class Tuile {
     private EtatTuile etat;
     private TypeTresorTuile tresor = TypeTresorTuile.NEUTRE;
     private Aventurier joueurDepart;
-    
+
     private ArrayList<Aventurier> collectAventuriers = new ArrayList<>();
-    
 
     public Tuile(int lig, int col, String nomTuile) {
         setNomTuile(nomTuile);
@@ -34,28 +32,41 @@ public class Tuile {
         setEtat(EtatTuile.ASSECHEE);
         setTresor(TypeTresorTuile.NEUTRE);
     }
-    
+
     // Méthodes :
-    
+
     public void miseAjourEtat() {
-        if (getEtat().equals(EtatTuile.ASSECHEE)){
-            setEtat(EtatTuile.INONDEE);
-        }else {
-            setEtat(EtatTuile.COULEE);
+        if (getEtat().equals(EtatTuile.INONDEE)){
+            setEtat(EtatTuile.ASSECHEE);
+
         }
     }
-    
+
     public void removeJoueur(Aventurier a){
         Tuile t = a.getTuileCourante();
         t.getCollectAventuriers().remove(a);    
     }
-    
+
     public void addJoueur(Aventurier a){
         Tuile t = a.getTuileCourante();
         t.getCollectAventuriers().add(a);        
     }
-       
 
+    /*
+    retourne les joueurs ayant moins de 5 cartes
+    dans leur main*/
+    public ArrayList<Aventurier> getJoueurs() {
+        ArrayList<Aventurier> joueurs = new ArrayList<>(this.getCollectAventuriers());
+        for (int i=0; i<joueurs.size(); i++) {
+            if (joueurs.get(i).getCollectCartesJoueur().size() >= 5) {
+                joueurs.remove(i);
+            }
+        }
+        
+        return joueurs;
+    }
+
+    // getter et setter :
     /**
      * @return the ligne
      */

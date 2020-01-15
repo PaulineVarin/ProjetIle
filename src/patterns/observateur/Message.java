@@ -83,6 +83,12 @@ public class Message implements Serializable {
        return m;
    }
     
+    
+    public static Message asseche (String nomTuile){
+        Message m = new Message(TypeMessage.ASSECHER);
+        m.nomTuile = nomTuile;
+        return m;
+    }
    
     
     

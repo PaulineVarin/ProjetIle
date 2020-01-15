@@ -147,6 +147,9 @@ public abstract class Aventurier {
         
     }
     
+    public int getNbCartes(){
+        
+    }
     
     // getters setters :
     /**
