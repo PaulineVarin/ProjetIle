@@ -44,7 +44,6 @@ public class Controleur implements Observateur<Message> {
                 ileInterdite.tourDeJeu(msg.getNomRole(), msg.getNbActions(), msg.getTypeM());
                 break;
             case AFFICHAGE_CASE:
-                
                 ArrayList<String> nomCases = new ArrayList<>();
                 for (Tuile t : msg.getCollectTuiles()) {
                     nomCases.add(t.getNomTuile());
@@ -83,6 +82,6 @@ public class Controleur implements Observateur<Message> {
                     ileInterdite.choixJoueur(msg.getNomTuile(),nbJoueurCourant);
                     break;
             }
-        }
+        }*/
 }
 
