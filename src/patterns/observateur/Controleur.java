@@ -40,6 +40,10 @@ public class Controleur implements Observateur<Message> {
                     System.out.println("SE_DEPLACER");
                     ileInterdite.seDeplacer(msg.getNomRole(), msg.getNomTuile(), msg.getNbActions());
                     break;
+                case ASSECHER:
+                    System.out.println("ASSECHER");
+                    ileInterdite.Assecher(msg.getNomTuile());
+                    break;
             }
 
             switch (msg.getTypeA()) {

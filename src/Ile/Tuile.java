@@ -38,10 +38,9 @@ public class Tuile {
     // Méthodes :
     
     public void miseAjourEtat() {
-        if (getEtat().equals(EtatTuile.ASSECHEE)){
-            setEtat(EtatTuile.INONDEE);
-        }else {
-            setEtat(EtatTuile.COULEE);
+        if (getEtat().equals(EtatTuile.INONDEE)){
+            setEtat(EtatTuile.ASSECHEE);
+
         }
     }
     
