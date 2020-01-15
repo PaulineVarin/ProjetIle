@@ -27,7 +27,6 @@ public class Controleur implements Observateur<Message> {
 
     //Méthodes
     public void traiterMessage(Message msg) {
-        if (msg.getTypeM() != null) {
             switch (msg.getTypeM()) {
                 case INITIALISATION:
                     System.out.println("Initialisation");
@@ -35,7 +34,7 @@ public class Controleur implements Observateur<Message> {
                     break;
                 case DEBUT_JEU:
                     System.out.println("DEBUT_JEU");
-                    ihm.demarrerJeu(msg.getCollectTuiles(),msg.getCollectJoueurs(),msg.getNiveauEau());
+                    ihm.demarrerJeu(msg.getCollectTuiles(),msg.getCollectJoueurs(),msg.getNiveauEau(),nbJoueurCourant);
                     break;
                 case SE_DEPLACER:
                     System.out.println("SE_DEPLACER");
@@ -49,6 +48,10 @@ public class Controleur implements Observateur<Message> {
                     System.out.println("FIN TOUR");
                     
                     break;
+                default:
+                if (Parameters.LOGS) {
+                    System.out.println("Action interdite : ");
+                }
             }
 
             switch (msg.getTypeA()) {
@@ -58,6 +61,5 @@ public class Controleur implements Observateur<Message> {
                     break;
             }
         }
-    }
-
 }
+

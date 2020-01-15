@@ -93,7 +93,7 @@ public class VueInscription {
                     if(s.equals("")) {
                         s = "Joueur"+i;
                     }
-                    collectNomsJoueurs.add(s); 
+                    collectNomsJoueurs.add(s);
                 }
                 //Récupération du niveau d'eau
                 

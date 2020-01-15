@@ -43,9 +43,9 @@ public class IHM extends Observe<Message>  {
         notifierObservateurs(m);
     }
     
-    public void demarrerJeu(ArrayList<Tuile> collectTuiles,ArrayList<Aventurier> collectAventuriers,int niveauEau) {
+    public void demarrerJeu(ArrayList<Tuile> collectTuiles,ArrayList<Aventurier> collectAventuriers,int niveauEau,int joueurCourant) {
         this.jeu = new VueJeu(this);
-        jeu.initialisationVueJeu(collectTuiles,collectAventuriers,niveauEau);
+        jeu.initialisationVueJeu(collectTuiles,collectAventuriers,niveauEau,joueurCourant);
     }
     
     

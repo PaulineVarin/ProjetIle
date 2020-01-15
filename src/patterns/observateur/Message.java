@@ -57,12 +57,12 @@ public class Message implements Serializable { // pas besoin d'interface
     
     
     //Méthodes IleInterdite
-    public static Message demarrerJeu(ArrayList<Tuile> collectTuiles,ArrayList<Aventurier> collectJoueurs,int niveauEau) {
+    public static Message demarrerJeu(ArrayList<Tuile> collectTuiles,ArrayList<Aventurier> collectJoueurs,int niveauEau,int nbjoueurs) {
         Message m = new Message(TypeMessage.DEBUT_JEU);
         m.collectJoueurs=collectJoueurs;
         m.collectTuiles=collectTuiles;
         m.niveauEau = niveauEau;
-        m.nbJoueurs=collectJoueurs.size();
+        m.nbJoueurs=nbjoueurs;
         return m;
     }
     

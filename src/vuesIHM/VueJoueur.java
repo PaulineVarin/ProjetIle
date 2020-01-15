@@ -50,7 +50,7 @@ public class VueJoueur{
     private JButton finir = new JButton("Finir tour");
     
     private int x = 0;
-    private int y = 500;
+    private int y = 110;
     private ArrayList<JButton> listeBoutons = new ArrayList<>();
     //Constructeur
     public VueJoueur(Aventurier a,VueJeu jeu) {
@@ -65,11 +65,8 @@ public class VueJoueur{
         //Configuration boutons 
         for (JButton j : listeBoutons) {
             j.setFont(new Font(Font.SANS_SERIF,Font.BOLD, 9));
+            j.setEnabled(false);
         }
-         
-        
-        
-        
         //Configuraton de contenuHaut
         nomJoueur.setText(a.getNomJoueur());
         nomJoueur.setHorizontalAlignment(SwingConstants.CENTER);
@@ -86,7 +83,7 @@ public class VueJoueur{
 
         contenuMillieu.add(nbactions);
         for(CarteTirage ct : a.getCollectCartesJoueur()) {
-            nomCartes.setText(nomCartes.getText()+" "+ct.getNom()+";");
+            nomCartes.setText(nomCartes.getText()+" "+ct.getNom()+"; ");
         }
         contenuMillieu.add(nomCartes);
         listeTresors.setText("Aucun trésor");
@@ -124,7 +121,7 @@ public class VueJoueur{
         
         
         //Configuration window
-        window.setSize(330,300);
+        window.setSize(330,200);
         window.setUndecorated(Parameters.UNDECORATED);
         window.add(contenu);
         window.setVisible(true);
@@ -133,12 +130,27 @@ public class VueJoueur{
     
     //Méthodes
     public void positionsFenetres() {
+        setY(getY()+window.getHeight()/2);
+        setX(0);
         for (VueJoueur joueur : getVueJeu().getVuesJoueurs()) {
             joueur.getWindow().setLocation(getX(), getY());
-            setX(getX()+window.getWidth()+3);
+            setX(getX()+window.getWidth()+3); 
         }
         setX(0);
+        if(getVueJeu().getVuesJoueurs().size()>2) {
+            setY(getY()+210);
+            getVueJeu().getVuesJoueurs().get(2).getWindow().setLocation(getX(),getY());
+            getVueJeu().getVuesJoueurs().get(3).getWindow().setLocation(getX()+window.getWidth()+3, getY());
+        }
     }
+    
+    public void debutTour() {
+        for(JButton j : getListeBoutons()) {
+            j.setEnabled(true);
+        }
+    }
+    
+    
 
     /**
      * @return the vueJeu
@@ -180,6 +192,13 @@ public class VueJoueur{
      */
     public void setY(int y) {
         this.y = y;
+    }
+
+    /**
+     * @return the listeBoutons
+     */
+    public ArrayList<JButton> getListeBoutons() {
+        return listeBoutons;
     }
     
 }
