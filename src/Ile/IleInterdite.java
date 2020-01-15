@@ -21,7 +21,6 @@ import vuesIHM.Parameters;
  * @author tardieue
  */
 public class IleInterdite extends Observe<Message> {
-
     //Données
     private int niveauEau;
     private Grille grille;
@@ -165,7 +164,6 @@ public class IleInterdite extends Observe<Message> {
     }
 
     public void tourDeJeu(String nomRole, int nbActions) {
-
         Aventurier temp;
         temp = getAventurier(nomRole);
         ArrayList<Tuile> collectCases = new ArrayList<>();
@@ -185,7 +183,7 @@ public class IleInterdite extends Observe<Message> {
         Message m =  Message.donner(t.getCollectAventuriers(),temp.getCollectCartesJoueur());
         notifierObservateurs(m);
     }
-    
+
     public Aventurier getReceveur(String nomRoleReceveur) {
         Aventurier receveur = null;
         boolean encore = true;
@@ -207,9 +205,8 @@ IL est urgent d'avoir un moyen de récupérer le joueur actif
         collectCartesTresors = null;
         System.out.println("ON NE SAIT PAS QUI EST LE JOUEUR ACTIFS ! ! ! ! ! !");
     }
-    
-    public void seDeplacer(String nomRole, String nomTuile, int nbActions) {
 
+    public void seDeplacer(String nomRole, String nomTuile, int nbActions) {
         Aventurier temp;
         temp = getAventurier(nomRole);
 
@@ -228,7 +225,6 @@ IL est urgent d'avoir un moyen de récupérer le joueur actif
 
         Message m = Message.deplace(temp.getStringRole(), t1.getNomTuile(), temp.getNbaction());
         notifierObservateurs(m);
-
     }
 
     public void assecher(String nomTuile,int nbJoueurCourant) {
@@ -245,12 +241,10 @@ IL est urgent d'avoir un moyen de récupérer le joueur actif
 
         Message m = Message.asseche(t.getNomTuile());
         notifierObservateurs(m);
-
     }
 
     private boolean tiragePossible(/*ArrayList<CarteTirage> cartesTirageTire*/) {
         return (getCartesTirageTire().size() >= 2);
-
     }
 
     /*private ArrayList<CarteTirage> tiragePossible() {
@@ -261,11 +255,9 @@ IL est urgent d'avoir un moyen de récupérer le joueur actif
         return tiree;
     }*/
     private void majCollectCartesTire() {
-
         Collections.shuffle(cartesTirageDefausse);
         cartesTirageTire.addAll(cartesTirageDefausse);
         cartesTirageDefausse.clear();
-
     }
 
     /*private void viderCollectCartesDefausse(){
@@ -277,17 +269,27 @@ IL est urgent d'avoir un moyen de récupérer le joueur actif
            majCollectCartesTire();
         }
     }
-    
+
     private void VerificatinDistribution(Aventurier a){ // bonne version
-        
         if(a.getNbCartes() == 4){
            a.getCollectCartesJoueur();
            Message m = Message.tirecartes(a.getCollectCartesJoueur());
            notifierObservateurs(m);
         }
     }
+    
+    private void addCarteDefausse(CarteTirage cti){
+        cartesTirageDefausse.add(cti);
+    }
 
     private void majCollectCartesJoueur(String nomCarte) {
+        Aventurier temp = null; // à revoir
+        CarteTirage cti;
+        cti = temp.getCarte(nomCarte);
+        temp.removeCarteTirage(cti);
+        addCarteDefausse(cti);
+        
+        
           
     }
 
@@ -452,5 +454,4 @@ IL est urgent d'avoir un moyen de récupérer le joueur actif
     public void addAventuriers(Aventurier a) {
         getAventuriers().add(a);
     }
-
 }
