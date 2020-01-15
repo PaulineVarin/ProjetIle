@@ -15,6 +15,10 @@ import java.util.Collections;
 import patterns.observateur.Message;
 import vuesIHM.Parameters;
 
+    /*
+IL est urgent d'avoir un moyen de récupérer le joueur actif
+    */
+
 /**
  *
  * @author tardieue
@@ -198,6 +202,12 @@ public class IleInterdite extends Observe<Message> {
         }
         
         return receveur;
+    }
+
+    public void choixCarte() {
+        ArrayList<CarteTresor> collectCartesTresors = new ArrayList<>();
+        collectCartesTresors = null;
+        System.out.println("ON NE SAIT PAS QUI EST LE JOUEUR ACTIFS ! ! ! ! ! !");
     }
 
     public void seDeplacer(String nomRole, String nomTuile, int nbActions) {
