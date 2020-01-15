@@ -27,7 +27,6 @@ public class Controleur implements Observateur<Message> {
 
     //Méthodes
     public void traiterMessage(Message msg) {
-        if (msg.getTypeM() != null) {
             switch (msg.getTypeM()) {
                 case INITIALISATION:
                     System.out.println("Initialisation");
@@ -45,8 +44,10 @@ public class Controleur implements Observateur<Message> {
                     System.out.println("ASSECHER");
                     ileInterdite.Assecher(msg.getNomTuile());
                     break;
+                default:
+                if (Parameters.LOGS) {
+                    System.out.println("Action interdite : ");
+                }
             }
-        }
     }
-
 }

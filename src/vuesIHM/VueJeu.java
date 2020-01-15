@@ -63,12 +63,14 @@ public class VueJeu {
         for(Aventurier a : collectAventuriers) {
            addVuesJoueurs(new VueJoueur(a, this));
         }
+        getVuesJoueurs().get(nbJoueurCourant).debutTour();
+        
         //mettre les vues joueurs dans l'état pour tourDeJeu
         for(VueJoueur joueur : getVuesJoueurs()) {
             joueur.positionsFenetres();
         }
         
-        getVuesJoueurs().get(nbJoueurCourant).debutTour();
+        
     }
     
     public void fermerFenetres() {

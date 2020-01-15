@@ -44,7 +44,7 @@ public class IleInterdite extends Observe<Message> {
         ArrayList<Tuile> collectTuiles = getGrille().creationTuiles(getAventuriers());
         commencerInondation();
         distributionCartesTresor();
-        Message m = Message.demarrerJeu(collectTuiles, getAventuriers(), getNiveauEau());
+        Message m = Message.demarrerJeu(collectTuiles, getAventuriers(), getNiveauEau(),nbJoueurs);
         notifierObservateurs(m);
     }
 
