@@ -21,7 +21,6 @@ import vuesIHM.Parameters;
  * @author tardieue
  */
 public class IleInterdite extends Observe<Message> {
-
     //Données
     private int niveauEau;
     private Grille grille;
@@ -165,7 +164,6 @@ public class IleInterdite extends Observe<Message> {
     }
 
     public void tourDeJeu(String nomRole, int nbActions) {
-
         Aventurier temp;
         temp = getAventurier(nomRole);
         ArrayList<Tuile> collectCases = new ArrayList<>();
@@ -186,44 +184,7 @@ public class IleInterdite extends Observe<Message> {
         Message m =  Message.donner(t.getCollectAventuriers(),temp.getCollectCartesJoueur());
         notifierObservateurs(m);
     }
-    
-    public Aventurier getReceveur(String nomRoleReceveur) {
-        Aventurier receveur = null;
-        boolean encore = true;
-        for (int i = 0; i< aventuriers.size() && encore; i++) {
-            if (aventuriers.get(i).getRole().toString().equals(nomRoleReceveur)) {
-                receveur = aventuriers.get(i);
-                encore = false;
-            }
-        }
-        
-        return receveur;
-    }
 
-    /*
-IL est urgent d'avoir un moyen de récupérer le joueur actif
-    */
-    public void choixCarte() {
-        ArrayList<CarteTresor> collectCartesTresors = new ArrayList<>();
-        collectCartesTresors = null;
-        System.out.println("ON NE SAIT PAS QUI EST LE JOUEUR ACTIFS ! ! ! ! ! !");
-    }
-    
-        /*
-IL est urgent d'avoir un moyen de récupérer le joueur actif
-    */
-    private void choixJoueur(String nomTuile) {
-        ArrayList<Aventurier> joueursPoss = new ArrayList<>();
-        Grille g = this.getGrille();
-        Tuile t = g.getTuile(nomTuile);        
-        joueursPoss = g.getCollectJoueurs(t);
-        
-        Aventurier temp= ; //bessoin d'une méthode retournant l'aventurier active grace a nomTuile(String)
-        
-        Message m =  Message.donner(t.getCollectAventuriers(),temp.getCollectCartesJoueur());
-        notifierObservateurs(m);
-    }
-    
     public Aventurier getReceveur(String nomRoleReceveur) {
         Aventurier receveur = null;
         boolean encore = true;
@@ -247,7 +208,6 @@ IL est urgent d'avoir un moyen de récupérer le joueur actif
     }
 
     public void seDeplacer(String nomRole, String nomTuile, int nbActions) {
-
         Aventurier temp;
         temp = getAventurier(nomRole);
 
@@ -266,15 +226,9 @@ IL est urgent d'avoir un moyen de récupérer le joueur actif
 
         Message m = Message.deplace(temp.getStringRole(), t1.getNomTuile(), temp.getNbaction());
         notifierObservateurs(m);
-
     }
 
     public void Assecher(String nomTuile) {
-
-        /*Aventurier temp = null;
-        temp = getAventurier(temp.getStringRole());
-        Tuile t;
-        t = temp.getTuileCourante();*/
         Grille g = new Grille();
 
         Tuile t = g.getTuile(nomTuile);
@@ -286,12 +240,10 @@ IL est urgent d'avoir un moyen de récupérer le joueur actif
 
         Message m = Message.asseche(t.getNomTuile());
         notifierObservateurs(m);
-
     }
 
     private boolean tiragePossible(/*ArrayList<CarteTirage> cartesTirageTire*/) {
         return (getCartesTirageTire().size() >= 2);
-
     }
 
     /*private ArrayList<CarteTirage> tiragePossible() {
@@ -302,49 +254,30 @@ IL est urgent d'avoir un moyen de récupérer le joueur actif
         return tiree;
     }*/
     private void majCollectCartesTire() {
-
         Collections.shuffle(cartesTirageDefausse);
         cartesTirageTire.addAll(cartesTirageDefausse);
         cartesTirageDefausse.clear();
-
     }
 
     /*private void viderCollectCartesDefausse(){
         
     }*/
-    private void verificationTirage() {
-        ArrayList<CarteTirage> collectCartesTire = new ArrayList<>();
-        collectCartesTire = getCartesTirageTire();
-
-        if (!tiragePossible()) {
-            /* ArrayList<CarteTirage> collectCartesDefausse = new ArrayList<>();
-            collectCartesDefausse = getCartesTirageDefausse();
-            
-            ArrayList<ArrayList<CarteTirage>> arrayTemp= new ArrayList<>();
-            
-            arrayTemp.add(collectCartesDefausse);
-            arrayTemp.add(collectCartesTire);
-            Collections.shuffle(arrayTemp);
-            
-            collectCartesTire = 
-            
-             */
-            majCollectCartesTire();
-
+    
+    private void verificationTirage(){
+        if (!tiragePossible()){
+           majCollectCartesTire();
         }
     }
 
-    private void VerificatinDistribution(Aventurier a) {
-
-        if (a.getNbCartes() == 4) {
-            // a.getCollectCartesJoueur() = getCartesTirageTire();
-            Message m = Message.tirecartes(a.getCollectCartesJoueur());
-            notifierObservateurs(m);
+    private void VerificatinDistribution(Aventurier a){ // bonne version
+        if(a.getNbCartes() == 4){
+           a.getCollectCartesJoueur();
+           Message m = Message.tirecartes(a.getCollectCartesJoueur());
+           notifierObservateurs(m);
         }
     }
 
     private void majCollectCartesJoueur(String nomCarte) {
-          
     }
 
     /* à faire quand le diagramme de séquence sera fait
@@ -502,5 +435,4 @@ IL est urgent d'avoir un moyen de récupérer le joueur actif
     public void addAventuriers(Aventurier a) {
         getAventuriers().add(a);
     }
-
 }
