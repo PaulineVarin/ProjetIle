@@ -229,25 +229,55 @@ public class IleInterdite extends Observe<Message> {
 
     }
 
-    /*private boolean verificationTirage() {
-        return (getCartesTirageTire().size() <= 2);
+    private boolean tiragePossible(/*ArrayList<CarteTirage> cartesTirageTire*/) {
+        return (getCartesTirageTire().size() >= 2);
+        
     }
      
-    private ArrayList<CarteTirage> tiragePossible() {
+    /*private ArrayList<CarteTirage> tiragePossible() {
         ArrayList<CarteTirage> tiree = new ArrayList<>();
         for (int i=0; i<2; i++) {
             tiree.add(getCartesTirageTire().get(i));
         }
         return tiree;
+    }*/
+    
+    private void majCollectCartesTire(){
+       
+        Collections.shuffle(cartesTirageDefausse);
+        cartesTirageTire.addAll(cartesTirageDefausse);
+        cartesTirageDefausse.clear();
+    
     }
     
-    private ArrayList<CarteTirage> majCollectCartesTire(){
-        ArrayList<CarteTirage> tiree = new ArrayList<>();
+    /*private void viderCollectCartesDefausse(){
         
-        int nbcartestire ;
-        return tiree;
-      
     }*/
+    
+    private void verificationTirage(){
+        ArrayList<CarteTirage> collectCartesTire = new ArrayList<>();
+        collectCartesTire = getCartesTirageTire();
+        
+        if (!tiragePossible()){
+            ArrayList<CarteTirage> collectCartesDefausse = new ArrayList<>();
+            collectCartesDefausse = getCartesTirageDefausse();
+            
+            ArrayList<ArrayList<CarteTirage>> arrayTemp= new ArrayList<>();
+            
+            arrayTemp.add(collectCartesDefausse);
+            arrayTemp.add(collectCartesTire);
+            Collections.shuffle(arrayTemp);
+            
+            collectCartesTire = 
+            
+           
+            
+            
+            
+            
+            
+        }
+    }
     
     /* à faire quand le diagramme de séquence sera fait
     public void finDeTour(String nomAventurier) {
