@@ -157,7 +157,10 @@ public abstract class Aventurier {
         return nb;
 
     }
-
+    
+    public String getCartes(){
+        return ;
+    }
     // getters setters :
     /**
      * @return the nomJoueur
