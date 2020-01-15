@@ -51,7 +51,7 @@ public class VueIntroduction {
         quitter.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent arg0) {
-               window.dispose();
+               System.exit(0);
             }
         });
         
