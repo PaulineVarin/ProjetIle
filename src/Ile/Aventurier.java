@@ -1,4 +1,4 @@
-/*
+ /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -149,15 +149,25 @@ public abstract class Aventurier {
     }
 
     public int getNbCartes() {
-
-        int nb = 0;
-        for (int i = 0; i < ile.getCartesTirageTire().size(); i++) {
-
-        }
-        return nb;
+        
+        return collectCartesJoueur.size();
 
     }
 
+    
+    public CarteTirage getCarte(String nomCarte){
+        for (CarteTirage ct : collectCartesJoueur){
+            if (ct.getNom().equals(nomCarte)){
+                return ct;
+            }
+        }
+        return null;
+    }
+    
+    public void removeCarteTirage(CarteTirage cti){
+        collectCartesJoueur.remove(cti);
+        
+    }
     // getters setters :
     /**
      * @return the nomJoueur

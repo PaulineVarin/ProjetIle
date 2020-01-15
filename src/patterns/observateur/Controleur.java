@@ -44,6 +44,10 @@ public class Controleur implements Observateur<Message> {
                     System.out.println("ASSECHER");
                     ileInterdite.Assecher(msg.getNomTuile());
                     break;
+                case FIN_TOUR:
+                    System.out.println("FIN TOUR");
+                    
+                    break;
                 default:
                 if (Parameters.LOGS) {
                     System.out.println("Action interdite : ");
