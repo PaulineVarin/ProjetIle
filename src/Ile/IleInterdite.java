@@ -230,7 +230,7 @@ public class IleInterdite extends Observe<Message> {
 
         Message m = Message.asseche(t.getNomTuile());
         notifierObservateurs(m);
-
+  
     }
 
     private boolean tiragePossible(/*ArrayList<CarteTirage> cartesTirageTire*/) {
@@ -283,6 +283,11 @@ public class IleInterdite extends Observe<Message> {
     
     private void VerificatinDistribution(Aventurier a){
         
+        if(a.getNbCartes() == 4){
+           a.getCollectCartesJoueur();
+           Message m = Message.tirecartes(a);
+           notifierObservateurs(m);
+        }
     }
     
     /* à faire quand le diagramme de séquence sera fait
