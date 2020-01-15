@@ -302,7 +302,7 @@ public class IleInterdite extends Observe<Message> {
         Aventurier av_temp = av;
         if (verificationTirage()) {
             av.getCollectCartesJoueur().addAll(tiragePossible());
-            setAventuriers(av);
+            aventuriers.add(av);
         }
     }
     
