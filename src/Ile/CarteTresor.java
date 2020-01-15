@@ -18,8 +18,7 @@ public class CarteTresor extends CarteTirage{
     //Constructeur
     public CarteTresor (String nom,TypeTresorCarte typeTresor) {
         super(nom);
-        setTypeTresor(typeTresor);
-        
+        setTypeTresor(typeTresor);        
     }
     
     //Méthodes

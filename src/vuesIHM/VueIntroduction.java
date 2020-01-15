@@ -65,6 +65,7 @@ public class VueIntroduction {
         //Configuration fenetre 
         window.add(contenu);
         window.setSize(500,500);
+        window.setLocationRelativeTo(null);
         window.setVisible(true);
     }
     //Méthodes

@@ -19,7 +19,7 @@ public class Tuile {
     private int idTuile;
     private int ligne;
     private int colonne;
-    private EtatTuile etat = EtatTuile.ASSECHEE;
+    private EtatTuile etat;
     private TypeTresorTuile tresor = TypeTresorTuile.NEUTRE;
     private Aventurier joueurDepart;
     
@@ -27,14 +27,23 @@ public class Tuile {
     
 
     public Tuile(int lig, int col, String nomTuile) {
+        setNomTuile(nomTuile);
         setLigne(lig);
         setColonne(col);
-        setNomTuile(nomTuile);
-        setTresor(tresor);
         setIdTuile();
+        setEtat(EtatTuile.ASSECHEE);
+        setTresor(TypeTresorTuile.NEUTRE);
     }
     
     // Méthodes :
+    
+    public void miseAjourEtat() {
+        if (getEtat().equals(EtatTuile.ASSECHEE)){
+            setEtat(EtatTuile.INONDEE);
+        }else {
+            setEtat(EtatTuile.COULEE);
+        }
+    }
     
     public void removeJoueur(Aventurier a){
         Tuile t = a.getTuileCourante();
@@ -43,11 +52,9 @@ public class Tuile {
     
     public void addJoueur(Aventurier a){
         Tuile t = a.getTuileCourante();
-        t.getCollectAventuriers().add(a);
-        
+        t.getCollectAventuriers().add(a);        
     }
-    
-   
+       
 
     /**
      * @return the ligne

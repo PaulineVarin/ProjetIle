@@ -39,8 +39,7 @@ public class Message implements Serializable {
     
     //Constructeur
     public Message(TypeMessage typeM) {
-        this.typeM = typeM;
-        
+        this.typeM = typeM;        
     }
     
     public Message (TypeAction typeA){
@@ -53,11 +52,12 @@ public class Message implements Serializable {
        Message m = new Message(TypeMessage.INITIALISATION);
        m.collectNomsJoueurs = collectNoms;
        m.niveauEau = niveauEau;
-       m.nbJoueurs = nbJoueurs;
-       
+       m.nbJoueurs = nbJoueurs;       
        return m;
     }
     
+    
+    //Méthodes IleInterdite
     public static Message demarrerJeu(ArrayList<Tuile> collectTuiles,ArrayList<Aventurier> collectJoueurs,int niveauEau) {
         Message m = new Message(TypeMessage.DEBUT_JEU);
         m.collectJoueurs=collectJoueurs;
@@ -91,7 +91,7 @@ public class Message implements Serializable {
     }
    
     
-    //Méthodes IleInterdite
+    
 
     /**
      * @return the typeM
