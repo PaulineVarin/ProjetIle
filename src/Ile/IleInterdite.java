@@ -30,7 +30,7 @@ public class IleInterdite extends Observe<Message> {
     private ArrayList<CarteInondation> cartesInondeTire = new ArrayList<>();
     private ArrayList<CarteInondation> carteInondeDefausse = new ArrayList<>();
     private ArrayList<Aventurier> aventuriers = new ArrayList<>();
-
+   
     //Constructeur    
     public IleInterdite(Observateur<Message> observateur) {
         this.addObservateur(observateur);
@@ -179,8 +179,7 @@ public class IleInterdite extends Observe<Message> {
         Tuile t = g.getTuile(nomTuile);        
         joueursPoss = g.getCollectJoueurs(t);
         
-        Aventurier temp=null; //bessoin d'une méthode retournant l'aventurier active grace a nomTuile(String)
-        
+        Aventurier temp= aventuriers.get(nbJoueurCourant);         
         Message m =  Message.donner(t.getCollectAventuriers(),temp.getCollectCartesJoueur());
         notifierObservateurs(m);
     }
@@ -224,13 +223,15 @@ public class IleInterdite extends Observe<Message> {
         notifierObservateurs(m);
     }
 
-    public void Assecher(String nomTuile) {
+    public void assecher(String nomTuile,int nbJoueurCourant) {
+
+
         Grille g = new Grille();
 
         Tuile t = g.getTuile(nomTuile);
         t.miseAjourEtat();
 
-        Aventurier temp = null; // à revoir
+        Aventurier temp= aventuriers.get(nbJoueurCourant);
         temp = getAventurier(temp.getStringRole()); // On récupère le role avant de mettre à jour les actions contrairement au diagramme de séquence
         temp.MiseAJourNbActions();
 
@@ -328,6 +329,12 @@ public class IleInterdite extends Observe<Message> {
     private void tirageCartesInondation() {
         // utiliser this.niveauEau pour le nombre de carte
         System.out.println("Pensez à programmer tirageCartesInondation");
+    }*/
+    
+    private void choixCarteSpe() {
+        ArrayList<CarteTresor> collectCartesTresors = new ArrayList<>();
+        collectCartesTresors = null;
+        
     }
 
 

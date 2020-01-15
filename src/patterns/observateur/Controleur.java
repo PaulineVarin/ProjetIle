@@ -65,10 +65,24 @@ public class Controleur implements Observateur<Message> {
                     break;
                 case ASSECHER:
                     System.out.println("ASSECHER");
-                    ileInterdite.Assecher(msg.getNomTuile());
+                    ileInterdite.assecher(msg.getNomTuile(),nbJoueurCourant);
                     break;
                 case FIN_TOUR:
                     System.out.println("FIN TOUR");
                     
-                    break;*/
+                    break;
+                default:
+                if (Parameters.LOGS) {
+                    System.out.println("Action interdite : ");
+                }
+            }
+
+            switch (msg.getTypeA()) {
+                case CHOIX_JOUEUR:
+                    //ileInterdite.tourDeJeu(msg.getNomRole(), msg.getNbActions());
+                    ileInterdite.choixJoueur(msg.getNomTuile(),nbJoueurCourant);
+                    break;
+            }
+        }
 }
+

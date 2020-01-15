@@ -37,7 +37,7 @@ public class Message implements Serializable {
     private ArrayList<Aventurier> collectJoueurs;
     private ArrayList<Tuile> collectTuiles;
     private ArrayList<String> collectNomsJoueurs;
-
+       
     //Constructeur
     public Message(TypeMessage typeM) {
         this.typeM = typeM;        
@@ -128,6 +128,7 @@ public class Message implements Serializable {
     /**
      * @return the typeM
      */
+    
     public TypeMessage getTypeM() {
         return typeM;
     }
@@ -257,5 +258,5 @@ public class Message implements Serializable {
     public ArrayList<String> getCollectNomsJoueurs() {
         return collectNomsJoueurs;
     }
-    
 }
+    
