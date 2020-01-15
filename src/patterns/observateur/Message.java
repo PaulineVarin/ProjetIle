@@ -97,6 +97,13 @@ public class Message implements Serializable {
         return m;
     }
     
+    public static Message donner (ArrayList<Aventurier> collectJoueurs, ArrayList<CarteTirage> collectCartesJoueur){
+        Message m = new Message(TypeMessage.DONNER);
+        m.typeA = TypeAction.POSSIBILITEES_JOUEUR;
+        m.collectJoueurs = collectJoueurs;
+        return m;
+    }
+        
 
     /**
      * @return the typeM
