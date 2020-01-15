@@ -15,9 +15,6 @@ import java.util.Collections;
 import patterns.observateur.Message;
 import vuesIHM.Parameters;
 
-    /*
-IL est urgent d'avoir un moyen de récupérer le joueur actif
-    */
 
 /**
  *
@@ -178,7 +175,9 @@ public class IleInterdite extends Observe<Message> {
         notifierObservateurs(m);
     }
 
-    
+    /*
+IL est urgent d'avoir un moyen de récupérer le joueur actif
+    */
     private void choixJoueur(String nomTuile) {
         ArrayList<Aventurier> joueursPoss = new ArrayList<>();
         Grille g = this.getGrille();
@@ -204,6 +203,9 @@ public class IleInterdite extends Observe<Message> {
         return receveur;
     }
 
+    /*
+IL est urgent d'avoir un moyen de récupérer le joueur actif
+    */
     public void choixCarte() {
         ArrayList<CarteTresor> collectCartesTresors = new ArrayList<>();
         collectCartesTresors = null;
