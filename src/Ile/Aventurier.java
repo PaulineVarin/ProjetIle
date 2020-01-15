@@ -149,12 +149,8 @@ public abstract class Aventurier {
     }
 
     public int getNbCartes() {
-
-        int nb = 0;
-        for (int i = 0; i < ile.getCartesTirageTire().size(); i++) {
-
-        }
-        return nb;
+        
+        return collectCartesJoueur.size();
 
     }
 

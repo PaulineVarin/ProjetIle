@@ -90,9 +90,9 @@ public class Message implements Serializable {
         return m;
     }
    
-    public static Message tirecartes (Aventurier a){
+    public static Message tirecartes (ArrayList <CarteTirage> collectCarteJoueur){ // bonne version
         Message m = new Message (TypeMessage.FIN_TOUR);
-        m.a = a;
+        m.collectCartesJoueur = collectCarteJoueur;
         m.typeA = TypeAction.CHOIX_CARTE;
         return m;
     }

@@ -214,10 +214,6 @@ public class IleInterdite extends Observe<Message> {
 
     public void Assecher(String nomTuile) {
 
-        /*Aventurier temp = null;
-        temp = getAventurier(temp.getStringRole());
-        Tuile t;
-        t = temp.getTuileCourante();*/
 
         Grille g = new Grille();
 
@@ -259,33 +255,16 @@ public class IleInterdite extends Observe<Message> {
     }*/
     
     private void verificationTirage(){
-        ArrayList<CarteTirage> collectCartesTire = new ArrayList<>();
-        collectCartesTire = getCartesTirageTire();
-        
         if (!tiragePossible()){
-           /* ArrayList<CarteTirage> collectCartesDefausse = new ArrayList<>();
-            collectCartesDefausse = getCartesTirageDefausse();
-            
-            ArrayList<ArrayList<CarteTirage>> arrayTemp= new ArrayList<>();
-            
-            arrayTemp.add(collectCartesDefausse);
-            arrayTemp.add(collectCartesTire);
-            Collections.shuffle(arrayTemp);
-            
-            collectCartesTire = 
-            
-           */
            majCollectCartesTire();
-
-            
         }
     }
     
-    private void VerificatinDistribution(Aventurier a){
+    private void VerificatinDistribution(Aventurier a){ // bonne version
         
         if(a.getNbCartes() == 4){
            a.getCollectCartesJoueur();
-           Message m = Message.tirecartes(a);
+           Message m = Message.tirecartes(a.getCollectCartesJoueur());
            notifierObservateurs(m);
         }
     }
