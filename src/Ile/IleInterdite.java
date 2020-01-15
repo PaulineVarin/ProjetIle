@@ -231,7 +231,7 @@ IL est urgent d'avoir un moyen de récupérer le joueur actif
 
     }
 
-    public void Assecher(String nomTuile) {
+    public void assecher(String nomTuile,int nbJoueurCourant) {
 
 
         Grille g = new Grille();
@@ -239,7 +239,7 @@ IL est urgent d'avoir un moyen de récupérer le joueur actif
         Tuile t = g.getTuile(nomTuile);
         t.miseAjourEtat();
 
-        Aventurier temp = null; // à revoir
+        Aventurier temp= aventuriers.get(nbJoueurCourant);
         temp = getAventurier(temp.getStringRole()); // On récupère le role avant de mettre à jour les actions contrairement au diagramme de séquence
         temp.MiseAJourNbActions();
 

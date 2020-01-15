@@ -43,7 +43,7 @@ public class Controleur implements Observateur<Message> {
                     break;
                 case ASSECHER:
                     System.out.println("ASSECHER");
-                    ileInterdite.Assecher(msg.getNomTuile());
+                    ileInterdite.assecher(msg.getNomTuile(),nbJoueurCourant);
                     break;
                 case FIN_TOUR:
                     System.out.println("FIN TOUR");
