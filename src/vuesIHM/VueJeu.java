@@ -45,15 +45,39 @@ public class VueJeu {
         int largeur = (int)tailleEcran.getWidth();  System.out.println(largeur);
         return largeur;
     }
+    
+    
     public void initialisationVueJeu(ArrayList<Tuile> collectTuiles,ArrayList<Aventurier> collectAventuriers,int niveauEau) {
+        //Initialisation Grille
         this.vueGrille = new VueGrille(this);
-        vueGrille.initialiserPlateau(collectTuiles);
+        getVueGrille().initialiserPlateau(collectTuiles);
+        
+        //Initialisation niveauEau
         this.vueNiveauEau = new VueNiveau(this,niveauEau);
+        
+        //Initialisation vueResume
         this.vueResume = new VueResume(this);
+        getVueResume().initialisationVue(collectAventuriers.get(0).getStringRole(),niveauEau);
+        
+        //Initialisation vueJoueur
         for(Aventurier a : collectAventuriers) {
            addVuesJoueurs(new VueJoueur(a, this));
         }
         //mettre les vues joueurs dans l'état pour tourDeJeu
+        for(VueJoueur joueur : getVuesJoueurs()) {
+            joueur.positionsFenetres();
+        }
+    }
+    
+    public void fermerFenetres() {
+        getVueResume().getWindow().dispose();
+        getVueGrille().getWindow().dispose();
+        getVueNiveauEau().getWindow().dispose();
+        
+        for(VueJoueur joueur : getVuesJoueurs()) {
+            joueur.getWindow().dispose();
+        }
+        System.exit(0);
     }
 
     /**
@@ -68,6 +92,34 @@ public class VueJeu {
      */
     public void addVuesJoueurs(VueJoueur joueur) {
         getVuesJoueurs().add(joueur);
+    }
+
+    /**
+     * @return the ihm
+     */
+    public IHM getIhm() {
+        return ihm;
+    }
+
+    /**
+     * @return the vueGrille
+     */
+    public VueGrille getVueGrille() {
+        return vueGrille;
+    }
+
+    /**
+     * @return the vueResume
+     */
+    public VueResume getVueResume() {
+        return vueResume;
+    }
+
+    /**
+     * @return the vueNiveauEau
+     */
+    public VueNiveau getVueNiveauEau() {
+        return vueNiveauEau;
     }
     
     

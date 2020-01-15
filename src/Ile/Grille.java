@@ -12,10 +12,6 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
-import java.util.Map;
-import java.util.Map.Entry;
-import javax.swing.JButton;
-import patterns.observateur.Controleur;
 import vuesIHM.Parameters;
 
 /**
@@ -129,14 +125,14 @@ public class Grille {
             }
         }
         //Affichage test de l'emplacement des tuiles
-        /*for (Tuile tu : tuiles) {
+        for (Tuile tu : tuiles) {
             System.out.println("ID TUILE");
             System.out.println(tu.getIdTuile()+tu.getNomTuile()+tu.getTresor());
             if(tu.getJoueurDepart()!=null) {
                 System.out.print(tu.getIdTuile()+tu.getNomTuile()+tu.getTresor());
                 System.out.println(tu.getJoueurDepart().getNomJoueur());
             }
-        }*/
+        }
         
         return tuiles;
     }

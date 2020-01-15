@@ -17,6 +17,7 @@ public class Controleur implements Observateur<Message> {
     //Données
     private IHM ihm;
     private IleInterdite ileInterdite;
+    private int nbJoueurCourant = 0;
 
     //Constructeur
     public Controleur() {

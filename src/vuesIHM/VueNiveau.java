@@ -17,6 +17,13 @@ import javax.swing.JPanel;
 import javax.swing.border.MatteBorder;
 
 public class VueNiveau {
+
+    /**
+     * @return the window
+     */
+    public JFrame getWindow() {
+        return window;
+    }
     //Données
     private VueJeu vueJeu;
     private Integer niveau ;
@@ -34,7 +41,7 @@ public class VueNiveau {
 
         window = new JFrame() ;
         window.setSize(cellWidth*2+Parameters.SWING_BORDERS_HEIGHT, Parameters.HAUTEUR_AUTRES_VUES);
-        window.setLocation(30, Parameters.TOP_AUTRES_VUES);
+        window.setLocation(1350,340);
         window.setDefaultCloseOperation(javax.swing.JFrame.EXIT_ON_CLOSE);
 
         window.setUndecorated(Parameters.UNDECORATED);
