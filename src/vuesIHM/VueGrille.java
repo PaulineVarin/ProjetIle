@@ -175,11 +175,12 @@ public class VueGrille implements MouseListener {
         JButton j = (JButton) arg0.getSource();
         int x = arg0.getXOnScreen();
         int y = arg0.getYOnScreen();
-
+        //si attente alors notifie IHM de faire la méthode Sedeplacer//
         if (getVueJeu().getIhm().getActionEncours().equals(TypeMessage.SE_DEPLACER)) {
             for(JButton bouton : getListeBouttons()) {
                 bouton.setEnabled(false);
             }
+            
             System.out.println("Deplacer");
             String nomTuile = j.getText();
             int nb = getVueJeu().getNbJoueurCourant();

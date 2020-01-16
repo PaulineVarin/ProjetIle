@@ -40,40 +40,49 @@ public class Controleur implements Observateur<Message> {
                 ihm.demarrerJeu(msg.getCollectTuiles(), msg.getCollectJoueurs(), msg.getNiveauEau(), nbJoueurCourant);
                 break;
             case SE_DEPLACER:
-                if(msg.getTypeA().equals(TypeAction.CHOIX_JOUEUR)) {
+                if (msg.getTypeA().equals(TypeAction.CHOIX_JOUEUR)) {
                     System.out.println("Controleur CHOIX_JOUEURDEPLACER");
                     ileInterdite.tourDeJeu(msg.getNomRole(), msg.getNbActions(), msg.getTypeM());
-                }else{
-                    System.out.print("typaAction est null");
+                } else if (msg.getTypeA().equals(TypeAction.VALIDATION_JOUEUR)) {
+                    ileInterdite.seDeplacer(msg.getNomTuile(), msg.getNomRole());
+                } else {
+                    System.out.println("Hello");
+
                 }
+
             case ASSECHER:
-                if(msg.getTypeA().equals(TypeAction.CHOIX_JOUEUR)) {
+                if (msg.getTypeA().equals(TypeAction.CHOIX_JOUEUR)) {
                     System.out.println("Controleur CHOIX_JOUEURAssecher");
                     ileInterdite.tourDeJeu(msg.getNomRole(), msg.getNbActions(), msg.getTypeM());
-                }else{
-                    System.out.print("typaAction est null");
+                } else {
+                    if (msg.getTypeA().equals(TypeAction.VALIDATION_JOUEUR)) {
+                        //ileInterdite.assecher();
+                    }
                 }
             case DONNER:
-                if(msg.getTypeA().equals(TypeAction.CHOIX_JOUEUR)) {
+                if (msg.getTypeA().equals(TypeAction.CHOIX_JOUEUR)) {
                     System.out.println("Controleur CHOIX_JOUEURDonner");
                     ileInterdite.tourDeJeu(msg.getNomRole(), msg.getNbActions(), msg.getTypeM());
-                }else{
-                    System.out.print("typaAction est null");
+                } else {
+                    if (msg.getTypeA().equals(TypeAction.VALIDATION_JOUEUR)) {
+                        //ileInterdite.choixJoueurs();
+                    }
                 }
             case PRENDRE:
-                if(msg.getTypeA().equals(TypeAction.CHOIX_JOUEUR)) {
+                if (msg.getTypeA().equals(TypeAction.CHOIX_JOUEUR)) {
                     System.out.println("Controleur CHOIX_JOUEURPrendre");
                     ileInterdite.tourDeJeu(msg.getNomRole(), msg.getNbActions(), msg.getTypeM());
-                }else{
-                    System.out.print("typaAction est null");
+                } else {
+                    if (msg.getTypeA().equals(TypeAction.VALIDATION_JOUEUR)) {
+                        //ileInterdite.recuperationTresor();
+                    }
                 }
                 break;
             case AFFICHAGE_CASE:
                 System.out.println("Affich cases");
                 ArrayList<String> nomCases = new ArrayList<>();
                 for (Tuile t : msg.getCollectTuiles()) {
-                    System.out.println("Boucle controleur");
-                    if(t.getNomTuile().length()>2) {
+                    if (t.getNomTuile().length() > 2) {
                         nomCases.add(t.getNomTuile());
                     }
                 }
@@ -81,11 +90,11 @@ public class Controleur implements Observateur<Message> {
                 break;
             case NIVEAU_EAU:
                 System.out.println("NIVEAU_EAU");
-                ileInterdite.distributionCarte();
+                //ileInterdite.distributionCarte();
                 break;
             case FIN_JEU:
                 System.out.println("FIN_JEU");
-                ileInterdite.perdrePartie();
+                //ileInterdite.perdrePartie();
                 break;
             case MAUVAIS_CHOIX:
                 ihm.mauvaisChoix(nbJoueurCourant);
@@ -96,4 +105,3 @@ public class Controleur implements Observateur<Message> {
         }
     }
 }
-

@@ -61,6 +61,7 @@ public class IHM extends Observe<Message> {
     }
 
     public void modifierAffichage(ArrayList<String> collectNomsTuile) {
+        setActionEncours(TypeMessage.ATTENTE);
         getJeu().affichageCases(collectNomsTuile);
     }
     

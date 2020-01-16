@@ -164,6 +164,7 @@ public class Grille {
                 }
             }
         } else if (typeM.equals(TypeMessage.ASSECHER)) {
+            System.out.println("Assecher");
             for (String s : getCollectTuiles().keySet()) {
                 Tuile tuile = getTuile(s);
                 if (tuile.getIdTuile() == t.getIdTuile() - 1 || tuile.getIdTuile() == t.getIdTuile() + 1

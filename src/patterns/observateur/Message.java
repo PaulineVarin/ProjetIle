@@ -92,7 +92,7 @@ public class Message implements Serializable {
         return m;
     }
     
-    public static Message deplace (String nomRole, String nomTuile, int nbActions){
+    public static Message deplacer (String nomRole, String nomTuile, int nbActions){
        Message m = new Message(TypeMessage.SE_DEPLACER);
        m.nomTuile = nomTuile;
        m.nomRole = nomRole;
@@ -282,6 +282,5 @@ public class Message implements Serializable {
     public ArrayList<String> getCollectNomsJoueurs() {
         return collectNomsJoueurs;
     }
-   
 }
     
