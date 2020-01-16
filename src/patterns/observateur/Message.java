@@ -137,6 +137,21 @@ public class Message implements Serializable {
         m.typeA = TypeAction.PERDRE;
         return m;
     }
+    public static Message donner (int nbActionsDonneur,String nomRoleDonneur,String nomRoleReceveur,String nomCarte){ //donner1 rename pour differencier de donner
+        Message m = new Message(TypeMessage.DONNER);
+        m.nbActionsDonneur = nbActionsDonneur;
+        m.nomRoleDonneur = nomRoleDonneur;
+        m.nomRoleReceveur =nomRoleReceveur;
+        m.nomCarte =nomCarte;
+        return m;
+    }
+    
+    public static Message donner (ArrayList<CarteTresor> collectCartesTresors){
+        Message m = new Message(TypeMessage.DONNER);
+//        m.collectCartesTresor = collectCartesTresors; affectation ArrayList carteTirage , carteTresor
+        return m;
+    }
+        
 
     /**
      * @return the typeM
