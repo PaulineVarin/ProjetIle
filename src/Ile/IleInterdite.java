@@ -216,8 +216,8 @@ public class IleInterdite extends Observe<Message> {
         Aventurier temp = getAventuriers().get(nbJoueurCourant);
         CarteTresor cte = new CarteTresor(temp.majCarteDonneur(nomCarte));
         TypeRole nomRoleDonneur = temp.getRole();
-
         int nbActionsDonneur = temp.MiseAJourNbActions();
+
         receveur.majCarteReceveur(cte);
         TypeRole nomRoleReceveur = receveur.getRole();
 
