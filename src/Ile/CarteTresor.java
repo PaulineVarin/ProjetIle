@@ -6,6 +6,7 @@
 package Ile;
 
 import Enumeration.TypeTresorCarte;
+import java.util.ArrayList;
 
 /**
  *
@@ -22,6 +23,14 @@ public class CarteTresor extends CarteTirage{
     }
     
     //Méthodes
+    public ArrayList<CarteTresor> getCartesTresors() {
+        ArrayList<CarteTresor> collectCartesTresors = new ArrayList<>();
+        for (int i=0; i< getCartesTresors().size(); i++) {
+            
+        }
+
+        return collectCartesTresors;
+    }
 
     /**
      * @return the typeTresor

@@ -58,6 +58,17 @@ public abstract class Aventurier {
 
         return tuiles;
     }
+    
+        public ArrayList<CarteTresor> getCartesTresors() {
+        ArrayList<CarteTresor> collectCartesTresors = new ArrayList<>();
+        for (int i=0; i< getCollectCartesJoueur().size(); i++) {
+            if (getCollectCartesJoueur().get(i).getClass().getName() == "CarteTresor") {
+                collectCartesTresors.add((CarteTresor) getCollectCartesJoueur().get(i));
+            }
+        }
+
+        return collectCartesTresors;
+    }
 
     //a refaire car pas prise en compte de la hasmap
     private ArrayList<Tuile> getTuiles(Tuile t, TypeMessage action, Aventurier a) {

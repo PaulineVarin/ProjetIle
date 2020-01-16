@@ -195,12 +195,16 @@ public class IleInterdite extends Observe<Message> {
         }
         
         return receveur;
-    }
-    public void choixCarte() {
+    }*/
+    public void choixCarte(int nbJoueurCourant) {
+        Aventurier temp = aventuriers.get(nbJoueurCourant);
         ArrayList<CarteTresor> collectCartesTresors = new ArrayList<>();
-        collectCartesTresors = null;
-        System.out.println("ON NE SAIT PAS QUI EST LE JOUEUR ACTIFS ! ! ! ! ! !");
+        collectCartesTresors = temp.getCartesTresors();
+        Message m = Message.donner();        
+        notifierObservateurs(m);
     }
+    
+    
 
     public void seDeplacer(String nomRole, String nomTuile, int nbActions) {
         Aventurier temp;
