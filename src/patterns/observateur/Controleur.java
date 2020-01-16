@@ -81,6 +81,8 @@ public class Controleur implements Observateur<Message> {
                 break;
             case MAUVAIS_CHOIX:
                 ihm.mauvaisChoix(nbJoueurCourant);
+            case FIN_TOUR:
+                System.out.println("patterns.observateur.Controleur.traiterMessage()");
             default:
                 System.out.print("Default Action non disponible");
         }
