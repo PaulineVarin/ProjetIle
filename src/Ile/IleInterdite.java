@@ -41,10 +41,10 @@ public class IleInterdite extends Observe<Message> {
         determinationRole(collectNomsJoueurs);
         setNiveauEau(niveauEau); //faire gaffe à la valeur du niveau eau pour la distribution des cartes
         setGrille(new Grille());
-        ArrayList<Tuile> collectTuiles = getGrille().creationTuiles(getAventuriers());
+        ArrayList<Tuile> collectTuiles = getGrille().creationTuiles(getCollectAventuriers());
         commencerInondation(typeM);
         distributionCartesTresor();
-        Message m = Message.demarrerJeu(collectTuiles, getAventuriers(), getNiveauEau(), nbJoueurs);
+        Message m = Message.demarrerJeu(collectTuiles, getCollectAventuriers(), getNiveauEau(), nbJoueurs);
         notifierObservateurs(m);
     }
 
@@ -99,7 +99,7 @@ public class IleInterdite extends Observe<Message> {
         creationCartesTirage();
         int nbCartes = 0;
         int indice = 0;
-        for (Aventurier a : getAventuriers()) {
+        for (Aventurier a : getCollectAventuriers()) {
             while (nbCartes < 2) {
                 CarteTirage ct = getCartesTirageTire().get(indice);
                 if (ct.getNom().equals("Carte Montée des eaux") == false) {
@@ -175,7 +175,7 @@ public class IleInterdite extends Observe<Message> {
     }
 
     private Aventurier getAventurier(String nomRole) {
-        for (Aventurier a : getAventuriers()) {
+        for (Aventurier a : getCollectAventuriers()) {
             if (a.getStringRole().equals(nomRole)) {
                 return a;
             }
@@ -233,7 +233,7 @@ public class IleInterdite extends Observe<Message> {
         return receveur;
     }*/
     public void choixCarte(int nbJoueurCourant) {
-        Aventurier temp = getAventuriers().get(nbJoueurCourant);
+        Aventurier temp = getCollectAventuriers().get(nbJoueurCourant);
         ArrayList<CarteTresor> collectCartesTresors = new ArrayList<>();
         //collectCartesTresors = temp.getCartesTresors();
         /*Message m = Message.donner();     Précisez le message        
@@ -241,7 +241,7 @@ public class IleInterdite extends Observe<Message> {
     }
 
     public void donnerCarte(String nomCarte, Aventurier receveur, int nbJoueurCourant) {
-        Aventurier temp = getAventuriers().get(nbJoueurCourant);
+        Aventurier temp = getCollectAventuriers().get(nbJoueurCourant);
         CarteTresor cte = new CarteTresor(temp.majCarteDonneur(nomCarte));
         TypeRole nomRoleDonneur = temp.getRole();
         int nbActionsDonneur = temp.MiseAJourNbActions();
@@ -606,7 +606,7 @@ private void majCollectCartesTire() {
     /**
      * @return the aventuriers
      */
-    public ArrayList<Aventurier> getAventuriers() {
+    public ArrayList<Aventurier> getCollectAventuriers() {
         return aventuriers;
     }
 
@@ -614,6 +614,6 @@ private void majCollectCartesTire() {
      * @param aventuriers the aventuriers to set
      */
     public void addAventuriers(Aventurier a) {
-        getAventuriers().add(a);
+        getCollectAventuriers().add(a);
     }
 }
