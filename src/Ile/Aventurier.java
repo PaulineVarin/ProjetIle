@@ -79,7 +79,7 @@ public abstract class Aventurier {
     }
 
     public CarteTirage getCarte(String nomCarte) {
-        for (CarteTirage ct : collectCartesJoueur) {
+        for (CarteTirage ct : getCollectCartesJoueur()) {
             if (ct.getNom().equals(nomCarte)) {
                 return ct;
             }
@@ -88,8 +88,36 @@ public abstract class Aventurier {
     }
 
     public void removeCarteTirage(CarteTirage cti) {
-        collectCartesJoueur.remove(cti);
+        getCollectCartesJoueur().remove(cti);
 
+    }
+    
+    public CarteTresor majCarteDonneur(String nomCarte) {
+        CarteTresor cte = (CarteTresor) getCarte(nomCarte);
+        removeCarteTirage(cte);
+
+        return (cte);
+    }
+    
+    public void majCarteReceveur(CarteTresor cte) {
+        getCollectCartesJoueur().add(cte);
+    }
+    
+    public ArrayList<CarteTresor> getCartesTresors() {
+        ArrayList<CarteTresor> cte = new ArrayList<>();
+        for (int i=0; i<getCollectCartesJoueur().size(); i++) {
+            if (getCollectCartesJoueur().get(i).getClass().toString() == "CarteTresor") {
+                cte.add((CarteTresor) getCollectCartesJoueur().get(i));
+            }
+        }
+
+        return (cte);
+    }
+
+    void removeCarteTirage(ArrayList<CarteTresor> cartes) {
+        for (int i=0; i<cartes.size(); i++) {
+            getCollectCartesJoueur().remove(cartes.get(i));
+        }
     }
 
     // getters setters :
