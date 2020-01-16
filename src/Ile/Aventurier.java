@@ -73,6 +73,13 @@ public abstract class Aventurier {
     public CarteTresor majCarteDonneur(String nomCarte) {
         CarteTresor cte = (CarteTresor) getCarte(nomCarte);
         removeCarteTirage(cte);
+        
+        return cte;
+    }
+    
+    public CarteTresor majCarteReceveur(CarteTresor cte) {
+        getCollectCartesJoueur().add(cte);
+        
         return cte;
     }
 
