@@ -6,6 +6,7 @@
 package Ile;
 
 import Enumeration.EtatTuile;
+import Enumeration.TypeMessage;
 import Enumeration.TypeTresorTuile;
 import java.util.ArrayList;
 
@@ -14,6 +15,7 @@ import java.util.ArrayList;
  * @author tardieue
  */
 public class Tuile {
+
     private String nomTuile;
     private int idTuile;
     private int ligne;
@@ -34,23 +36,23 @@ public class Tuile {
     }
 
     // Méthodes :
-
-    public void miseAjourEtat() {
-        if (getEtat().equals(EtatTuile.ASSECHEE)){
+    public void miseAjourEtat(TypeMessage typeM) {
+        if (typeM.equals(TypeMessage.INITIALISATION)) {
             setEtat(EtatTuile.INONDEE);
-        }else if(getEtat().equals(EtatTuile.INONDEE)) {
-            setEtat(EtatTuile.INONDEE);
+        } else if (typeM.equals(TypeMessage.ASSECHER)) {
+            setEtat(EtatTuile.ASSECHEE);
         }
+
     }
 
-    public void removeJoueur(Aventurier a){
+    public void removeJoueur(Aventurier a) {
         Tuile t = a.getTuileCourante();
-        t.getCollectAventuriers().remove(a);    
+        t.getCollectAventuriers().remove(a);
     }
 
-    public void addJoueur(Aventurier a){
+    public void addJoueur(Aventurier a) {
         Tuile t = a.getTuileCourante();
-        t.getCollectAventuriers().add(a);        
+        t.getCollectAventuriers().add(a);
     }
 
     /*
@@ -58,12 +60,12 @@ public class Tuile {
     dans leur main*/
     public ArrayList<Aventurier> getJoueurs() {
         ArrayList<Aventurier> joueurs = new ArrayList<>(this.getCollectAventuriers());
-        for (int i=0; i<joueurs.size(); i++) {
+        for (int i = 0; i < joueurs.size(); i++) {
             if (joueurs.get(i).getCollectCartesJoueur().size() >= 5) {
                 joueurs.remove(i);
             }
         }
-        
+
         return joueurs;
     }
 
@@ -149,7 +151,7 @@ public class Tuile {
      * @param idTuile the idTuile to set
      */
     public void setIdTuile() {
-        String id = String.valueOf(getLigne())+String.valueOf(getColonne());
+        String id = String.valueOf(getLigne()) + String.valueOf(getColonne());
         this.idTuile = Integer.parseInt(id);
     }
 
@@ -173,13 +175,9 @@ public class Tuile {
     public ArrayList<Aventurier> getCollectAventuriers() {
         return collectAventuriers;
     }
-    
+
     public void addAventurier(Aventurier a) {
         getCollectAventuriers().add(a);
     }
 
-    
- 
 }
-
-

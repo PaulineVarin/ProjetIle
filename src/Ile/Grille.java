@@ -143,6 +143,7 @@ public class Grille {
         ArrayList<Tuile> collectCases = new ArrayList<>();
 
         if (typeM.equals(TypeMessage.SE_DEPLACER)) {
+            System.out.println("getTuilesSe deplacer");
             for (String s : getCollectTuiles().keySet()) {
                 Tuile tuile = getCollectTuiles().get(s);
                 if (tuile.getIdTuile() == t.getIdTuile() - 1 || tuile.getIdTuile() == t.getIdTuile() + 1
@@ -164,6 +165,7 @@ public class Grille {
                 }
             }
         } else if (typeM.equals(TypeMessage.ASSECHER)) {
+            System.out.println("Assecher");
             for (String s : getCollectTuiles().keySet()) {
                 Tuile tuile = getTuile(s);
                 if (tuile.getIdTuile() == t.getIdTuile() - 1 || tuile.getIdTuile() == t.getIdTuile() + 1
@@ -190,9 +192,6 @@ public class Grille {
 
         } else {
             System.out.println("DeplacementSpe ou assecherSpe");
-        }
-        for (Tuile test : collectCases) {
-            System.out.println("Test id" + test.getIdTuile());
         }
         return collectCases;
     }

@@ -120,9 +120,7 @@ public class VueGrille implements MouseListener {
     
     public void modifierAffichage(ArrayList<String> collectNomsCases) {
         for(String s : collectNomsCases) {
-           System.out.print("Hello modif affichage");
-            System.out.println(s);
-            getButton(s).setEnabled(true);
+            getButton(s).setEnabled(true);   
         }
         
     }
@@ -131,7 +129,12 @@ public class VueGrille implements MouseListener {
         for(JButton j : getListeBouttons()) {
             j.setEnabled(true);
         }
-        
+    }
+    
+    public void miseAjourVueGrille(Tuile tuile,String nomRole) {
+        for(JButton j : getListeBouttons()) {
+            j.setEnabled(true);      
+        }
         
     }
     
@@ -175,25 +178,24 @@ public class VueGrille implements MouseListener {
         JButton j = (JButton) arg0.getSource();
         int x = arg0.getXOnScreen();
         int y = arg0.getYOnScreen();
-
         if (getVueJeu().getIhm().getActionEncours().equals(TypeMessage.SE_DEPLACER)) {
             for(JButton bouton : getListeBouttons()) {
                 bouton.setEnabled(false);
             }
-            System.out.println("Deplacer");
+            System.out.println("mouse pressedDeplacer");
             String nomTuile = j.getText();
             int nb = getVueJeu().getNbJoueurCourant();
             String nomRole = getVueJeu().getVuesJoueurs().get(nb).getNomRole().getText();
             getVueJeu().getIhm().validationCaseJoueur(nomTuile, nomRole);
         } else if (getVueJeu().getIhm().getActionEncours().equals(TypeMessage.ASSECHER)) {
-            System.out.print("Assecher");
+            System.out.print("mouse pressedAssecher");
             String nomTuile = j.getText();
             int nb = getVueJeu().getNbJoueurCourant();
             String nomRole = getVueJeu().getVuesJoueurs().get(nb).getNomRole().getText();
             getVueJeu().getIhm().validationCaseJoueur(nomTuile, nomRole);
 
         } else {
-            System.out.println("Affiche");
+            System.out.println("mouse pressedAffiche");
             //Affichage du pop_up
             contenuPop.add(nomTresor, BorderLayout.CENTER);
             pop.add(contenuPop, BorderLayout.CENTER);

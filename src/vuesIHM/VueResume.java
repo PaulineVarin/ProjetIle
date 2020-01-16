@@ -5,7 +5,9 @@
  */
 package vuesIHM;
 
+import Enumeration.TypeMessage;
 import Enumeration.TypeRole;
+import Ile.Tuile;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
@@ -78,6 +80,10 @@ public class VueResume {
         } else {
             libelDeroulementPartie.setText("Le " + nomJoueurCourant + " commence");
         }
+    }
+    
+    public void miseAjourVueResume(String nomRole,String nomTuile,TypeMessage typeM) {
+        
     }
 
     /**

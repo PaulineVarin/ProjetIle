@@ -49,7 +49,7 @@ public abstract class Aventurier {
         ArrayList<Tuile> collectCases = new ArrayList<>();
 
         if ((typeM.equals(TypeMessage.DONNER) == false) && (typeM.equals(TypeMessage.PRENDRE) == false)) {
-            System.out.println("calcul casesHello gettuiles");
+            System.out.println("calcul cases Hello gettuiles");
             collectCases = g.getTuiles(t, typeM, this);
         } else {
             System.out.println("donner+prendre");
@@ -66,26 +66,9 @@ public abstract class Aventurier {
     }
 
     public int MiseAJourNbActions() {
-
-        int nbactions = 3;
-
-        if (getNbaction() == 0) {
-            nbactions = 3;
-        }
-
-        if (getNbaction() == 1) {
-            nbactions = 2;
-        }
-
-        if (getNbaction() == 2) {
-            nbactions = 1;
-        }
-
-        if (getNbaction() == 3) {
-            nbactions = 0;
-        }
-
-        return nbactions;
+        setNbaction(getNbaction()-1);
+        System.out.println("nbactions"+getNbaction());
+        return getNbaction();
 
     }
 
@@ -96,7 +79,7 @@ public abstract class Aventurier {
     }
 
     public CarteTirage getCarte(String nomCarte) {
-        for (CarteTirage ct : collectCartesJoueur) {
+        for (CarteTirage ct : getCollectCartesJoueur()) {
             if (ct.getNom().equals(nomCarte)) {
                 return ct;
             }
@@ -105,8 +88,36 @@ public abstract class Aventurier {
     }
 
     public void removeCarteTirage(CarteTirage cti) {
-        collectCartesJoueur.remove(cti);
+        getCollectCartesJoueur().remove(cti);
 
+    }
+    
+    public CarteTresor majCarteDonneur(String nomCarte) {
+        CarteTresor cte = (CarteTresor) getCarte(nomCarte);
+        removeCarteTirage(cte);
+
+        return (cte);
+    }
+    
+    public void majCarteReceveur(CarteTresor cte) {
+        getCollectCartesJoueur().add(cte);
+    }
+    
+    public ArrayList<CarteTresor> getCartesTresors() {
+        ArrayList<CarteTresor> cte = new ArrayList<>();
+        for (int i=0; i<getCollectCartesJoueur().size(); i++) {
+            if (getCollectCartesJoueur().get(i).getClass().toString() == "CarteTresor") {
+                cte.add((CarteTresor) getCollectCartesJoueur().get(i));
+            }
+        }
+
+        return (cte);
+    }
+
+    void removeCarteTirage(ArrayList<CarteTresor> cartes) {
+        for (int i=0; i<cartes.size(); i++) {
+            getCollectCartesJoueur().remove(cartes.get(i));
+        }
     }
 
     public boolean possedeCarteHelico (){
@@ -207,6 +218,7 @@ public abstract class Aventurier {
      */
     public void setTuileCourante(Tuile tuileCourante) {
         this.tuileCourante = tuileCourante;
+        tuileCourante.getCollectAventuriers().add(this);
     }
 
     /**

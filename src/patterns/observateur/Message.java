@@ -29,6 +29,7 @@ public class Message implements Serializable {
     private String nomRoleDonneur;
     private String nomRoleReceveur;
     private String nomTuile;
+    private Tuile t;
     private TypeTresorTuile typeTresor;
     private ArrayList<CarteTirage> collectCartesSpe;
     private ArrayList<CarteTirage> collectCartesTresor;
@@ -53,8 +54,9 @@ public class Message implements Serializable {
     }
     
     public static Message choixJoueur(TypeMessage action, String nomRoleCourant, int nbActions) {
+        System.out.print("choix-joueur"+action);
         Message m = new Message(action);
-        System.out.print("Message choix joueur"+m.getTypeM());
+        System.out.println("Message choix joueur"+m.getTypeM());
         m.typeA = TypeAction.CHOIX_JOUEUR;
         m.nomRole = nomRoleCourant;
         m.nbActions = nbActions;
@@ -63,7 +65,7 @@ public class Message implements Serializable {
     
     public static Message validationJoueur(TypeMessage action, String nomTuile, String nomRoleJoueur) {
         Message m = new Message(action);
-        System.out.print(action);
+        System.out.println("Validation joueur"+action);
         m.typeA = TypeAction.VALIDATION_JOUEUR;
         m.nomTuile = nomTuile;
         m.nomRole = nomRoleJoueur;
@@ -92,9 +94,9 @@ public class Message implements Serializable {
         return m;
     }
     
-    public static Message deplace (String nomRole, String nomTuile, int nbActions){
+    public static Message deplacer (String nomRole, Tuile t, int nbActions){
        Message m = new Message(TypeMessage.SE_DEPLACER);
-       m.nomTuile = nomTuile;
+       m.t = t;
        m.nomRole = nomRole;
        m.nbActions = nbActions;
        return m;
@@ -292,6 +294,12 @@ public class Message implements Serializable {
     public ArrayList<String> getCollectNomsJoueurs() {
         return collectNomsJoueurs;
     }
-   
+
+    /**
+     * @return the t
+     */
+    public Tuile getT() {
+        return t;
+    }
 }
     
