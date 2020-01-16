@@ -155,7 +155,7 @@ public abstract class Aventurier {
     }
     
     public String getCartes(){
-        return ;
+        return null;
     }
     // getters setters :
     /**
