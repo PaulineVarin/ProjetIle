@@ -56,7 +56,7 @@ public class Controleur implements Observateur<Message> {
                         ileInterdite.tourDeJeu(msg.getNomRole(), msg.getNbActions(), msg.getTypeM());
                     } else if (msg.getTypeA().equals(TypeAction.VALIDATION_JOUEUR)) {
                         System.out.println("Controleur hello vueJeu");
-                        ileInterdite.seDeplacer(msg.getNomTuile(), msg.getNomRole());
+                        ileInterdite.seDeplacer(msg.getNomTuile(),nbJoueurCourant);
                     }
                 } else {
                     ihm.miseAjourVues(msg.getNomRole(), msg.getT(), msg.getNbActions(), msg.getTypeM(), nbJoueurCourant);
@@ -70,7 +70,7 @@ public class Controleur implements Observateur<Message> {
                     ileInterdite.tourDeJeu(msg.getNomRole(), msg.getNbActions(), msg.getTypeM());
                 } else {
                     if (msg.getTypeA().equals(TypeAction.VALIDATION_JOUEUR)) {
-                        ileInterdite.assecher(msg.getNomTuile(),msg.getTypeM());
+                        ileInterdite.assecher(msg.getNomTuile(),msg.getTypeM(),nbJoueurCourant);
                     }
                 }
                 }else{
