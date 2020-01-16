@@ -184,6 +184,9 @@ public class Grille {
                     }
                 }
             }
+            if (t.getEtat().equals(EtatTuile.INONDEE)) {
+                collectCases.add(t);
+            }
 
         } else {
             System.out.println("DeplacementSpe ou assecherSpe");

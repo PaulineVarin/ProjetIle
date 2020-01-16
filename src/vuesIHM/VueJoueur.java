@@ -104,14 +104,14 @@ public class VueJoueur{
                         int nbActions = Integer.parseInt(s);
                         System.out.println(nomRole+nbActions+typeM);
                         getVueJeu().getIhm().choixJoueur(typeM,nomRole,nbActions);
-                    }else {
-                        TypeMessage typeM = TypeMessage.PRENDRE;
+                    }else if (e.getActionCommand().equals("Finir tour")) {
+                        TypeMessage typeM = TypeMessage.FIN_TOUR;
                         VueJoueur joueur = getVueJeu().getVueJoueurCourant(getVueJeu().getNbJoueurCourant());
                         String nomRole = joueur.getNomRole().getText();
                         String s = joueur.getNbactions().getText();
                         int nbActions = Integer.parseInt(s);
                         System.out.println(nomRole+nbActions+typeM);
-                        getVueJeu().getIhm().choixJoueur(typeM,nomRole,nbActions); 
+                        getVueJeu().getIhm().choixJoueur(typeM,nomRole,nbActions); //a modifier
                     }
                 }
             });

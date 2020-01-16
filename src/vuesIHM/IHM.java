@@ -41,11 +41,11 @@ public class IHM extends Observe<Message> {
         notifierObservateurs(m);
     }
 
-    public void choixJoueur(TypeMessage action, String nomRoleCourant, int nbActions) {
+    public void choixJoueur(TypeMessage typeM, String nomRoleCourant, int nbActions) {
         //Mise à jour de l'action
-        setActionEncours(action);
-        System.out.println("IHM choix joueur : "+action);
-        Message m = Message.choixJoueur(action, nomRoleCourant, nbActions);
+        setActionEncours(typeM);
+        System.out.println("IHM choix joueur : "+typeM);
+        Message m = Message.choixJoueur(typeM, nomRoleCourant, nbActions);
         notifierObservateurs(m);
     }
 
