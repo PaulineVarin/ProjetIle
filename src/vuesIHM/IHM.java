@@ -42,8 +42,9 @@ public class IHM extends Observe<Message> {
     }
 
     public void choixJoueur(TypeMessage action, String nomRoleCourant, int nbActions) {
+        //Mise à jour de l'action
         setActionEncours(action);
-        //System.out.print(action);
+        System.out.println("IHM choix joueur : "+action);
         Message m = Message.choixJoueur(action, nomRoleCourant, nbActions);
         notifierObservateurs(m);
     }
@@ -56,10 +57,16 @@ public class IHM extends Observe<Message> {
     //Partie vue
     public void demarrerJeu(ArrayList<Tuile> collectTuiles, ArrayList<Aventurier> collectAventuriers, int niveauEau, int joueurCourant) {
         this.jeu = new VueJeu(this);
-        jeu.initialisationVueJeu(collectTuiles, collectAventuriers, niveauEau, joueurCourant);
+        getJeu().initialisationVueJeu(collectTuiles, collectAventuriers, niveauEau, joueurCourant);
     }
 
     public void modifierAffichage(ArrayList<String> collectNomsTuile) {
+        getJeu().affichageCases(collectNomsTuile);
+    }
+    
+    public void mauvaisChoix(int nbJoueurCourant) {
+        getJeu().getVueGrille().mauvaisChoix();
+        getJeu().getVueJoueurCourant(nbJoueurCourant).debutTour();
     }
 
     /**
@@ -74,6 +81,13 @@ public class IHM extends Observe<Message> {
      */
     public void setActionEncours(TypeMessage actionEncours) {
         this.actionEncours = actionEncours;
+    }
+
+    /**
+     * @return the jeu
+     */
+    public VueJeu getJeu() {
+        return jeu;
     }
 
 }

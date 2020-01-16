@@ -30,7 +30,7 @@ public class IleInterdite extends Observe<Message> {
     private ArrayList<CarteInondation> cartesInondeTire = new ArrayList<>();
     private ArrayList<CarteInondation> carteInondeDefausse = new ArrayList<>();
     private ArrayList<Aventurier> aventuriers = new ArrayList<>();
-   
+
     //Constructeur    
     public IleInterdite(Observateur<Message> observateur) {
         this.addObservateur(observateur);
@@ -105,7 +105,7 @@ public class IleInterdite extends Observe<Message> {
         creationCartesInondation();
         for (int i = 0; i < Parameters.NB_INONDATIONS_INITIALES; i++) {
             CarteInondation cti = getCartesInondeTire().get(i);
-            System.out.println(cti.getTuile().getNomTuile());
+            System.out.println("Commencer inondation"+cti.getTuile().getNomTuile());
             inondationPlateau(cti.getTuile(), cti);
         }
 
@@ -155,11 +155,20 @@ public class IleInterdite extends Observe<Message> {
     }
 
     public void tourDeJeu(String nomRole, int nbActions, TypeMessage action) {
-        while (nbActions != 0 && (action.equals(TypeMessage.FIN_TOUR) == false)) {
+        if (nbActions != 0 && (action.equals(TypeMessage.FIN_TOUR) == false)) {
             Aventurier a = getAventurier(nomRole);
             ArrayList<Tuile> collectCases = a.calculCases(action);
-            Message m = Message.afficherCases(collectCases);
-            notifierObservateurs(m);
+            if (collectCases.size()!=0) {
+                for (Tuile t : collectCases) {
+                    System.out.println("tour de jeu"+t.getNomTuile());
+                }
+                Message m = Message.afficherCases(collectCases);
+                notifierObservateurs(m);
+            }else {
+                System.out.println("Mauvais choix");
+                Message m = Message.mauvaisChoix();
+                notifierObservateurs(m);
+            }
         }
     }
 
@@ -330,13 +339,11 @@ public class IleInterdite extends Observe<Message> {
         // utiliser this.niveauEau pour le nombre de carte
         System.out.println("Pensez à programmer tirageCartesInondation");
     }*/
-    
     private void choixCarteSpe() {
         ArrayList<CarteTresor> collectCartesTresors = new ArrayList<>();
         collectCartesTresors = null;
-        
-    }
 
+    }
 
     // getters/setters :
     /**

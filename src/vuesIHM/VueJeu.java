@@ -85,6 +85,14 @@ public class VueJeu {
         }
         System.exit(0);
     }
+    
+    public VueJoueur getVueJoueurCourant(int nbJoueurCourant) {
+        return getVuesJoueurs().get(nbJoueurCourant);
+    }
+    
+    public void affichageCases(ArrayList<String> collectNomsCases) {
+        getVueGrille().modifierAffichage(collectNomsCases);
+    }
 
     /**
      * @return the vuesJoueurs
