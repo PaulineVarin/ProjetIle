@@ -200,11 +200,14 @@ public class IleInterdite extends Observe<Message> {
         Aventurier temp = aventuriers.get(nbJoueurCourant);
         ArrayList<CarteTresor> collectCartesTresors = new ArrayList<>();
         collectCartesTresors = temp.getCartesTresors();
-        Message m = Message.donner();        
-        notifierObservateurs(m);
+        /*Message m = Message.donner();     Précisez le message        
+        notifierObservateurs(m);*/
     }
     
-    
+    public void donnerCarte(String nomCarte, Aventurier receveur, int nbJoueurCourant) {
+        Aventurier temp = aventuriers.get(nbJoueurCourant);
+        CarteTresor cte = new CarteTresor(temp.majCarteDonneur(nomCarte));
+    }
 
     public void seDeplacer(String nomRole, String nomTuile, int nbActions) {
         Aventurier temp;

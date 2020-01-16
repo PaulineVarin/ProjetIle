@@ -22,6 +22,11 @@ public class CarteTresor extends CarteTirage{
         setTypeTresor(typeTresor);        
     }
     
+    public CarteTresor (CarteTresor cte) {
+        super(cte.getNom());
+        setTypeTresor(cte.getTypeTresor());
+    }
+    
     //Méthodes
     public ArrayList<CarteTresor> getCartesTresors() {
         ArrayList<CarteTresor> collectCartesTresors = new ArrayList<>();

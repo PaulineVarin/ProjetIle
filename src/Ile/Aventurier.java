@@ -59,7 +59,7 @@ public abstract class Aventurier {
         return tuiles;
     }
     
-        public ArrayList<CarteTresor> getCartesTresors() {
+    public ArrayList<CarteTresor> getCartesTresors() {
         ArrayList<CarteTresor> collectCartesTresors = new ArrayList<>();
         for (int i=0; i< getCollectCartesJoueur().size(); i++) {
             if (getCollectCartesJoueur().get(i).getClass().getName() == "CarteTresor") {
@@ -68,6 +68,12 @@ public abstract class Aventurier {
         }
 
         return collectCartesTresors;
+    }
+
+    public CarteTresor majCarteDonneur(String nomCarte) {
+        CarteTresor cte = (CarteTresor) getCarte(nomCarte);
+        removeCarteTirage(cte);
+        return cte;
     }
 
     //a refaire car pas prise en compte de la hasmap
