@@ -153,7 +153,6 @@ public class IleInterdite extends Observe<Message> {
         }
 
     }*/
-
     public void tourDeJeu(String nomRole, int nbActions, TypeMessage action) {
         while (nbActions != 0 && (action.equals(TypeMessage.FIN_TOUR) == false)) {
             Aventurier a = getAventurier(nomRole);
@@ -203,7 +202,7 @@ public class IleInterdite extends Observe<Message> {
         Message m = Message.donner(collectCartesTresors);
         notifierObservateurs(m);
     }
-    
+
     public void donnerCarte(String nomCarte, Aventurier receveur, int nbJoueurCourant) {
         Aventurier temp = getAventuriers().get(nbJoueurCourant);
         CarteTresor cte = new CarteTresor(temp.majCarteDonneur(nomCarte));
@@ -212,10 +211,10 @@ public class IleInterdite extends Observe<Message> {
         int nbActionsDonneur = temp.MiseAJourNbActions();
         receveur.majCarteReceveur(cte);
         TypeRole nomRoleReceveur = receveur.getRole();
-        
+
         Message m = Message.donner(nbActionsDonneur, nomCarte, nomCarte, nomCarte);
         notifierObservateurs(m);
-        
+
     }
 
     public void seDeplacer(String nomRole, String nomTuile, int nbActions) {
@@ -239,21 +238,22 @@ public class IleInterdite extends Observe<Message> {
         notifierObservateurs(m);
     }
 
-    public void assecher(String nomTuile,int nbJoueurCourant) {
-
+    public void assecher(String nomTuile, int nbJoueurCourant) {
 
         Grille g = new Grille();
 
         Tuile t = g.getTuile(nomTuile);
         t.miseAjourEtat();
 
-        Aventurier temp= aventuriers.get(nbJoueurCourant);
+        Aventurier temp = aventuriers.get(nbJoueurCourant);
         temp = getAventurier(temp.getStringRole()); // On récupère le role avant de mettre à jour les actions contrairement au diagramme de séquence
         temp.MiseAJourNbActions();
 
         Message m = Message.asseche(t.getNomTuile());
         notifierObservateurs(m);
-    }*/
+    }
+
+    */
 
     
     // diag seq tirageCartes
@@ -261,30 +261,27 @@ public class IleInterdite extends Observe<Message> {
         return (getCartesTirageTire().size() >= 2);
     }
 
-
     private void majCollectCartesTire() {
         Collections.shuffle(cartesTirageDefausse);
         cartesTirageTire.addAll(cartesTirageDefausse);
         cartesTirageDefausse.clear();
     }
 
-
- 
-    private void verificationTirage(){
-        if (!tiragePossible()){
-           majCollectCartesTire();
+    private void verificationTirage() {
+        if (!tiragePossible()) {
+            majCollectCartesTire();
         }
     }
 
-    private void verificatinDistribution(Aventurier a){ // bonne version
-        if(a.getNbCartes() == 4){
-           a.getCollectCartesJoueur();
-           Message m = Message.tirecartes(a.getCollectCartesJoueur());
-           notifierObservateurs(m);
+    private void verificatinDistribution(Aventurier a) { // bonne version
+        if (a.getNbCartes() == 4) {
+            a.getCollectCartesJoueur();
+            Message m = Message.tirecartes(a.getCollectCartesJoueur());
+            notifierObservateurs(m);
         }
     }
-    
-    private void addCarteDefausse(CarteTirage cti){
+
+    private void addCarteDefausse(CarteTirage cti) {
         cartesTirageDefausse.add(cti);
     }
 
@@ -294,35 +291,33 @@ public class IleInterdite extends Observe<Message> {
         cti = temp.getCarte(nomCarte);
         temp.removeCarteTirage(cti);
         addCarteDefausse(cti);
-       
+
     }
-    
-    public void tirageCartes(Aventurier a){
+
+    public void tirageCartes(Aventurier a) {
         verificationTirage();
         verificatinDistribution(a);
-        
+
     }
-    
+
     // diag seq Distribution
-    
     public void distributionCarte() {
         cartesTirageTire = getCartesTirageTire();
-        for (int i = 0; i <2; i++){
+        for (int i = 0; i < 2; i++) {
             getCarte(i);
             String nomcarte = getCarte(i).getNom();
-            if (nomcarte=="carteMonteeEau"){
+            if (nomcarte == "carteMonteeEau") {
                 int niveau = getNiveauEau();
                 majNiveauEau();
                 setCartesTirageDefausse(getCarte(i));
                 Message m = Message.distribue(getNiveauEau());
                 notifierObservateurs(m);
-                
-                
-            }else{
+
+            } else {
                 Aventurier temp = null; // à revoir
                 temp.addCollectCartesJoueur(getCarte(i));
                 temp.removeCarteTirage(getCarte(i));
-                
+
             }
         }
     }
@@ -330,86 +325,89 @@ public class IleInterdite extends Observe<Message> {
     private void majNiveauEau() { // à revoir
         CarteMonteeDesEaux cm = null;
         if (getCartesTirageTire().equals(cm.getNom())) {
-            setNiveauEau(getNiveauEau()+1);
+            setNiveauEau(getNiveauEau() + 1);
         }
     }
 
     public CarteTirage getCarte(int i) { // à faire
         return getCartesTirageTire().get(i);
     }
-    
+
     // diag seq tirageCartesInnondation
-    public void majCollectCartesInnondationTire(/*ArrayList<CarteInondation> collectCarteInondationDefausse*/){
+    public void majCollectCartesInnondationTire(/*ArrayList<CarteInondation> collectCarteInondationDefausse*/) {
         Collections.shuffle(carteInondeDefausse);
         cartesInondeTire.addAll(carteInondeDefausse);
         carteInondeDefausse.clear();
     }
-    
+
     public CarteInondation getCarteI(int i) { // à faire
         return getCartesInondeTire().get(i);
-    } 
-    
-    public void inondationPlateau(Tuile t, CarteInondation cti){
-        
     }
-    
-    public void tirageCartesInnondation(){
+
+    public void inondationPlateau(Tuile t, CarteInondation cti) {
+
+    }
+
+    public void tirageCartesInnondation() {
         int niveau = getNiveauEau();
         ArrayList collectCarteInnondationTire = getCartesInondeTire();
-        if (collectCarteInnondationTire.size()<niveau){
+        if (collectCarteInnondationTire.size() < niveau) {
             // ArrayList collectCarteInnondationDefausse = getCarteInondeDefausse();
             majCollectCartesInnondationTire();
         }
-        
-        for(int i = 0; i<getNiveauEau(); i++){
+
+        for (int i = 0; i < getNiveauEau(); i++) {
             CarteInondation cti = getCarteI(i);
             cti.getTuile();
-            
-            
-           
-            
+
         }
     }
-    
+
     // diag seq conditions de fin
-    public void partiePerdu(){
-        
+    public void partiePerdu() {
+
     }
-        
     
-    public void perdrePartie(){
+    private boolean tresorRecup(TypeTresorTuile typeTresor){
+        return !typeTresor.equals(TypeTresorTuile.NEUTRE);
+    }
+
+    public void perdrePartie() {
         int niveau = getNiveauEau();
         // opt niveau >5
-        if (niveau > 5){
+        if (niveau > 5) {
             Message m = Message.ppartie();
             notifierObservateurs(m);
-            
-        // opt niveau <5
-        }else {
+
+            // opt niveau <5
+        } else {
             Grille g = null; // à revoir
             Tuile t = g.getTuile("Heliport");
             // opt etat = COULEE
-            if (t.getEtat().equals(EtatTuile.COULEE)){
+            if (t.getEtat().equals(EtatTuile.COULEE)) {
                 Message m = Message.ppartie();
                 notifierObservateurs(m);
-            // opt etat !=COULEE    
-            }else {
+                // opt etat !=COULEE    
+            } else {
                 ArrayList<Tuile> collectTuilesTresor = new ArrayList<>();
-                for (int i = 0; i<collectTuilesTresor.size(); i++){
-                    if (!t.getTresor().equals(TypeTresorTuile.NEUTRE)){
+                for (int i = 0; i < collectTuilesTresor.size(); i++) {
+                    if (!t.getTresor().equals(TypeTresorTuile.NEUTRE)) {
                         collectTuilesTresor.add(t);
                     }
                     // loop t : collectTuilesTresor
-                    for (int k = 0; k<collectTuilesTresor.size(); k++){
-                        t.getTresor();
+                    for (int k = 0; k < collectTuilesTresor.size(); k++) {
+                        TypeTresorTuile typeTresor = t.getTresor();
+                        if (!tresorRecup(typeTresor)){
+                            
+                        }
                         
+                        
+                            
                     }
-                    
-                    
-                    
+
                 }
             }
-            
+
         }
 
     }
