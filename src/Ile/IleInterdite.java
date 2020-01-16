@@ -262,7 +262,7 @@ public class IleInterdite extends Observe<Message> {
         notifierObservateurs(m);
     }
 
-    */
+    
 
     
     // diag seq tirageCartes
@@ -349,7 +349,7 @@ private void majCollectCartesTire() {
         return getCartesTirageTire().get(i);
     }
 
-    // diag seq tirageCartesInnondation
+    // diag seq tirageCartesInnondation*/
     public void majCollectCartesInnondationTire(/*ArrayList<CarteInondation> collectCarteInondationDefausse*/) {
         Collections.shuffle(carteInondeDefausse);
         cartesInondeTire.addAll(carteInondeDefausse);
@@ -383,9 +383,22 @@ private void majCollectCartesTire() {
     public void partiePerdu() {
 
     }
-    
+    // tresorRecup vérifie si le trésor a été récupéré
     private boolean tresorRecup(TypeTresorTuile typeTresor){
-        return !typeTresor.equals(TypeTresorTuile.NEUTRE);
+        boolean rep = false;
+        for (int i = 0; i<tresorsRecuperes.size(); i++){
+            if (typeTresor == getTresorsRecuperes().get(i)){
+                rep = true;
+            }
+        }
+        return rep;
+    }
+    
+
+    
+    private boolean peutEncoreRecup(TypeTresorTuile typeTresor){ // à faire
+        return false;
+
     }
 
     public void perdrePartie() {
@@ -413,10 +426,18 @@ private void majCollectCartesTire() {
                     // loop t : collectTuilesTresor
                     for (int k = 0; k < collectTuilesTresor.size(); k++) {
                         TypeTresorTuile typeTresor = t.getTresor();
+                        // opt rep = false
                         if (!tresorRecup(typeTresor)){
-                            
+                            // opt etatTuile = COULEE
+                            if (t.getEtat().equals(EtatTuile.COULEE)){
+                                if (!peutEncoreRecup(typeTresor)){
+                                    Message m = Message.ppartie();
+                                    notifierObservateurs(m);
+                                }
+                                
+                            }
                         }
-                        
+ 
                         
                             
                     }
@@ -426,6 +447,27 @@ private void majCollectCartesTire() {
 
         }
 
+    }
+    
+    
+    
+    public void gagnerPartie(){
+         ArrayList collectTresorsRecup = getTresorsRecuperes();
+         if (collectTresorsRecup.size() == 4){
+             Grille g = null;
+             Tuile t = g.getTuile("Heliport");
+             ArrayList collectJoueursTuile = t.getJoueurs();
+             ArrayList collectJoueursIle = getAventuriers();
+             if (collectJoueursIle.size()==collectJoueursTuile.size()){
+                 for(int i = 0; i<collectJoueursTuile.size(); i++){
+                     Aventurier temp = null;
+                     if(temp.possedeCarteHelico()){
+                         Message m = Message.gpartie();
+                         notifierObservateurs(m);
+                 }
+             }
+                     
+         }
     }
 
     /* à faire quand le diagramme de séquence sera fait
@@ -469,12 +511,12 @@ private void majCollectCartesTire() {
         // utiliser this.niveauEau pour le nombre de carte
         System.out.println("Pensez à programmer tirageCartesInondation");
     }*/
-    private void choixCarteSpe() {
+    /*private void choixCarteSpe() {
         ArrayList<CarteTresor> collectCartesTresors = new ArrayList<>();
         collectCartesTresors = null;
 
     }
-
+*/
     // getters/setters :
     /**
      * @return the niveauEau

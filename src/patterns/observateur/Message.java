@@ -134,6 +134,16 @@ public class Message implements Serializable {
         m.typeA = TypeAction.PERDRE;
         return m;
     }
+    
+    public static Message gpartie(){
+        Message m = new Message (TypeMessage.FIN_JEU);
+        m.typeA = TypeAction.GAGNER;
+        return m;
+       
+    }
+    
+    
+    
     public static Message donner (int nbActionsDonneur,String nomRoleDonneur,String nomRoleReceveur,String nomCarte){ //donner1 rename pour differencier de donner
         Message m = new Message(TypeMessage.DONNER);
         m.nbActionsDonneur = nbActionsDonneur;

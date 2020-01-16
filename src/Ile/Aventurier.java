@@ -56,11 +56,11 @@ public abstract class Aventurier {
             if (t.getCollectAventuriers().size() > 1 && typeM.equals(TypeMessage.DONNER)) {
                 System.out.println("A");
                 collectCases.add(t);
-            } else if(t.getTresor().equals(TypeTresorTuile.NEUTRE) == false) {
+            } else if (t.getTresor().equals(TypeTresorTuile.NEUTRE) == false) {
                 System.out.println("B");
                 collectCases.add(t);
             }
-            System.out.println("Taille collect"+collectCases.size());
+            System.out.println("Taille collect" + collectCases.size());
         }
         return collectCases;
     }
@@ -109,10 +109,18 @@ public abstract class Aventurier {
 
     }
 
+    public boolean possedeCarteHelico (){
+        return false; // à faire
+    }
+
+
+
+
     // getters setters :
     /**
      * @return the nomJoueur
      */
+
     public String getNomJoueur() {
         return nomJoueur;
     }
