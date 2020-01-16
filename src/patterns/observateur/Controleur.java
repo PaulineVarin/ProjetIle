@@ -50,6 +50,14 @@ public class Controleur implements Observateur<Message> {
                 }
                 ihm.modifierAffichage(nomCases);
                 break;
+            case NIVEAU_EAU:
+                System.out.println("NIVEAU_EAU");
+                ileInterdite.distributionCarte();
+                break;
+            case FIN_JEU:
+                System.out.println("FIN_JEU");
+                ileInterdite.perdrePartie();
+                break;
             default:
                 System.out.println("GT");
                 if (msg.getTypeM()==TypeMessage.SE_DEPLACER) {

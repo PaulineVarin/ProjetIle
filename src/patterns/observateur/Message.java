@@ -108,26 +108,41 @@ public class Message implements Serializable {
         Message m = new Message(TypeMessage.ASSECHER);
         m.nomTuile = nomTuile;
         return m;
-    }
+    }*/
    
     public static Message tirecartes (ArrayList<CarteTirage>collectCartesJoueur){
-        Message m  = new Message (TypeAction.CHOIX_CARTE);
+        Message m  = new Message (TypeMessage.FIN_TOUR);
         m.collectCartesJoueur = collectCartesJoueur;
-        m.typeM = TypeMessage.FIN_TOUR;
+        m.typeA = TypeAction.CHOIX_CARTE;
         return m;
     }
+    /*
     
     public static Message donner (ArrayList<Aventurier> collectJoueurs, ArrayList<CarteTirage> collectCartesJoueur){
         Message m = new Message(TypeMessage.DONNER);
         m.typeA = TypeAction.POSSIBILITEES_JOUEUR;
         m.collectJoueurs = collectJoueurs;
         return m;
+    }*/
+    
+    public static Message distribue (int niveauEau){
+        Message m = new Message(TypeMessage.NIVEAU_EAU);
+        m.niveauEau = niveauEau;
+        return m;
     }
-        
+    
+    
+    public static Message ppartie (){
+        Message m = new Message (TypeMessage.FIN_JEU);
+        m.typeA = TypeAction.PERDRE;
+        return m;
+    }
 
     /**
      * @return the typeM
      */
+    
+    
     
     public TypeMessage getTypeM() {
         return typeM;
