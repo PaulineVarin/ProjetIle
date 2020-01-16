@@ -1,17 +1,14 @@
- /*
+/*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
 package Ile;
 
-import Enumeration.TypeRole;
+import Enumeration.*;
 import Enumeration.CouleurJoueur;
-import Enumeration.EtatTuile;
 import Enumeration.TypeMessage;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Random;
 
 /**
  *
@@ -45,107 +42,27 @@ public abstract class Aventurier {
     }
 
     //Méthodes
-    public ArrayList<Tuile> calculCases(TypeMessage action) {
-        ArrayList<Tuile> tuiles = new ArrayList<>();
+    public ArrayList<Tuile> calculCases(TypeMessage typeM) {
         Tuile t = getTuileCourante();
-        Grille g = getIle().getGrille();
+        IleInterdite ile = getIle();
+        Grille g = ile.getGrille();
+        ArrayList<Tuile> collectCases = new ArrayList<>();
 
-        if (action != TypeMessage.DONNER & action != TypeMessage.PRENDRE) {
-            tuiles = getTuiles(t, action, this);
+        if ((typeM.equals(TypeMessage.DONNER) == false) && (typeM.equals(TypeMessage.PRENDRE) == false)) {
+            System.out.println("calcul casesHello gettuiles");
+            collectCases = g.getTuiles(t, typeM, this);
         } else {
-            tuiles.add(getTuileCourante());
+            System.out.println("donner+prendre");
+            if (t.getCollectAventuriers().size() > 1 && typeM.equals(TypeMessage.DONNER)) {
+                System.out.println("A");
+                collectCases.add(t);
+            } else if(t.getTresor().equals(TypeTresorTuile.NEUTRE) == false) {
+                System.out.println("B");
+                collectCases.add(t);
+            }
+            System.out.println("Taille collect"+collectCases.size());
         }
-
-        return tuiles;
-    }
-    
-    public ArrayList<CarteTresor> getCartesTresors() {
-        ArrayList<CarteTresor> collectCartesTresors = new ArrayList<>();
-        for (int i=0; i< getCollectCartesJoueur().size(); i++) {
-            if (getCollectCartesJoueur().get(i).getClass().getName() == "CarteTresor") {
-                collectCartesTresors.add((CarteTresor) getCollectCartesJoueur().get(i));
-            }
-        }
-
-        return collectCartesTresors;
-    }
-
-    public CarteTresor majCarteDonneur(String nomCarte) {
-        CarteTresor cte = (CarteTresor) getCarte(nomCarte);
-        removeCarteTirage(cte);
-        
-        return cte;
-    }
-    
-    public CarteTresor majCarteReceveur(CarteTresor cte) {
-        getCollectCartesJoueur().add(cte);
-        
-        return cte;
-    }
-
-    //a refaire car pas prise en compte de la hasmap
-    private ArrayList<Tuile> getTuiles(Tuile t, TypeMessage action, Aventurier a) {
-        ArrayList<Tuile> cases = new ArrayList<>();     // pour le return
-        ArrayList<Tuile> tuiles = new ArrayList<>();    // pour les calculs
-        Grille g = a.getIle().getGrille();
-        // tuiles = g.getCollectTuiles();
-        EtatTuile etatTuile;
-        int id = t.getIdTuile();
-
-        if (action == TypeMessage.SE_DEPLACER) {
-            for (int i = 0; i < tuiles.size(); i++) {
-                int idb = tuiles.get(i).getIdTuile();
-                if (idb == id - 1 || idb == id + 1 || idb == id + 10 || idb == id - 10) {
-                    if (tuiles.get(i).getEtat() != EtatTuile.COULEE) {
-                        cases.add(tuiles.get(i));
-                    }
-                }
-            }
-
-            if (a.isDeplacementDiagonal()) {
-                for (int i = 0; i < tuiles.size(); i++) {
-                    int idb = tuiles.get(i).getIdTuile();
-                    if (idb == id - 11 || idb == id + 11 || idb == id - 9 || idb == id + 9) {
-                        if (tuiles.get(i).getEtat() != EtatTuile.COULEE) {
-                            cases.add(tuiles.get(i));
-                        }
-                    }
-                }
-            }
-        } else if (action == TypeMessage.ASSECHER) {
-            for (int i = 0; i < tuiles.size(); i++) {
-                int idb = tuiles.get(i).getIdTuile();
-                if (idb == id - 1 || idb == id + 1 || idb == id - 10 || idb == id + 10) {
-                    if (tuiles.get(i).getEtat() == EtatTuile.INONDEE) {
-                        cases.add(tuiles.get(i));
-                    }
-                }
-            }
-
-            if (a.isAssechementDiagonal()) {
-                for (int i = 0; i < tuiles.size(); i++) {
-                    int idb = tuiles.get(i).getIdTuile();
-                    if (idb == id - 11 || idb == id + 11 || idb == id - 9 || idb == id + 9) {
-                        if (tuiles.get(i).getEtat() == EtatTuile.INONDEE) {
-                            cases.add(tuiles.get(i));
-                        }
-                    }
-                }
-            }
-        } else if (action == TypeMessage.DEPLACEMENT_SPE) {
-            for (int i = 0; i < tuiles.size(); i++) {
-                if (tuiles.get(i).getEtat() != EtatTuile.COULEE) {
-                    cases.add(tuiles.get(i));
-                }
-            }
-        } else if (action == TypeMessage.ASSECHER_SPE) {
-            for (int i = 0; i < tuiles.size(); i++) {
-                if (tuiles.get(i).getEtat() == EtatTuile.INONDEE) {
-                    cases.add(tuiles.get(i));
-                }
-            }
-        }
-        return cases;
+        return collectCases;
     }
 
     public int MiseAJourNbActions() {
@@ -173,25 +90,25 @@ public abstract class Aventurier {
     }
 
     public int getNbCartes() {
-        
+
         return collectCartesJoueur.size();
 
     }
 
-    
-    public CarteTirage getCarte(String nomCarte){
-        for (CarteTirage ct : collectCartesJoueur){
-            if (ct.getNom().equals(nomCarte)){
+    public CarteTirage getCarte(String nomCarte) {
+        for (CarteTirage ct : collectCartesJoueur) {
+            if (ct.getNom().equals(nomCarte)) {
                 return ct;
             }
         }
         return null;
     }
-    
-    public void removeCarteTirage(CarteTirage cti){
+
+    public void removeCarteTirage(CarteTirage cti) {
         collectCartesJoueur.remove(cti);
-        
+
     }
+
     // getters setters :
     /**
      * @return the nomJoueur

@@ -36,9 +36,10 @@ public class Tuile {
     // Méthodes :
 
     public void miseAjourEtat() {
-        if (getEtat().equals(EtatTuile.INONDEE)){
-            setEtat(EtatTuile.ASSECHEE);
-
+        if (getEtat().equals(EtatTuile.ASSECHEE)){
+            setEtat(EtatTuile.INONDEE);
+        }else if(getEtat().equals(EtatTuile.INONDEE)) {
+            setEtat(EtatTuile.INONDEE);
         }
     }
 

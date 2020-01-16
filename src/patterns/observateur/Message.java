@@ -19,7 +19,6 @@ public class Message implements Serializable {
     //Donnees
     private TypeMessage typeM;
     private TypeAction typeA;
-    private TypeMessage action;
     private Aventurier a;
     private int niveauEau;
     private int nbJoueurs;
@@ -54,8 +53,9 @@ public class Message implements Serializable {
     }
     
     public static Message choixJoueur(TypeMessage action, String nomRoleCourant, int nbActions) {
-        Message m = new Message(TypeMessage.CHOIX_JOUEUR);
-        m.action = action;
+        Message m = new Message(action);
+        System.out.print("Message choix joueur"+m.getTypeM());
+        m.typeA = TypeAction.CHOIX_JOUEUR;
         m.nomRole = nomRoleCourant;
         m.nbActions = nbActions;
         return m;
@@ -82,16 +82,13 @@ public class Message implements Serializable {
 
     public static Message afficherCases(ArrayList<Tuile> collectCases) {
         Message m = new Message(TypeMessage.AFFICHAGE_CASE);
+        System.out.print("Afficher cases"+m.typeM);
         m.collectTuiles = collectCases;
         return m;
     }
-
-    //Message non vérifiées
-    /*
-    public static Message tourJeu (String nomRole, ArrayList<Tuile> collectTuiles){
-        Message m = new Message(TypeAction.CHOIX_JOUEUR);
-        m.nomRole = nomRole;
-        m.collectTuiles = collectTuiles;
+    
+    public static Message mauvaisChoix() {
+        Message m = new Message(TypeMessage.MAUVAIS_CHOIX);
         return m;
     }
     
@@ -108,7 +105,7 @@ public class Message implements Serializable {
         Message m = new Message(TypeMessage.ASSECHER);
         m.nomTuile = nomTuile;
         return m;
-    }*/
+    }
    
     public static Message tirecartes (ArrayList<CarteTirage>collectCartesJoueur){
         Message m  = new Message (TypeMessage.FIN_TOUR);
@@ -156,9 +153,6 @@ public class Message implements Serializable {
     /**
      * @return the typeM
      */
-    
-    
-    
     public TypeMessage getTypeM() {
         return typeM;
     }
@@ -288,5 +282,6 @@ public class Message implements Serializable {
     public ArrayList<String> getCollectNomsJoueurs() {
         return collectNomsJoueurs;
     }
+   
 }
     

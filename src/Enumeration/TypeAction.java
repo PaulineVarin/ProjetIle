@@ -11,6 +11,7 @@ package Enumeration;
  */
 public enum TypeAction {
    POSSIBILITEES_JOUEUR,
+   CHOIX_JOUEUR,
    VALIDATION_JOUEUR,
    UTILISER_CARTE_SPE,
    CHOIX_RECEVEUR,

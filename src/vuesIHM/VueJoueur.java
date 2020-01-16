@@ -73,24 +73,45 @@ public class VueJoueur{
             j.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
+                    for(JButton tuile : getVueJeu().getVueGrille().getListeBouttons()) {
+                        tuile.setEnabled(false);
+                    }
                     for(JButton j : listeBoutons) {
                         j.setEnabled(false);
                     }
                     if(e.getActionCommand().equals("Se déplacer")) {
-                        TypeMessage action = TypeMessage.SE_DEPLACER;
-                        VueJoueur joueur = getVueJeu().getVuesJoueurs().get(getVueJeu().getNbJoueurCourant());
+                        TypeMessage typeM = TypeMessage.SE_DEPLACER;
+                        //Recupère la vue du joueur courant 
+                        VueJoueur joueur = getVueJeu().getVueJoueurCourant(getVueJeu().getNbJoueurCourant());
                         String nomRole = joueur.getNomRole().getText();
                         String s = joueur.getNbactions().getText();
                         int nbActions = Integer.parseInt(s);
-                        System.out.println(nomRole+nbActions);
-                        getVueJeu().getIhm().choixJoueur(action,nomRole,nbActions);
+                        System.out.println("Vue joueur : "+nomRole+nbActions+typeM);
+                        getVueJeu().getIhm().choixJoueur(typeM,nomRole,nbActions);
                     }else if(e.getActionCommand().equals("Assécher")){
-                        TypeMessage action = TypeMessage.ASSECHER;
-                        VueJoueur joueur = getVueJeu().getVuesJoueurs().get(getVueJeu().getNbJoueurCourant());
+                        TypeMessage typeM = TypeMessage.ASSECHER;
+                        VueJoueur joueur = getVueJeu().getVueJoueurCourant(getVueJeu().getNbJoueurCourant());
                         String nomRole = joueur.getNomRole().getText();
                         String s = joueur.getNbactions().getText();
                         int nbActions = Integer.parseInt(s);
-                        getVueJeu().getIhm().choixJoueur(action,nomRole,nbActions);
+                        System.out.println(nomRole+nbActions+typeM);
+                        getVueJeu().getIhm().choixJoueur(typeM,nomRole,nbActions);
+                    }else if(e.getActionCommand().equals("Donner trésor")) {
+                        TypeMessage typeM = TypeMessage.DONNER;
+                        VueJoueur joueur = getVueJeu().getVueJoueurCourant(getVueJeu().getNbJoueurCourant());
+                        String nomRole = joueur.getNomRole().getText();
+                        String s = joueur.getNbactions().getText();
+                        int nbActions = Integer.parseInt(s);
+                        System.out.println(nomRole+nbActions+typeM);
+                        getVueJeu().getIhm().choixJoueur(typeM,nomRole,nbActions);
+                    }else if (e.getActionCommand().equals("Finir tour")) {
+                        TypeMessage typeM = TypeMessage.FIN_TOUR;
+                        VueJoueur joueur = getVueJeu().getVueJoueurCourant(getVueJeu().getNbJoueurCourant());
+                        String nomRole = joueur.getNomRole().getText();
+                        String s = joueur.getNbactions().getText();
+                        int nbActions = Integer.parseInt(s);
+                        System.out.println(nomRole+nbActions+typeM);
+                        getVueJeu().getIhm().choixJoueur(typeM,nomRole,nbActions); //a modifier
                     }
                 }
             });

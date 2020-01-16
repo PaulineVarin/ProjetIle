@@ -105,7 +105,7 @@ public class IleInterdite extends Observe<Message> {
         creationCartesInondation();
         for (int i = 0; i < Parameters.NB_INONDATIONS_INITIALES; i++) {
             CarteInondation cti = getCartesInondeTire().get(i);
-            System.out.println(cti.getTuile().getNomTuile());
+            System.out.println("Commencer inondation" + cti.getTuile().getNomTuile());
             inondationPlateau(cti.getTuile(), cti);
         }
 
@@ -154,11 +154,20 @@ public class IleInterdite extends Observe<Message> {
 
     }*/
     public void tourDeJeu(String nomRole, int nbActions, TypeMessage action) {
-        while (nbActions != 0 && (action.equals(TypeMessage.FIN_TOUR) == false)) {
+        if (nbActions != 0 && (action.equals(TypeMessage.FIN_TOUR) == false)) {
             Aventurier a = getAventurier(nomRole);
             ArrayList<Tuile> collectCases = a.calculCases(action);
-            Message m = Message.afficherCases(collectCases);
-            notifierObservateurs(m);
+            if (collectCases.size() != 0) {
+                for (Tuile t : collectCases) {
+                    System.out.println("tour de jeu" + t.getNomTuile());
+                }
+                Message m = Message.afficherCases(collectCases);
+                notifierObservateurs(m);
+            } else {
+                System.out.println("Mauvais choix");
+                Message m = Message.mauvaisChoix();
+                notifierObservateurs(m);
+            }
         }
     }
 
@@ -198,9 +207,9 @@ public class IleInterdite extends Observe<Message> {
     public void choixCarte(int nbJoueurCourant) {
         Aventurier temp = getAventuriers().get(nbJoueurCourant);
         ArrayList<CarteTresor> collectCartesTresors = new ArrayList<>();
-        collectCartesTresors = temp.getCartesTresors();
-        Message m = Message.donner(collectCartesTresors);
-        notifierObservateurs(m);
+        //collectCartesTresors = temp.getCartesTresors();
+        /*Message m = Message.donner();     Précisez le message        
+        notifierObservateurs(m);*/
     }
 
     public void donnerCarte(String nomCarte, Aventurier receveur, int nbJoueurCourant) {
@@ -261,7 +270,14 @@ public class IleInterdite extends Observe<Message> {
         return (getCartesTirageTire().size() >= 2);
     }
 
-    private void majCollectCartesTire() {
+    /*private ArrayList<CarteTirage> tiragePossible() {
+        ArrayList<CarteTirage> tiree = new ArrayList<>();
+        for (int i=0; i<2; i++) {
+            tiree.add(getCartesTirageTire().get(i));
+        }
+        return tiree;
+
+private void majCollectCartesTire() {
         Collections.shuffle(cartesTirageDefausse);
         cartesTirageTire.addAll(cartesTirageDefausse);
         cartesTirageDefausse.clear();
@@ -449,7 +465,10 @@ public class IleInterdite extends Observe<Message> {
         return tiree;
     }
     
-
+    private void tirageCartesInondation() {
+        // utiliser this.niveauEau pour le nombre de carte
+        System.out.println("Pensez à programmer tirageCartesInondation");
+    }*/
     private void choixCarteSpe() {
         ArrayList<CarteTresor> collectCartesTresors = new ArrayList<>();
         collectCartesTresors = null;
