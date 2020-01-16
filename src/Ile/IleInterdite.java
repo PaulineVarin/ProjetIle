@@ -223,7 +223,48 @@ public class IleInterdite extends Observe<Message> {
 
         Message m = Message.donner(nbActionsDonneur, nomCarte, nomCarte, nomCarte);
         notifierObservateurs(m);
+    }
 
+    /*
+    J'ai du changer les primitive de recuperationTresor (ajout
+        de joueurActif), et de possedeCartes (ajout de
+        typeTresor)
+            */
+    public void recuperationTresor(String nomtuile, int joueurActif) {
+        Grille g = getGrille();
+        Tuile t = g.getTuile(nomtuile);
+        TypeTresorTuile typeTresor = t.getTresor();
+        Aventurier temp = aventuriers.get(joueurActif);
+        ArrayList<CarteTresor> collectCarteTresor = temp.getCartesTresors();
+
+        if (rep(collectCarteTresor, typeTresor)) {
+            ArrayList<TypeTresorTuile> collectNomsTresors = getTresorsRecuperes();
+            collectNomsTresors.add(typeTresor);
+
+            temp.MiseAJourNbActions();
+            TypeRole nomRole = temp.getRole();
+            temp.removeCarteTirage(collectCarteTresor);
+
+            getCartesTirageDefausse().addAll(collectCarteTresor);
+            
+            // Il faut encore créer le message et l'envoyer
+            //      (commande 13 et 14 du diagramme de séquence - prendre_tresor)
+        }
+    }
+
+    private boolean rep(ArrayList<CarteTresor> cartesTresor, TypeTresorTuile typeTresorTuile) {
+        for (int i=0; i< cartesTresor.size()-3; i++) {
+            for (int j=i+1; j< cartesTresor.size()-2; j++) {
+                for (int k=j+1; k< cartesTresor.size()-1; k++) {
+                    for (int l= k+1; l< cartesTresor.size(); l++) {
+                        if ((cartesTresor.get(i).getTypeTresor().toString().equals(typeTresorTuile.toString())) && (i==j && j==k && k==l)) {
+                            return(true);
+                        }
+                    }
+                }
+            }
+        }
+        return (false);
     }
 
     public void seDeplacer(String nomRole, String nomTuile, int nbActions) {

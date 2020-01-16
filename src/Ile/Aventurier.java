@@ -119,6 +119,23 @@ public abstract class Aventurier {
     public void majCarteReceveur(CarteTresor cte) {
         getCollectCartesJoueur().add(cte);
     }
+    
+    public ArrayList<CarteTresor> getCartesTresors() {
+        ArrayList<CarteTresor> cte = new ArrayList<>();
+        for (int i=0; i<getCollectCartesJoueur().size(); i++) {
+            if (getCollectCartesJoueur().get(i).getClass().toString() == "CarteTresor") {
+                cte.add((CarteTresor) getCollectCartesJoueur().get(i));
+            }
+        }
+
+        return (cte);
+    }
+
+    void removeCarteTirage(ArrayList<CarteTresor> cartes) {
+        for (int i=0; i<cartes.size(); i++) {
+            getCollectCartesJoueur().remove(cartes.get(i));
+        }
+    }
 
     // getters setters :
     /**
