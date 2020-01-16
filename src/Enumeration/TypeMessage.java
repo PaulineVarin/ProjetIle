@@ -10,9 +10,11 @@ package Enumeration;
  * @author tardieue
  */
 public enum TypeMessage {
+    ATTENTE,
     INITIALISATION,
     DEBUT_JEU,
     DEBUT_TOUR,
+    CHOIX_JOUEUR,
     AFFICHAGE_CASE,
     SE_DEPLACER,
     ASSECHER,

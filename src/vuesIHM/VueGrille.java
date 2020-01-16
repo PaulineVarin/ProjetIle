@@ -20,7 +20,6 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.Popup;
 
 /**
  *
@@ -32,8 +31,12 @@ public class VueGrille implements MouseListener{
     private JFrame window = new JFrame("Grille");
     private JPanel contenu = new JPanel(new BorderLayout());
     private JPanel contenuCentre = new JPanel(new GridLayout(6, 6));
-
     private ArrayList<JButton> listeBouttons  = new ArrayList<>();
+    //Pop_up
+    JFrame pop = new JFrame("Trésor");
+    JPanel contenuPop = new JPanel(new BorderLayout());
+    JLabel nomTresor = new JLabel("TEST");
+    JButton fermer = new JButton("Fermer");
     
     
     //Constructeur
@@ -65,7 +68,7 @@ public class VueGrille implements MouseListener{
        
        window.add(contenu);
        window.setUndecorated(Parameters.UNDECORATED);
-       window.setSize(1250, 500);
+       window.setSize(getVueJeu().tailleFenetreLareur(),200);
        window.setLocation(0,0);
        window.setVisible(true);
     }
@@ -77,7 +80,7 @@ public class VueGrille implements MouseListener{
             //Ajout du nom des tuiles sur les boutons
             if (i!=0 && i!=1 && i!=4 && i!=5 && i!=6 && i!=11 && i!=24 && i!=29 && i!=30 && i!=31 && i!=34 && i!=35) {
                j = getListeBouttons().get(i);
-               j.setText(collectTuiles.get(i).getNomTuile());
+               j.setText(Integer.toString(collectTuiles.get(i).getIdTuile()));
                j.setBackground(Parameters.TUILE_ASSECHEE_BG);
                j.setFont(new Font(Font.SERIF,Font.ITALIC, 12));
            }
@@ -115,37 +118,6 @@ public class VueGrille implements MouseListener{
             }
         } 
     }  
-    @Override
-    public void mouseClicked(MouseEvent arg0) {
-        JButton j =(JButton) arg0.getSource();
-        int x = arg0.getXOnScreen();
-        int y = arg0.getYOnScreen();
-        
-        //Creation du pop-up (a mettre dans une méthode
-        JFrame popUp = new JFrame("Trésor");
-        JPanel contenu = new JPanel(new BorderLayout());
-        JLabel nomTresor = new JLabel("TEST");
-        JButton fermer = new JButton("Fermer");
-        contenu.add(nomTresor,BorderLayout.CENTER);
-        contenu.add(fermer,BorderLayout.SOUTH);
-        contenu.setBackground(Color.red);
-        popUp.add(contenu);
-        popUp.setSize(200,200);
-        popUp.setLocation(x, y);
-        popUp.setUndecorated(true);
-        popUp.setVisible(true);
-
-        if(j.getText().equals("Le Palais des Marées") || j.getText().equals("Le Palais de Corail")) {
-            nomTresor.setText("CALICE");
-        }
-        fermer.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent arg0) {
-                popUp.dispose();
-            }
-        });
-    }
-    
     /**
      * @return the window
      */
@@ -160,11 +132,67 @@ public class VueGrille implements MouseListener{
         return listeBouttons;
     }
     @Override
-    public void mousePressed(MouseEvent arg0) {}
+    public void mouseClicked(MouseEvent arg0) {
+        
+    } 
+    @Override
+    public void mousePressed(MouseEvent arg0) {
+        JButton j =(JButton) arg0.getSource();
+        int x = arg0.getXOnScreen();
+        int y = arg0.getYOnScreen();
+        
+        if(getVueJeu().getIhm().getActionEncours().equals(TypeMessage.SE_DEPLACER)) {
+            System.out.println("ActionListener");
+            String nomTuile = j.getText();
+            int nb = getVueJeu().getNbJoueurCourant();
+            String nomRole = getVueJeu().getVuesJoueurs().get(nb).getNomRole().getText();
+            getVueJeu().getIhm().validationCaseJoueur(nomTuile,nomRole);
+        }else {
+            System.out.println("Affiche");
+        //Affichage du pop_up
+        contenuPop.add(nomTresor,BorderLayout.CENTER);
+        pop.add(contenuPop,BorderLayout.CENTER);
+        pop.add(fermer,BorderLayout.SOUTH);
+        pop.setSize(100,100);
+        pop.setLocation(x, y);
+        pop.setUndecorated(true);
+        pop.setVisible(true);
+        
+        if(j.getText().equals("Le Palais des Marées") || j.getText().equals("Le Palais de Corail")) {
+            nomTresor.setText("CALICE");
+            contenuPop.setBackground(Color.BLUE);
+        }else if(j.getText().equals("Le Temple de la Lune") || j.getText().equals("Le Temple du soleil")) {
+            nomTresor.setText("PIERRE");
+            contenuPop.setBackground(Color.GRAY);
+        }else if(j.getText().equals("Jardin des Hurlements") || j.getText().equals("Jardin des murmures")) {
+            nomTresor.setText("ZEPHYR");
+            contenuPop.setBackground(Color.yellow);
+        }else if(j.getText().equals("La Caverne des Ombres") || j.getText().equals("La Caverne du Brasier")) {
+            nomTresor.setText("CRISTAL"); 
+            contenuPop.setBackground(Color.red);
+        }else {
+            nomTresor.setText("Pas de trésor");
+            contenuPop.setBackground(pop.getBackground());
+        }
+        }
+        fermer.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                pop.dispose();
+            }
+        });
+    }
     @Override
     public void mouseReleased(MouseEvent arg0) {}
     @Override
     public void mouseEntered(MouseEvent arg0) {}
     @Override
     public void mouseExited(MouseEvent arg0) {}
+
+    /**
+     * @return the vueJeu
+     */
+    public VueJeu getVueJeu() {
+        return vueJeu;
+    }
 }

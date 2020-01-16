@@ -7,6 +7,8 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -34,13 +36,15 @@ public class VueJoueur{
     private JPanel contenu = new JPanel(new BorderLayout());
     private JPanel contenuHaut = new JPanel(new GridLayout(2, 1));
     private JPanel contenuMillieu = new JPanel(new GridLayout(3, 1));
+    private JPanel contenuNbActions = new JPanel(new GridLayout(1, 2));
     private JPanel contenuBas = new JPanel(new GridLayout(2, 3));
     
     private JLabel nomJoueur = new JLabel("NomJoueur");
     private JLabel nomRole = new JLabel("nomRole");
     private JLabel listeTresors = new JLabel();
+    private JLabel libelNbActions = new JLabel("Actions possibles : ");
+    private JLabel nbactions = new JLabel();
     private JTextArea nomCartes = new JTextArea("Liste des cartes : ");
-    private JLabel nbactions = new JLabel("Actions possibles : ");
     
     private JButton deplacer = new JButton("Se déplacer");
     private JButton assecher = new JButton("Assécher");
@@ -50,7 +54,7 @@ public class VueJoueur{
     private JButton finir = new JButton("Finir tour");
     
     private int x = 0;
-    private int y = 500;
+    private int y = 110;
     private ArrayList<JButton> listeBoutons = new ArrayList<>();
     //Constructeur
     public VueJoueur(Aventurier a,VueJeu jeu) {
@@ -62,14 +66,37 @@ public class VueJoueur{
         listeBoutons.add(prendre);
         listeBoutons.add(utiliserCarte);
         listeBoutons.add(finir);
+        
+        
         //Configuration boutons 
         for (JButton j : listeBoutons) {
+            j.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    for(JButton j : listeBoutons) {
+                        j.setEnabled(false);
+                    }
+                    if(e.getActionCommand().equals("Se déplacer")) {
+                        TypeMessage action = TypeMessage.SE_DEPLACER;
+                        VueJoueur joueur = getVueJeu().getVuesJoueurs().get(getVueJeu().getNbJoueurCourant());
+                        String nomRole = joueur.getNomRole().getText();
+                        String s = joueur.getNbactions().getText();
+                        int nbActions = Integer.parseInt(s);
+                        System.out.println(nomRole+nbActions);
+                        getVueJeu().getIhm().choixJoueur(action,nomRole,nbActions);
+                    }else if(e.getActionCommand().equals("Assécher")){
+                        TypeMessage action = TypeMessage.ASSECHER;
+                        VueJoueur joueur = getVueJeu().getVuesJoueurs().get(getVueJeu().getNbJoueurCourant());
+                        String nomRole = joueur.getNomRole().getText();
+                        String s = joueur.getNbactions().getText();
+                        int nbActions = Integer.parseInt(s);
+                        getVueJeu().getIhm().choixJoueur(action,nomRole,nbActions);
+                    }
+                }
+            });
             j.setFont(new Font(Font.SANS_SERIF,Font.BOLD, 9));
+            j.setEnabled(false);
         }
-         
-        
-        
-        
         //Configuraton de contenuHaut
         nomJoueur.setText(a.getNomJoueur());
         nomJoueur.setHorizontalAlignment(SwingConstants.CENTER);
@@ -78,15 +105,19 @@ public class VueJoueur{
         contenuHaut.add(nomJoueur);
         contenuHaut.add(nomRole);
         
+        //Configuration de conteunuNbActions
+        contenuNbActions.add(libelNbActions);
+        nbactions.setText(Integer.toString(a.getNbaction()));
+        contenuNbActions.add(nbactions);
+        
         //Configuration de contenuMillieu
-        nbactions.setText(nbactions.getText()+Integer.toString(a.getNbaction()));
         nomCartes.setLineWrap(true);
         nomCartes.setEditable(false);
         nomCartes.setBackground(contenu.getBackground());
 
-        contenuMillieu.add(nbactions);
+        contenuMillieu.add(contenuNbActions);
         for(CarteTirage ct : a.getCollectCartesJoueur()) {
-            nomCartes.setText(nomCartes.getText()+" "+ct.getNom()+";");
+            nomCartes.setText(nomCartes.getText()+" "+ct.getNom()+"; ");
         }
         contenuMillieu.add(nomCartes);
         listeTresors.setText("Aucun trésor");
@@ -124,7 +155,7 @@ public class VueJoueur{
         
         
         //Configuration window
-        window.setSize(330,300);
+        window.setSize(330,200);
         window.setUndecorated(Parameters.UNDECORATED);
         window.add(contenu);
         window.setVisible(true);
@@ -133,12 +164,27 @@ public class VueJoueur{
     
     //Méthodes
     public void positionsFenetres() {
+        setY(getY()+window.getHeight()/2);
+        setX(0);
         for (VueJoueur joueur : getVueJeu().getVuesJoueurs()) {
             joueur.getWindow().setLocation(getX(), getY());
-            setX(getX()+window.getWidth()+3);
+            setX(getX()+window.getWidth()+3); 
         }
         setX(0);
+        if(getVueJeu().getVuesJoueurs().size()>2) {
+            setY(getY()+210);
+            getVueJeu().getVuesJoueurs().get(2).getWindow().setLocation(getX(),getY());
+            getVueJeu().getVuesJoueurs().get(3).getWindow().setLocation(getX()+window.getWidth()+3, getY());
+        }
     }
+    
+    public void debutTour() {
+        for(JButton j : getListeBoutons()) {
+            j.setEnabled(true);
+        }
+    }
+    
+    
 
     /**
      * @return the vueJeu
@@ -180,6 +226,27 @@ public class VueJoueur{
      */
     public void setY(int y) {
         this.y = y;
+    }
+
+    /**
+     * @return the listeBoutons
+     */
+    public ArrayList<JButton> getListeBoutons() {
+        return listeBoutons;
+    }
+
+    /**
+     * @return the nomRole
+     */
+    public JLabel getNomRole() {
+        return nomRole;
+    }
+
+    /**
+     * @return the nbactions
+     */
+    public JLabel getNbactions() {
+        return nbactions;
     }
     
 }
