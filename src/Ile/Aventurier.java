@@ -49,7 +49,7 @@ public abstract class Aventurier {
         ArrayList<Tuile> collectCases = new ArrayList<>();
 
         if ((typeM.equals(TypeMessage.DONNER) == false) && (typeM.equals(TypeMessage.PRENDRE) == false)) {
-            System.out.println("calcul casesHello gettuiles");
+            System.out.println("calcul cases Hello gettuiles");
             collectCases = g.getTuiles(t, typeM, this);
         } else {
             System.out.println("donner+prendre");

@@ -17,6 +17,7 @@ import java.io.*;
  * @author varinp
  */
 public class IHM extends Observe<Message> {
+
     //Donnees
     private VueInscription inscription;
     private VueIntroduction introduction;
@@ -44,7 +45,7 @@ public class IHM extends Observe<Message> {
     public void choixJoueur(TypeMessage typeM, String nomRoleCourant, int nbActions) {
         //Mise à jour de l'action
         setActionEncours(typeM);
-        System.out.println("IHM choix joueur : "+typeM);
+        System.out.println("IHM choix joueur : " + typeM);
         Message m = Message.choixJoueur(typeM, nomRoleCourant, nbActions);
         notifierObservateurs(m);
     }
@@ -61,13 +62,22 @@ public class IHM extends Observe<Message> {
     }
 
     public void modifierAffichage(ArrayList<String> collectNomsTuile) {
-        setActionEncours(TypeMessage.ATTENTE);
         getJeu().affichageCases(collectNomsTuile);
     }
-    
+
     public void mauvaisChoix(int nbJoueurCourant) {
         getJeu().getVueGrille().mauvaisChoix();
         getJeu().getVueJoueurCourant(nbJoueurCourant).debutTour();
+    }
+
+    public void miseAjourVues(String nomRole, Tuile tuile, int nbActions, TypeMessage typeM,int nbJoueurCourant) {
+        if(typeM.equals(TypeMessage.SE_DEPLACER)) {
+                getJeu().getVueGrille().miseAjourVueGrille(tuile,nomRole);
+                getJeu().getVueJoueurCourant(nbJoueurCourant).miseAjourVueJoueur(nbActions,nomRole);
+                getJeu().getVueResume().miseAjourVueResume(nomRole,tuile.getNomTuile(),typeM);
+        }
+        setActionEncours(TypeMessage.ATTENTE);
+        System.out.print("Action en attente");
     }
 
     /**

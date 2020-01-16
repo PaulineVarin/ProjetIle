@@ -80,6 +80,7 @@ public class VueJoueur {
                         j.setEnabled(false);
                     }
                     if (e.getActionCommand().equals("Se déplacer")) {
+                        System.out.println("getACTIONCOMMAND");
                         TypeMessage typeM = TypeMessage.SE_DEPLACER;
                         //Recupère la vue du joueur courant 
                         VueJoueur joueur = getVueJeu().getVueJoueurCourant(getVueJeu().getNbJoueurCourant());
@@ -94,7 +95,7 @@ public class VueJoueur {
                         String nomRole = joueur.getNomRole().getText();
                         String s = joueur.getNbactions().getText();
                         int nbActions = Integer.parseInt(s);
-                        System.out.println(nomRole + nbActions + typeM);
+                        System.out.println("Vue joueur : " + nomRole + nbActions + typeM);
                         getVueJeu().getIhm().choixJoueur(typeM, nomRole, nbActions);
                     } else if (e.getActionCommand().equals("Donner trésor")) {
                         TypeMessage typeM = TypeMessage.DONNER;
@@ -102,7 +103,7 @@ public class VueJoueur {
                         String nomRole = joueur.getNomRole().getText();
                         String s = joueur.getNbactions().getText();
                         int nbActions = Integer.parseInt(s);
-                        System.out.println(nomRole + nbActions + typeM);
+                        System.out.println("Vue joueur : " + nomRole + nbActions + typeM);
                         getVueJeu().getIhm().choixJoueur(typeM, nomRole, nbActions);
                     } else if (e.getActionCommand().equals("Prendre trésor")) {
                         TypeMessage typeM = TypeMessage.PRENDRE;
@@ -110,7 +111,7 @@ public class VueJoueur {
                         String nomRole = joueur.getNomRole().getText();
                         String s = joueur.getNbactions().getText();
                         int nbActions = Integer.parseInt(s);
-                        System.out.println(nomRole + nbActions + typeM);
+                        System.out.println("Vue joueur : " + nomRole + nbActions + typeM);
                         getVueJeu().getIhm().choixJoueur(typeM, nomRole, nbActions);
                     } else if (e.getActionCommand().equals("Finir tour")) {
                         TypeMessage typeM = TypeMessage.FIN_TOUR;
@@ -118,7 +119,7 @@ public class VueJoueur {
                         String nomRole = joueur.getNomRole().getText();
                         String s = joueur.getNbactions().getText();
                         int nbActions = Integer.parseInt(s);
-                        System.out.println(nomRole + nbActions + typeM);
+                        System.out.println("Vue joueur : " + nomRole + nbActions + typeM);
                         getVueJeu().getIhm().choixJoueur(typeM, nomRole, nbActions); //a modifier
                     }
                 }
@@ -208,6 +209,13 @@ public class VueJoueur {
 
     public void debutTour() {
         for (JButton j : getListeBoutons()) {
+            j.setEnabled(true);
+        }
+    }
+    
+    public void miseAjourVueJoueur(int nbActions,String nomRole) {
+        getNbactions().setText(Integer.toString(nbActions));
+        for(JButton j : listeBoutons) {
             j.setEnabled(true);
         }
     }
