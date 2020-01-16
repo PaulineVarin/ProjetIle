@@ -502,6 +502,7 @@ private void majCollectCartesTire() {
                      
          }
     }
+    
 
     /* à faire quand le diagramme de séquence sera fait
     public void finDeTour(String nomAventurier) {

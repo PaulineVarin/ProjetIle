@@ -112,6 +112,7 @@ public class Controleur implements Observateur<Message> {
             case FIN_TOUR:
                 System.out.println("patterns.observateur.Controleur.traiterMessage()");
                 break;
+            // traitements messages non traités pour perdrePartie et gagnerPartie
             default:
                 System.out.print("Default Action non disponible");
         }
