@@ -75,6 +75,8 @@ public class IHM extends Observe<Message> {
                 getJeu().getVueGrille().miseAjourVueGrille(tuile,nomRole);
                 getJeu().getVueJoueurCourant(nbJoueurCourant).miseAjourVueJoueur(nbActions,nomRole);
                 getJeu().getVueResume().miseAjourVueResume(nomRole,tuile.getNomTuile(),typeM);
+        }else if(typeM.equals(TypeMessage.SE_DEPLACER)){
+            
         }
         setActionEncours(TypeMessage.ATTENTE);
         System.out.print("Action en attente");

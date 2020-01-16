@@ -170,7 +170,7 @@ public class IleInterdite extends Observe<Message> {
                 notifierObservateurs(m);
             }
         } else {
-            System.out.print("Fin tour");
+            System.out.print("Fin tour"); //mettre actif seulement le bouton fin_tour
         }
     }
 
@@ -183,9 +183,9 @@ public class IleInterdite extends Observe<Message> {
         return null;
     }
 
-    public void seDeplacer(String nomTuile, String nomRole) {
-        System.out.println("se deplacer" + nomRole + nomTuile);
-        Aventurier a = getAventurier(nomRole);
+    public void seDeplacer(String nomTuile,int numJourCourant) {
+        Aventurier a=getCollectAventuriers().get(numJourCourant);
+        System.out.println("se deplacer" + a.getStringRole()+ nomTuile);
         Tuile t = a.getTuileCourante();
         t.getCollectAventuriers().remove(a);
 
@@ -200,11 +200,14 @@ public class IleInterdite extends Observe<Message> {
         notifierObservateurs(m);
     }
 
-    public void assecher(String nomTuile,TypeMessage typeM) {
-        //Aventurier a = getAventu
+    public void assecher(String nomTuile,TypeMessage typeM,int nbJoueurCourant) {
+        Aventurier a = getAventurier(nomTuile);
         Grille g = getGrille();
         Tuile t=g.getTuile(nomTuile);
         t.miseAjourEtat(typeM);
+        a.MiseAJourNbActions();
+        a.getStringRole();
+        Message m = Message.assecher(a.getStringRole(),t.getNomTuile(), a.getNbaction());
         //notifierObservateurs(m);
     }
 
