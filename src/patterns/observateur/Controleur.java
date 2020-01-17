@@ -5,8 +5,7 @@
  */
 package patterns.observateur;
 
-import Enumeration.TypeAction;
-import Enumeration.TypeMessage;
+import Enumeration.*;
 import vuesIHM.*;
 import Ile.*;
 import java.util.ArrayList;
@@ -29,15 +28,20 @@ public class Controleur implements Observateur<Message> {
     }
 
     //Méthodes
+    @Override
     public void traiterMessage(Message msg) {
         switch (msg.getTypeM()) {
             case INITIALISATION:
                 System.out.println("Initialisation");
-                ileInterdite.commencerPartie(msg.getNiveauEau(), msg.getCollectNomsJoueurs(), msg.getNbJoueurs(),msg.getTypeM());
+                ileInterdite.commencerPartie(msg.getNiveauEau(), msg.getCollectNomsJoueurs(), msg.getNbJoueurs(), msg.getTypeM());
                 break;
             case DEBUT_JEU:
                 System.out.println("DEBUT_JEU");
                 ihm.demarrerJeu(msg.getCollectTuiles(), msg.getCollectJoueurs(), msg.getNiveauEau(), nbJoueurCourant);
+                break;
+            case DEBUT_TOUR:
+                nbJoueurCourant = msg.getNbJoueurCourant();
+                ihm.miseAjourVuesDebutTour(nbJoueurCourant);
                 break;
             case AFFICHAGE_CASE:
                 System.out.println("Affich cases");
@@ -53,35 +57,35 @@ public class Controleur implements Observateur<Message> {
                 if (msg.getTypeA() != null) {
                     if (msg.getTypeA().equals(TypeAction.CHOIX_JOUEUR)) {
                         System.out.println("Controleur CHOIX_JOUEURDEPLACER");
-                        ileInterdite.tourDeJeu(msg.getNomRole(), msg.getNbActions(), msg.getTypeM());
+                        ileInterdite.tourDeJeu(nbJoueurCourant, msg.getNbActions(), msg.getTypeM());
                     } else if (msg.getTypeA().equals(TypeAction.VALIDATION_JOUEUR)) {
                         System.out.println("Controleur hello vueJeu");
-                        ileInterdite.seDeplacer(msg.getNomTuile(),nbJoueurCourant);
+                        ileInterdite.seDeplacer(msg.getNomTuile(), nbJoueurCourant);
                     }
                 } else {
-                    ihm.miseAjourVues(msg.getNomRole(), msg.getT(), msg.getNbActions(), msg.getTypeM(), nbJoueurCourant);
+                    ihm.miseAjourVues(msg.getNomRole(), msg.getNomTuile(), msg.getNbActions(), msg.getTypeM(), nbJoueurCourant);
                 }
                 break;
 
             case ASSECHER:
-                if(msg.getTypeA()!=null) {
+                if (msg.getTypeA() != null) {
                     if (msg.getTypeA().equals(TypeAction.CHOIX_JOUEUR)) {
-                    System.out.println("Controleur CHOIX_JOUEURAssecher");
-                    ileInterdite.tourDeJeu(msg.getNomRole(), msg.getNbActions(), msg.getTypeM());
-                } else {
-                    if (msg.getTypeA().equals(TypeAction.VALIDATION_JOUEUR)) {
-                        ileInterdite.assecher(msg.getNomTuile(),msg.getTypeM(),nbJoueurCourant);
+                        System.out.println("Controleur CHOIX_JOUEURAssecher");
+                        ileInterdite.tourDeJeu(nbJoueurCourant, msg.getNbActions(), msg.getTypeM());
+                    } else {
+                        if (msg.getTypeA().equals(TypeAction.VALIDATION_JOUEUR)) {
+                            ileInterdite.assecher(msg.getNomTuile(), msg.getTypeM(), nbJoueurCourant);
+                        }
                     }
-                }
-                }else{
-                    ihm.miseAjourVues(msg.getNomRole(), msg.getT(), msg.getNbActions(), msg.getTypeM(), nbJoueurCourant);
+                } else {
+                    ihm.miseAjourVues(msg.getNomRole(), msg.getNomTuile(), msg.getNbActions(), msg.getTypeM(), nbJoueurCourant);
                 }
                 break;
-                
+
             case DONNER:
                 if (msg.getTypeA().equals(TypeAction.CHOIX_JOUEUR)) {
                     System.out.println("Controleur CHOIX_JOUEURDonner");
-                    ileInterdite.tourDeJeu(msg.getNomRole(), msg.getNbActions(), msg.getTypeM());
+                    ileInterdite.tourDeJeu(nbJoueurCourant, msg.getNbActions(), msg.getTypeM());
                 } else {
                     if (msg.getTypeA().equals(TypeAction.VALIDATION_JOUEUR)) {
                         //ileInterdite.choixJoueurs();
@@ -91,7 +95,7 @@ public class Controleur implements Observateur<Message> {
             case PRENDRE:
                 if (msg.getTypeA().equals(TypeAction.CHOIX_JOUEUR)) {
                     System.out.println("Controleur CHOIX_JOUEURPrendre");
-                    ileInterdite.tourDeJeu(msg.getNomRole(), msg.getNbActions(), msg.getTypeM());
+                    ileInterdite.tourDeJeu(nbJoueurCourant, msg.getNbActions(), msg.getTypeM());
                 } else {
                     if (msg.getTypeA().equals(TypeAction.VALIDATION_JOUEUR)) {
                         //ileInterdite.recuperationTresor();
@@ -100,17 +104,43 @@ public class Controleur implements Observateur<Message> {
                 break;
             case NIVEAU_EAU:
                 System.out.println("NIVEAU_EAU");
-                //ileInterdite.distributionCarte();
                 break;
-            case FIN_JEU:
-                System.out.println("FIN_JEU");
-                //ileInterdite.perdrePartie();
+            case FIN_TOUR:
+                if (msg.getTypeA() == null) {
+                    System.out.println("Hello methode finTour");
+                    ileInterdite.finTour(nbJoueurCourant);
+                } else if (msg.getTypeA().equals(TypeAction.CHOIX_CARTE)) {
+                    ArrayList<String> collectNoms = new ArrayList<>();
+                    for (CarteTirage ct : msg.getCollectCartesJoueur()) {
+                        collectNoms.add(ct.getNom());
+                    }
+                    ihm.afficherChoix(msg.getTypeM(), collectNoms);
+                } else if (msg.getTypeA().equals(TypeAction.CHOIX_CARTE_DEFAUSSE)) {
+                    ileInterdite.majCollectCartesJoueurs(msg.getNomCarte(), nbJoueurCourant);
+                    //ihm.miseAjourVuesDistribution();
+                } else if (msg.getTypeA().equals(TypeAction.DISTRIBUTION_CARTE)) {
+                    ArrayList<String> nomCartes = new ArrayList<>();
+                    for (CarteTirage cti : msg.getCollectCartesJoueur()) {
+                        System.out.println("controleur cartes noms");
+                        nomCartes.add(cti.getNom());
+                        System.out.println(cti.getNom());
+                    }
+                    ihm.miseAjourVuesDistribution(msg.getNiveauEau(), nomCartes, nbJoueurCourant);
+                } else if (msg.getTypeA().equals(TypeAction.INONDATION)) {
+                    ArrayList<String> nomTuiles = new ArrayList<>();
+                    for (Tuile t : msg.getCollectTuiles()) {
+                        nomTuiles.add(t.getNomTuile());
+                        System.out.println(t.getNomTuile());
+                    }
+                    ihm.miseAJourVueInondation(nomTuiles);
+                    ileInterdite.changementJoueur(nbJoueurCourant);
+                }
                 break;
             case MAUVAIS_CHOIX:
                 ihm.mauvaisChoix(nbJoueurCourant);
                 break;
-            case FIN_TOUR:
-                System.out.println("patterns.observateur.Controleur.traiterMessage()");
+            case FIN_JEU:
+                //ileInterdite.perdrePartie();
                 break;
             // traitements messages non traités pour perdrePartie et gagnerPartie
             default:

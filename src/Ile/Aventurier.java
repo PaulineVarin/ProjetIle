@@ -44,6 +44,7 @@ public abstract class Aventurier {
     //Méthodes
     public ArrayList<Tuile> calculCases(TypeMessage typeM) {
         Tuile t = getTuileCourante();
+        System.out.println("Tuile courante"+t.getNomTuile());
         IleInterdite ile = getIle();
         Grille g = ile.getGrille();
         ArrayList<Tuile> collectCases = new ArrayList<>();
@@ -53,10 +54,7 @@ public abstract class Aventurier {
             collectCases = g.getTuiles(t, typeM, this);
         } else {
             System.out.println("donner+prendre");
-            if (t.getCollectAventuriers().size() > 1 && typeM.equals(TypeMessage.DONNER)) {
-                System.out.println("A");
-                collectCases.add(t);
-            } else if (t.getTresor().equals(TypeTresorTuile.NEUTRE) == false) {
+            if (t.getTresor().equals(TypeTresorTuile.NEUTRE) == false && typeM.equals(TypeMessage.PRENDRE)) {
                 System.out.println("B");
                 collectCases.add(t);
             }
@@ -73,7 +71,6 @@ public abstract class Aventurier {
     }
 
     public int getNbCartes() {
-
         return collectCartesJoueur.size();
 
     }

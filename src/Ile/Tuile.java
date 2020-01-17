@@ -15,7 +15,7 @@ import java.util.ArrayList;
  * @author tardieue
  */
 public class Tuile {
-
+    
     private String nomTuile;
     private int idTuile;
     private int ligne;
@@ -23,9 +23,9 @@ public class Tuile {
     private EtatTuile etat;
     private TypeTresorTuile tresor = TypeTresorTuile.NEUTRE;
     private Aventurier joueurDepart;
-
+    
     private ArrayList<Aventurier> collectAventuriers = new ArrayList<>();
-
+    
     public Tuile(int lig, int col, String nomTuile) {
         setNomTuile(nomTuile);
         setLigne(lig);
@@ -37,19 +37,21 @@ public class Tuile {
 
     // Méthodes :
     public void miseAjourEtat(TypeMessage typeM) {
-        if (typeM.equals(TypeMessage.INITIALISATION)) {
+        if (getEtat().equals(EtatTuile.ASSECHEE)) {
             setEtat(EtatTuile.INONDEE);
-        } else if (typeM.equals(TypeMessage.ASSECHER)) {
+        } else if (getEtat().equals(EtatTuile.INONDEE) && typeM.equals(TypeMessage.ASSECHER)) {
             setEtat(EtatTuile.ASSECHEE);
+        } else {
+            setEtat(EtatTuile.COULEE);
         }
-
+        
     }
-
+    
     public void removeJoueur(Aventurier a) {
         Tuile t = a.getTuileCourante();
         t.getCollectAventuriers().remove(a);
     }
-
+    
     public void addJoueur(Aventurier a) {
         Tuile t = a.getTuileCourante();
         t.getCollectAventuriers().add(a);
@@ -65,7 +67,7 @@ public class Tuile {
                 joueurs.remove(i);
             }
         }
-
+        
         return joueurs;
     }
 
@@ -175,9 +177,9 @@ public class Tuile {
     public ArrayList<Aventurier> getCollectAventuriers() {
         return collectAventuriers;
     }
-
+    
     public void addAventurier(Aventurier a) {
         getCollectAventuriers().add(a);
     }
-
+    
 }

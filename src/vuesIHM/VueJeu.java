@@ -68,7 +68,7 @@ public class VueJeu {
            addVuesJoueurs(new VueJoueur(a, this));
         }
         //mettre les vues joueurs dans l'état pour tourDeJeu
-        getVuesJoueurs().get(nbJoueurCourant).debutTour();
+        getVuesJoueurs().get(nbJoueurCourant).debutTour(getNbJoueurCourant());
         
         for(VueJoueur joueur : getVuesJoueurs()) {
             joueur.positionsFenetres();

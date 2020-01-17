@@ -2,10 +2,20 @@ package vuesIHM;
 
 import Enumeration.*;
 import Ile.*;
+import java.awt.BorderLayout;
+import java.awt.GridLayout;
+import java.awt.SystemColor;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import patterns.observateur.Message;
 import patterns.observateur.*;
 import java.io.*;
+import javax.swing.ButtonGroup;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.JRadioButton;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -23,6 +33,7 @@ public class IHM extends Observe<Message> {
     private VueIntroduction introduction;
     private VueJeu jeu;
     private TypeMessage actionEncours = TypeMessage.ATTENTE;
+    private String nomCarte = "";
 
     //Constructeur
     public IHM(Observateur<Message> observateur) {
@@ -67,19 +78,85 @@ public class IHM extends Observe<Message> {
 
     public void mauvaisChoix(int nbJoueurCourant) {
         getJeu().getVueGrille().mauvaisChoix();
-        getJeu().getVueJoueurCourant(nbJoueurCourant).debutTour();
+        getJeu().getVueJoueurCourant(nbJoueurCourant).debutTour(nbJoueurCourant);
     }
 
-    public void miseAjourVues(String nomRole, Tuile tuile, int nbActions, TypeMessage typeM,int nbJoueurCourant) {
-        if(typeM.equals(TypeMessage.SE_DEPLACER)) {
-                getJeu().getVueGrille().miseAjourVueGrille(tuile,nomRole);
-                getJeu().getVueJoueurCourant(nbJoueurCourant).miseAjourVueJoueur(nbActions,nomRole);
-                getJeu().getVueResume().miseAjourVueResume(nomRole,tuile.getNomTuile(),typeM);
-        }else if(typeM.equals(TypeMessage.SE_DEPLACER)){
-            
+    public void miseAjourVues(String nomRole, String nomTuile, int nbActions, TypeMessage typeM, int nbJoueurCourant) {
+        if (typeM.equals(TypeMessage.SE_DEPLACER) || typeM.equals(TypeMessage.ASSECHER)) {
+            getJeu().getVueGrille().miseAjourVueGrille(nomTuile, nomRole, typeM);
+            getJeu().getVueJoueurCourant(nbJoueurCourant).miseAjourVueJoueur(nbActions, nomRole);
+            getJeu().getVueResume().miseAjourVueResume(nomRole, nomTuile, typeM);
         }
         setActionEncours(TypeMessage.ATTENTE);
         System.out.print("Action en attente");
+    }
+
+    public void afficherChoix(TypeMessage TypeM, ArrayList<String> collectNoms) {
+        //créer une fenetre temporaire et choisir la carte (liste à puce)
+        fenetreChoix(collectNoms);
+    }
+    
+    public void miseAjourVuesDistribution(int niveauEau,ArrayList<String>collectNoms,int nbJoueurCourant){
+        getJeu().getVueJoueurCourant(nbJoueurCourant).miseAjourVueJoueurCartes(collectNoms);
+        getJeu().getVueNiveauEau().setNiveau(niveauEau);
+    }
+    
+    public void miseAJourVueInondation(ArrayList<String> collectNoms){
+        getJeu().getVueGrille().inondation(collectNoms);
+    }
+    
+    public void miseAjourVuesDebutTour(int nbJoueurCourant){
+        setActionEncours(TypeMessage.ATTENTE);
+        getJeu().setNbJoueurCourant(nbJoueurCourant);
+        getJeu().getVueJoueurCourant(nbJoueurCourant).debutTour(nbJoueurCourant);
+        //ne revient jamais pour mettre a jour l'affichage de la vue précédente pour le nbAction et
+        //l'attribution des cartes déconne
+        
+    }
+
+    public void fenetreChoix(ArrayList<String> collectNoms) {
+        JFrame window = new JFrame("Choix");
+        JPanel contenu = new JPanel(new BorderLayout());
+        JPanel contenuBoutons = new JPanel(new GridLayout(collectNoms.size(), 1));
+        JButton valider = new JButton("Valider");
+        ButtonGroup collectRadio = new ButtonGroup();
+        ArrayList<JRadioButton> boutonsRadios = new ArrayList<>();
+        //ConfigurationBoutton
+        valider.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                for (JRadioButton button : boutonsRadios) {
+                    if (button.isSelected()) {
+                        setNomCarte(button.getText());
+                    }
+                }
+                window.dispose();
+                Message m = Message.defausseCarte(getNomCarte());
+                notifierObservateurs(m);
+            }
+
+        });
+
+        //Configuration contenuBouton
+        for (int i = 0; i < collectNoms.size(); i++) {
+            boutonsRadios.add((new JRadioButton()));
+        }
+        boutonsRadios.get(0).setSelected(true);
+        for (int i = 0; i < collectNoms.size(); i++) {
+            boutonsRadios.get(i).setText(collectNoms.get(i));
+        }
+        for (JRadioButton radio : boutonsRadios) {
+            collectRadio.add(radio);
+            contenuBoutons.add(radio);
+        }
+
+        //Configuration contenu
+        contenu.add(contenuBoutons, BorderLayout.CENTER);
+        contenu.add(valider, BorderLayout.SOUTH);
+        window.add(contenu);
+        window.setSize(500, 500);
+        window.setLocationRelativeTo(null);
+        window.setVisible(true);
     }
 
     /**
@@ -101,6 +178,20 @@ public class IHM extends Observe<Message> {
      */
     public VueJeu getJeu() {
         return jeu;
+    }
+
+    /**
+     * @param nomCarte the nomCarte to set
+     */
+    public void setNomCarte(String nomCarte) {
+        this.nomCarte = nomCarte;
+    }
+
+    /**
+     * @return the nomCarte
+     */
+    public String getNomCarte() {
+        return nomCarte;
     }
 
 }

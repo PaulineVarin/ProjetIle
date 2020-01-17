@@ -37,6 +37,7 @@ public class VueJoueur {
     private JPanel contenuHaut = new JPanel(new GridLayout(2, 1));
     private JPanel contenuMillieu = new JPanel(new GridLayout(3, 1));
     private JPanel contenuNbActions = new JPanel(new GridLayout(1, 2));
+    private JPanel contenuCartes = new JPanel(new GridLayout(1, 2));
     private JPanel contenuBas = new JPanel(new GridLayout(2, 3));
 
     private JLabel nomJoueur = new JLabel("NomJoueur");
@@ -44,7 +45,8 @@ public class VueJoueur {
     private JLabel listeTresors = new JLabel();
     private JLabel libelNbActions = new JLabel("Actions possibles : ");
     private JLabel nbactions = new JLabel();
-    private JTextArea nomCartes = new JTextArea("Liste des cartes : ");
+    private JLabel libelCarte = new JLabel("Liste des cartes : ");
+    private JTextArea nomCartes = new JTextArea("");
 
     private JButton deplacer = new JButton("Se déplacer");
     private JButton assecher = new JButton("Assécher");
@@ -139,17 +141,20 @@ public class VueJoueur {
         contenuNbActions.add(libelNbActions);
         nbactions.setText(Integer.toString(a.getNbaction()));
         contenuNbActions.add(nbactions);
-
-        //Configuration de contenuMillieu
+        
+        //Configuration de contenuCartes
+        contenuCartes.add(libelCarte);
+        contenuCartes.add(nomCartes);
         nomCartes.setLineWrap(true);
         nomCartes.setEditable(false);
         nomCartes.setBackground(contenu.getBackground());
 
+        //Configuration de contenuMillieu
         contenuMillieu.add(contenuNbActions);
         for (CarteTirage ct : a.getCollectCartesJoueur()) {
             nomCartes.setText(nomCartes.getText() + " " + ct.getNom() + "; ");
         }
-        contenuMillieu.add(nomCartes);
+        contenuMillieu.add(contenuCartes);
         listeTresors.setText("Aucun trésor");
         contenuMillieu.add(listeTresors);
 
@@ -207,17 +212,31 @@ public class VueJoueur {
         }
     }
 
-    public void debutTour() {
-        for (JButton j : getListeBoutons()) {
+    public void debutTour(int nbJoueurCourant) {
+         for (JButton j : getListeBoutons()) {
             j.setEnabled(true);
+        }   
+        nbactions.setText("3");
+ 
+    }
+
+    public void miseAjourVueJoueur(int nbActions, String nomRole) {
+        getNbactions().setText(Integer.toString(nbActions));
+        if (Integer.parseInt(getNbactions().getText()) == 0) {
+            getListeBoutons().get(5).setEnabled(true);
+        } else {
+            for (JButton j : listeBoutons) {
+                j.setEnabled(true);
+            }
         }
     }
-    
-    public void miseAjourVueJoueur(int nbActions,String nomRole) {
-        getNbactions().setText(Integer.toString(nbActions));
-        for(JButton j : listeBoutons) {
-            j.setEnabled(true);
+    public void miseAjourVueJoueurCartes(ArrayList<String> collectNoms) {
+        nomCartes.setText("");
+        for(String s:collectNoms){
+            nomCartes.setText(nomCartes.getText()+s+"; ");
         }
+        
+        
     }
 
     /**

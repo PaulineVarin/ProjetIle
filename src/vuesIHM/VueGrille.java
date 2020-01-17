@@ -131,10 +131,21 @@ public class VueGrille implements MouseListener {
         }
     }
     
-    public void miseAjourVueGrille(Tuile tuile,String nomRole) {
+    public void miseAjourVueGrille(String nomTuile,String nomRole,TypeMessage TypeM) {
         for(JButton j : getListeBouttons()) {
             j.setEnabled(true);      
         }
+        if(TypeM.equals(TypeMessage.ASSECHER)) {
+            getButton(nomTuile).setBackground(Parameters.TUILE_ASSECHEE_BG);
+        }
+        
+    }
+    
+    public void inondation(ArrayList<String>collectNomsTuiles){
+        for(String s : collectNomsTuiles) {
+            System.out.print("inodation grille fin tour");
+            getButton(s).setBackground(Parameters.TUILE_INONDEE_BG);  
+            }
         
     }
     
