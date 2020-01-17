@@ -33,7 +33,6 @@ public class IHM extends Observe<Message> {
     private VueIntroduction introduction;
     private VueJeu jeu;
     private TypeMessage actionEncours = TypeMessage.ATTENTE;
-    private String nomCarte = "";
 
     //Constructeur
     public IHM(Observateur<Message> observateur) {
@@ -125,13 +124,15 @@ public class IHM extends Observe<Message> {
         valider.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                String nom="";
                 for (JRadioButton button : boutonsRadios) {
                     if (button.isSelected()) {
-                        setNomCarte(button.getText());
+                        nom = button.getText();
                     }
                 }
                 window.dispose();
-                Message m = Message.defausseCarte(getNomCarte());
+                //getJeu().getVueJoueurCourant(getJeu().getNbJoueurCourant()).miseAjourVueJoueurCartes(collectNoms);
+                Message m = Message.defausseCarte(nom);
                 notifierObservateurs(m);
             }
 
@@ -180,18 +181,6 @@ public class IHM extends Observe<Message> {
         return jeu;
     }
 
-    /**
-     * @param nomCarte the nomCarte to set
-     */
-    public void setNomCarte(String nomCarte) {
-        this.nomCarte = nomCarte;
-    }
-
-    /**
-     * @return the nomCarte
-     */
-    public String getNomCarte() {
-        return nomCarte;
-    }
+    
 
 }

@@ -57,10 +57,24 @@ public class VueJoueur {
 
     private int x = 0;
     private int y = 110;
+    private Color couleur;
     private ArrayList<JButton> listeBoutons = new ArrayList<>();
 
     //Constructeur
     public VueJoueur(Aventurier a, VueJeu jeu) {
+        if(a.getRole().equals(TypeRole.EXPLORATEUR)){
+            couleur = Color.GREEN;
+        }else if(a.getRole().equals(TypeRole.INGENIEUR)){
+            couleur = Color.RED;
+        }else if(a.getRole().equals(TypeRole.MESSAGER)){
+            couleur = Color.GRAY;
+        }else if(a.getRole().equals(TypeRole.NAVIGATEUR)){
+            couleur = Color.YELLOW;
+        }else if(a.getRole().equals(TypeRole.PILOTE)){
+            couleur = Color.BLUE;
+        }else {
+            couleur = Color.BLACK;
+        }
         this.vueJeu = jeu;
         //Initialisation collection
         listeBoutons.add(deplacer);
@@ -231,8 +245,10 @@ public class VueJoueur {
         }
     }
     public void miseAjourVueJoueurCartes(ArrayList<String> collectNoms) {
+        nbactions.setText("3");
         nomCartes.setText("");
         for(String s:collectNoms){
+            System.out.println("Affichage "+nomCartes.getText());
             nomCartes.setText(nomCartes.getText()+s+"; ");
         }
         
@@ -300,6 +316,13 @@ public class VueJoueur {
      */
     public JLabel getNbactions() {
         return nbactions;
+    }
+
+    /**
+     * @return the couleur
+     */
+    public Color getCouleur() {
+        return couleur;
     }
 
 }

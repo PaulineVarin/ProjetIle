@@ -107,33 +107,36 @@ public class Controleur implements Observateur<Message> {
                 break;
             case FIN_TOUR:
                 if (msg.getTypeA() == null) {
-                    System.out.println("Hello methode finTour");
                     ileInterdite.finTour(nbJoueurCourant);
                 } else if (msg.getTypeA().equals(TypeAction.CHOIX_CARTE)) {
+                    System.out.println("Hello methode finTour+choixCarte");
                     ArrayList<String> collectNoms = new ArrayList<>();
                     for (CarteTirage ct : msg.getCollectCartesJoueur()) {
                         collectNoms.add(ct.getNom());
                     }
                     ihm.afficherChoix(msg.getTypeM(), collectNoms);
                 } else if (msg.getTypeA().equals(TypeAction.CHOIX_CARTE_DEFAUSSE)) {
+                    System.out.println("Hello methode finTour+choixCarteDefausse");
                     ileInterdite.majCollectCartesJoueurs(msg.getNomCarte(), nbJoueurCourant);
-                    //ihm.miseAjourVuesDistribution();
                 } else if (msg.getTypeA().equals(TypeAction.DISTRIBUTION_CARTE)) {
                     ArrayList<String> nomCartes = new ArrayList<>();
                     for (CarteTirage cti : msg.getCollectCartesJoueur()) {
                         System.out.println("controleur cartes noms");
+                         System.out.println(cti.getNom());
                         nomCartes.add(cti.getNom());
-                        System.out.println(cti.getNom());
+                       
                     }
                     ihm.miseAjourVuesDistribution(msg.getNiveauEau(), nomCartes, nbJoueurCourant);
                 } else if (msg.getTypeA().equals(TypeAction.INONDATION)) {
+                    System.out.println("controleur inondation");
                     ArrayList<String> nomTuiles = new ArrayList<>();
                     for (Tuile t : msg.getCollectTuiles()) {
                         nomTuiles.add(t.getNomTuile());
                         System.out.println(t.getNomTuile());
                     }
-                    ihm.miseAJourVueInondation(nomTuiles);
                     ileInterdite.changementJoueur(nbJoueurCourant);
+                    ihm.miseAJourVueInondation(nomTuiles);
+                    
                 }
                 break;
             case MAUVAIS_CHOIX:

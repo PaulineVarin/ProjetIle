@@ -223,8 +223,10 @@ public class IleInterdite extends Observe<Message> {
         verificationTirage();
         System.out.println("tcverificationdistribution");
         if(a.getCollectCartesJoueur().size()<4){
+         System.out.println("tcdistribution");   
          distributionCarte(a);   
         }else {
+            System.out.println("nondistributionverif");
             Message m = Message.verificationDistribution(a.getCollectCartesJoueur());
             notifierObservateurs(m);
         }
@@ -308,13 +310,16 @@ public class IleInterdite extends Observe<Message> {
 
     public void changementJoueur(int nbJoueurCourant) {
         Aventurier a = getAventurier(nbJoueurCourant);
+        System.out.println("nom aventurier"+a.getNomJoueur());
         a.setNbaction(3);
+        System.out.println("nb actions "+a.getNbaction());
         if (nbJoueurCourant == getCollectAventuriers().size()-1) {
             nbJoueurCourant = 0;
         } else {
             nbJoueurCourant = nbJoueurCourant + 1;
         }
         Aventurier a1 = getAventurier(nbJoueurCourant);
+        System.out.println("nb actions "+a1.getNbaction()+a1.getNomJoueur());
         Message m = Message.debutTour(nbJoueurCourant);
         notifierObservateurs(m);
     }

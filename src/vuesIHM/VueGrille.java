@@ -117,45 +117,79 @@ public class VueGrille implements MouseListener {
             }
         }
     }
-    
+
     public void modifierAffichage(ArrayList<String> collectNomsCases) {
-        for(String s : collectNomsCases) {
-            getButton(s).setEnabled(true);   
+        for (String s : collectNomsCases) {
+            getButton(s).setEnabled(true);
+            getButton(s).setForeground(Color.CYAN);
+            getButton(s).setFont(new Font(Font.SERIF, Font.BOLD, 12));
         }
-        
+
     }
-    
+
     public void mauvaisChoix() {
-        for(JButton j : getListeBouttons()) {
+        for (JButton j : getListeBouttons()) {
             j.setEnabled(true);
         }
     }
-    
-    public void miseAjourVueGrille(String nomTuile,String nomRole,TypeMessage TypeM) {
-        for(JButton j : getListeBouttons()) {
-            j.setEnabled(true);      
-        }
-        if(TypeM.equals(TypeMessage.ASSECHER)) {
-            getButton(nomTuile).setBackground(Parameters.TUILE_ASSECHEE_BG);
-        }
-        
-    }
-    
-    public void inondation(ArrayList<String>collectNomsTuiles){
-        for(String s : collectNomsTuiles) {
-            System.out.print("inodation grille fin tour");
-            getButton(s).setBackground(Parameters.TUILE_INONDEE_BG);  
+
+    public void miseAjourVueGrille(String nomTuile, String nomRole, TypeMessage TypeM) {
+        for (JButton j : getListeBouttons()) {
+            j.setEnabled(true);
+            if (j.getForeground().equals(getVueJeu().getVueJoueurCourant(getVueJeu().getNbJoueurCourant()).getCouleur())) {
+                if (TypeM.equals(TypeMessage.SE_DEPLACER)) {
+                    j.setFont(new Font(Font.SERIF, Font.ITALIC, 12));
+                    j.setForeground(Color.black);
+                }
+            } else if (j.getForeground().equals(Color.CYAN)) {
+                j.setForeground(Color.black);
+                j.setFont(new Font(Font.SERIF, Font.ITALIC, 12));
             }
-        
+        }
+        if (TypeM.equals(TypeMessage.SE_DEPLACER)) {
+            if (nomRole.equals(TypeRole.EXPLORATEUR.toString())) {
+                getButton(nomTuile).setForeground(Color.GREEN);
+                getButton(nomTuile).setFont(new Font(Font.SANS_SERIF, Font.BOLD, 15));
+            } else if (nomRole.equals(TypeRole.INGENIEUR.toString())) {
+                getButton(nomTuile).setForeground(Color.RED);
+                getButton(nomTuile).setFont(new Font(Font.SANS_SERIF, Font.BOLD, 15));
+            } else if (nomRole.equals(TypeRole.MESSAGER.toString())) {
+                getButton(nomTuile).setForeground(Color.GRAY);
+                getButton(nomTuile).setFont(new Font(Font.SANS_SERIF, Font.BOLD, 15));
+            } else if (nomRole.equals(TypeRole.NAVIGATEUR.toString())) {
+                getButton(nomTuile).setForeground(Color.YELLOW);
+                getButton(nomTuile).setFont(new Font(Font.SANS_SERIF, Font.BOLD, 15));
+            } else if (nomRole.equals(TypeRole.PILOTE.toString())) {
+                getButton(nomTuile).setForeground(Color.BLUE);
+                getButton(nomTuile).setFont(new Font(Font.SANS_SERIF, Font.BOLD, 15));
+            } else {
+                getButton(nomTuile).setForeground(Color.BLACK);
+                getButton(nomTuile).setFont(new Font(Font.SANS_SERIF, Font.BOLD, 15));
+            }
+        }
+        if (TypeM.equals(TypeMessage.ASSECHER)) {
+                getButton(nomTuile).setBackground(Parameters.TUILE_ASSECHEE_BG);
+            }
     }
-    
-    public JButton getButton(String nomTuile){
-        for(JButton j : getListeBouttons()) {
-            if(j.getText().equals(nomTuile)) {
+
+    public void inondation(ArrayList<String> collectNomsTuiles) {
+        for (String s : collectNomsTuiles) {
+            System.out.print("inodation grille fin tour");
+            getButton(s).setBackground(Parameters.TUILE_INONDEE_BG);
+        }
+        for (JButton j : listeBouttons) {
+            j.setEnabled(true);
+        }
+
+    }
+
+    public JButton getButton(String nomTuile) {
+        for (JButton j : getListeBouttons()) {
+            if (j.getText().equals(nomTuile)) {
                 return j;
             }
         }
-        return null; 
+        return null;
     }
 
     /**
@@ -164,7 +198,7 @@ public class VueGrille implements MouseListener {
     public JFrame getWindow() {
         return window;
     }
-    
+
     /**
      * @return the vueJeu
      */
@@ -190,7 +224,7 @@ public class VueGrille implements MouseListener {
         int x = arg0.getXOnScreen();
         int y = arg0.getYOnScreen();
         if (getVueJeu().getIhm().getActionEncours().equals(TypeMessage.SE_DEPLACER)) {
-            for(JButton bouton : getListeBouttons()) {
+            for (JButton bouton : getListeBouttons()) {
                 bouton.setEnabled(false);
             }
             System.out.println("mouse pressedDeplacer");
